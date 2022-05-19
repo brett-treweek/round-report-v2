@@ -10,6 +10,7 @@ const StyledHome = styled.section`
 	width: 100vw;
 	text-align: center;
 	background-color: ${({ theme }) => theme.background};
+	z-index: -100;
 `;
 
 export default StyledHome;

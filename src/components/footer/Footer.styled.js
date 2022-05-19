@@ -8,17 +8,28 @@ const StyledFooter = styled.footer`
 	width: 100%;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	padding: 1rem 3rem;
-	background-color: ${({ theme }) => theme.main};
+	background-color: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.textLight};
-    font-weight: 500;
+	font-weight: 500;
 	box-shadow: ${({ theme }) => theme.boxShadow};
+
+
+	.footer-inner-container {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		max-width: 570px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 `;
 
 export const HazardButton = styled.button`
 	position: absolute;
-	top: 0;
+	top: 10%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	height: 6.5rem;
@@ -31,6 +42,12 @@ export const HazardButton = styled.button`
 	color: white;
 	background-color: ${({ theme }) => theme.highlight};
 	box-shadow: ${({ theme }) => theme.boxShadow};
+
+	@media (max-height: 730px) {
+		height: 5rem;
+		width: 5rem;
+		padding: 0;
+	}
 `;
 
 export default StyledFooter;

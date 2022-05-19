@@ -8,29 +8,33 @@ const StyledHeader = styled.header`
 	width: 100%;
 	display: flex;
 	align-items: center;
-	padding: 1rem;
+	justify-content: center;
 	font-weight: 500;
-	background-color: ${({ theme }) => theme.main};
-	color: ${({ theme }) => theme.textLight};
-	/* box-shadow: ${({ theme }) => theme.boxShadow}; */
+	background-color: ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.main};
+	box-shadow: ${({ theme }) => theme.boxShadow};
 
 	div {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
+		/* left: 50%;
+		transform: translateX(-50%); */
 	}
 
 	div h1 {
 		font-size: 1.5rem;
-		color: ${({ theme }) => theme.highlight};
-		font-weight: 600;
+		color: ${({ theme }) => theme.main};
+		font-weight: 700;
 	}
 
 	div h4 {
 		font-weight: 500;
+	}
+
+	img {
+		width: 3.5rem;
 	}
 `;
 export default StyledHeader;

@@ -1,18 +1,16 @@
 import React from 'react';
-import StyledFooter, { HazardButton } from './Footer.styled';
-
-
+import StyledFooter, { BackgroundCircle, HazardButton } from './Footer.styled';
+import { Icon } from '@iconify/react';
 
 const Footer = () => {
-
 	return (
-		<StyledFooter>
-			<p>Home</p>
-			<HazardButton>
-				Add Hazard
-			</HazardButton>
-			<p>Profile</p>
-		</StyledFooter>
+			<StyledFooter>
+				<div className="footer-inner-container">
+					<Icon icon="entypo:home" color="#31313D" height="40" />
+					<HazardButton>Add Hazard</HazardButton>
+					<Icon icon="bxs:user" color="#31313D" height="40" />
+				</div>
+			</StyledFooter>
 	);
 };
 

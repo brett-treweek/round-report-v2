@@ -5,9 +5,13 @@ const StyledRoundSearch = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	padding: 1rem;
+	padding: 2rem 1rem 1rem;
 	background-color: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.textLight};
+
+	@media (max-height: 730px) {
+		padding: 1rem;
+	}
 `;
 
 export const SearchForm = styled.form`
@@ -34,6 +38,7 @@ export const SearchInput = styled.input`
 	width: 60%;
     height: 90%;
     margin: 0 1rem;
+	text-align: center;
 	background-color: ${({ theme }) => theme.background};
 	border: none;
 	transition: all 300ms ease;
@@ -47,11 +52,14 @@ export const GoButton = styled.button`
 	height: 100%;
 	width: 80px;
 	border: none;
-    border-radius: 5px;
+	border-radius: 5px;
 	background-color: ${({ theme }) => theme.highlight};
+	box-shadow: ${({ theme }) => theme.boxShadow};
 	color: ${({ theme }) => theme.textLight};
-    font-weight: 500;
-    font-size: 1rem;
+	font-weight: 500;
+	font-size: 1rem;
+
+	
 `;
 
 export default StyledRoundSearch;

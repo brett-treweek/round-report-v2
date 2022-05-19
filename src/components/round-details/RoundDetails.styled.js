@@ -13,13 +13,14 @@ const StyledDetails = styled.div`
 export const DetailsCard = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: start;
+	justify-content: center;
 	padding: 1rem;
 	gap: 3rem;
 	height: 100%;
 	width: 100%;
 	max-width: 500px;
-    border-radius: 10px;
+    border-radius: 15px;
+	border-bottom-right-radius: 50%;
 	color: ${({ theme }) => theme.textLight};
 	background-color: ${({ theme }) => theme.main};
 	box-shadow: ${({ theme }) => theme.boxShadow};
