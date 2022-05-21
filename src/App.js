@@ -3,13 +3,18 @@ import { ThemeProvider } from 'styled-components';
 import theme from './assets/theme/theme';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
+import { Routes, Route, Link } from 'react-router-dom';
+import Round from './pages/round/Round';
 
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="App">
 				<Header />
-				<Home />
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="round" element={<Round />} />
+					</Routes>
 				<Footer />
 			</div>
 		</ThemeProvider>

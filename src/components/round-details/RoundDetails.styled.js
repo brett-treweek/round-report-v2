@@ -13,8 +13,8 @@ const StyledDetails = styled.div`
 export const DetailsCard = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	padding: 1rem;
+	justify-content: ${(jc) => jc || 'center'};
+	padding: 1rem 2rem;
 	gap: 3rem;
 	height: 100%;
 	width: 100%;

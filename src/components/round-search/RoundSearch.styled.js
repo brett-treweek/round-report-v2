@@ -38,6 +38,7 @@ export const SearchInput = styled.input`
 	width: 60%;
     height: 90%;
     margin: 0 1rem;
+	font-size: 0.8rem;
 	text-align: center;
 	background-color: ${({ theme }) => theme.background};
 	border: none;
@@ -58,8 +59,6 @@ export const GoButton = styled.button`
 	color: ${({ theme }) => theme.textLight};
 	font-weight: 500;
 	font-size: 1rem;
-
-	
 `;
 
 export default StyledRoundSearch;

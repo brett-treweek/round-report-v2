@@ -9,7 +9,7 @@ const RoundSearch = () => {
 				type="number"
 				min="1"
 				max="10"
-				placeholder="Enter round number"
+				placeholder="Round Number or Suburb"
 			></SearchInput>
             <GoButton>
                 Go

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-	position: relative;
+	position: sticky;
 	bottom: 0;
 	height: 10vh;
 	min-height: 70px;

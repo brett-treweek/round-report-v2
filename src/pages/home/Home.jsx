@@ -10,7 +10,7 @@ const Home = () => {
     <StyledHome>
       <RoundSearch/>
       <Map/>
-      <RoundDetails/>
+      <RoundDetails icon/>
     </StyledHome>
   )
 }
