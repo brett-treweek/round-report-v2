@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
+
 const StyledDetails = styled.div`
+	position: ${({ position }) => 'sticky' || 'static'};
+	top: ${({ top }) => '10vh'};
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 20vh;
 	width: 100%;
-	padding: 1rem;
-	background-color: ${({ theme }) => theme.background};
+	padding: 0.8rem;
+	background: linear-gradient(${({ theme }) => theme.background}, transparent);
+	z-index: 0;
 `;
 
 export const DetailsCard = styled.div`

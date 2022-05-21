@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
-	position: relative;
+	position: sticky;
 	top: 0;
 	height: 10vh;
 	min-height: 70px;
@@ -13,6 +13,7 @@ const StyledHeader = styled.header`
 	background-color: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.main};
 	box-shadow: ${({ theme }) => theme.boxShadow};
+	z-index: 1000;
 
 	div {
 		display: flex;

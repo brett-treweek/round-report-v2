@@ -5,7 +5,7 @@ const StyledHazardCard = styled.article`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-    /* gap: 1rem; */
+    margin-bottom: 1rem;
 	min-height: 37vh;
 	width: 90vw;
 	max-width: 500px;

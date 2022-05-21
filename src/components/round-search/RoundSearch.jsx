@@ -1,7 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import StyledRoundSearch, { GoButton, SearchForm, SearchInput } from './RoundSearch.styled'
 
 const RoundSearch = () => {
+	let navigate = useNavigate()
+
   return (
 		<StyledRoundSearch>
             <SearchForm action="#">
@@ -11,7 +14,8 @@ const RoundSearch = () => {
 				max="10"
 				placeholder="Round Number or Suburb"
 			></SearchInput>
-            <GoButton>
+            <GoButton onClick={(e) => {e.preventDefault()
+				navigate('/round')}}>
                 Go
             </GoButton>
 
