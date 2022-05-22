@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../../components/ui/input/input';
+import { Button } from '../../components/ui/button/Button.styled';
 import { LoginForm, StyledLogin } from './Login.styled';
 
 let initialLoginState = {
@@ -27,8 +28,8 @@ const Login = () => {
 
 	return (
 		<StyledLogin>
-			<h1>Log In</h1>
 			<LoginForm onSubmit={handleSubmit}>
+				<h1>Log In</h1>
 				<Input
 					id="email"
 					label="Email"
@@ -55,9 +56,9 @@ const Login = () => {
 					</div>
 				) : null} */}
 
-				<button type="submit" className="button">
-					Sign In
-				</button>
+				<Button type="submit" className="button" width='100%'>
+					Go
+				</Button>
 			</LoginForm>
 		</StyledLogin>
 	);

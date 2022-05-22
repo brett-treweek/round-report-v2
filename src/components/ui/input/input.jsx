@@ -4,7 +4,7 @@ import { InputContainer, StyledInput, StyledLabel } from './input.styled';
 const Input = (props) => {
 	return (
 		<InputContainer>
-			<StyledLabel htmlFor={props.id}></StyledLabel>
+			<StyledLabel htmlFor={props.id}>{props.label}</StyledLabel>
 			<StyledInput
 				type={props.type}
 				id={props.id}

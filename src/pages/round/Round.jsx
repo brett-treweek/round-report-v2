@@ -54,8 +54,8 @@ const Round = () => {
 			{view === 'List' ? (
 				<Map/>
 			) : (
-				hazards.map((hazard) => (
-					<HazardCard key={hazard.id} hazard={hazard} />
+				hazards.map((hazard, index) => (
+					<HazardCard key={hazard.id} hazard={hazard} index={index} />
 				))
 			)}
 		</StyledRound>
