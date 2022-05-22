@@ -17,9 +17,10 @@ const RoundDetails = ({roundDeets, changeView, view}) => {
 				) : (
 					<a href="tel:9300600">
 						<Icon
+							className='icon'
 							icon="fa-solid:phone-alt"
-							color="#DC1928"
-							height="40"
+							// color="#DC1928"
+							// height="40"
 						/>
 					</a>
 				)}

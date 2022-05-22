@@ -11,6 +11,7 @@ const StyledAddHazard = styled.section`
 `;
 
 export const AddHazardForm = styled.form`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

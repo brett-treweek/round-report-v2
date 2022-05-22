@@ -1,21 +1,27 @@
-import React from 'react'
+import React from 'react';
 import StyledEditRound, { EditRoundForm } from './EditRound.styled';
 import Input from '../../components/ui/input/input';
 import { Button } from '../../components/ui/button/Button.styled';
 import CancelButton from '../../components/ui/cancel-button/CancelButton';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const EditRound = () => {
+	const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-  };
+		navigate('/');
+	};
 
-  return (
+	const handleCancel = (e) => {
+		e.preventDefault();
+		navigate(-1);
+	};
+
+	return (
 		<StyledEditRound>
 			<EditRoundForm>
-				<CancelButton />
+				<CancelButton onClick={handleCancel} />
 				<h1>Edit Round</h1>
 				<Input
 					id="roundNumber"
@@ -67,7 +73,7 @@ const EditRound = () => {
 				</Button>
 			</EditRoundForm>
 		</StyledEditRound>
-  );
-}
+	);
+};
 
-export default EditRound
+export default EditRound;

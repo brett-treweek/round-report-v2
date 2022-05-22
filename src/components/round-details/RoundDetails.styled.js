@@ -17,7 +17,7 @@ const StyledDetails = styled.div`
 export const DetailsCard = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: ${({jc}) => jc || 'space-evenly'};
+	justify-content: ${({ jc }) => jc || 'space-evenly'};
 	padding: 1rem 2rem;
 	gap: 3rem;
 	height: 100%;
@@ -43,10 +43,17 @@ export const DetailsCard = styled.div`
 	}
 
 	.icon {
-		height: 50px;
-		color: white;
-		border-radius: 5px;
+		padding: 10px;
+		height: 70px;
+		width: 70px;
+		color: red;
+		border-radius: 15px;
+		transition: all 300ms ease;
+	}
+
+	.icon:hover {
 		cursor: pointer;
+		box-shadow: ${({ theme }) => theme.boxShadow};
 	}
 `;
 

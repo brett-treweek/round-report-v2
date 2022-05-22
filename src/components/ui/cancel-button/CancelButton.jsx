@@ -1,9 +1,9 @@
 import React from 'react'
 import StyledCancelButton from './CancelButton.styled'
 
-const CancelButton = () => {
+const CancelButton = ({onClick}) => {
   return (
-    <StyledCancelButton>X</StyledCancelButton>
+    <StyledCancelButton onClick={onClick}>X</StyledCancelButton>
   )
 }
 

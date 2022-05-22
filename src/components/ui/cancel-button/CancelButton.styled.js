@@ -16,6 +16,7 @@ const StyledCancelButton = styled.button`
 	box-shadow: ${({ theme }) => theme.boxShadow};
 	color: ${({ theme }) => theme.textLight};
 	font-weight: 800;
+	cursor: pointer;
 `;
 
 export default StyledCancelButton;

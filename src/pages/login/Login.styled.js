@@ -10,6 +10,7 @@ export const StyledLogin = styled.section`
 `;
 
 export const LoginForm = styled.form`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
