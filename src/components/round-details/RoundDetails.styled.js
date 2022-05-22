@@ -17,13 +17,13 @@ const StyledDetails = styled.div`
 export const DetailsCard = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: ${(jc) => jc || 'center'};
+	justify-content: ${({jc}) => jc || 'space-evenly'};
 	padding: 1rem 2rem;
 	gap: 3rem;
 	height: 100%;
 	width: 100%;
 	max-width: 500px;
-    border-radius: 15px;
+	border-radius: 15px;
 	border-bottom-right-radius: 50%;
 	color: ${({ theme }) => theme.textLight};
 	background-color: ${({ theme }) => theme.main};
@@ -40,6 +40,13 @@ export const DetailsCard = styled.div`
 
 	p {
 		font-size: 0.8rem;
+	}
+
+	.icon {
+		height: 50px;
+		color: white;
+		border-radius: 5px;
+		cursor: pointer;
 	}
 `;
 

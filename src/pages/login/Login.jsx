@@ -3,27 +3,27 @@ import Input from '../../components/ui/input/input';
 import { Button } from '../../components/ui/button/Button.styled';
 import { LoginForm, StyledLogin } from './Login.styled';
 
-let initialLoginState = {
-	email: '',
-	password: '',
-  isValid: ''
-};
+// let initialLoginState = {
+// 	email: '',
+// 	password: '',
+//   isValid: ''
+// };
 
 const Login = () => {
-	const [loginState, setLoginState] = useState(initialLoginState);
+	// const [loginState, setLoginState] = useState(initialLoginState);
 
 	// function to handle submit of login or signup.
 	const handleSubmit = async (e) => {
     e.preventDefault()
   };
 
-  const emailChangeHandler = () => {}
-  const validateEmailHandler = () => {}
-  const emailIsValid = () => {}
+//   const emailChangeHandler = () => {}
+//   const validateEmailHandler = () => {}
+//   const emailIsValid = () => {}
 
-  const passwordChangeHandler = () => {}
-  const validatePasswordHandler = () => {}
-  const passwordIsValid = () => {}
+//   const passwordChangeHandler = () => {}
+//   const validatePasswordHandler = () => {}
+//   const passwordIsValid = () => {}
 
 
 	return (
@@ -31,22 +31,23 @@ const Login = () => {
 			<LoginForm onSubmit={handleSubmit}>
 				<h1>Log In</h1>
 				<Input
-					id="email"
-					label="Email"
-					type="email"
-					isValid={emailIsValid}
-					value={loginState.value}
-					onChange={emailChangeHandler}
-					onBlur={validateEmailHandler}
+					id="username"
+					label="Username"
+					type="username"
+					// isValid={emailIsValid}
+					// value={loginState.value}
+					// onChange={emailChangeHandler}
+					// onBlur={validateEmailHandler}
 				/>
 				<Input
 					id="password"
 					label="Password"
 					type="password"
+					autoComplete="off"
 					// isValid={passwordIsValid}
 					// value={passwordState.value}
-					onChange={passwordChangeHandler}
-					onBlur={validatePasswordHandler}
+					// onChange={passwordChangeHandler}
+					// onBlur={validatePasswordHandler}
 				/>
 				{/* {error ? (
 					<div>

@@ -14,9 +14,9 @@ export const LoginForm = styled.form`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 2rem;
+	padding:  4rem 2rem;
 	gap: 2rem;
-	height: 40vh;
+	/* height: 40vh; */
 	width: 80vw;
 	max-width: 500px;
 	background-color: ${({ theme }) => theme.main};
