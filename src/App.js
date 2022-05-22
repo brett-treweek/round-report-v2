@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import Round from './pages/round/Round';
 import Login from './pages/login/Login';
 import AddHazard from './pages/add-hazard/AddHazard';
+import EditRound from './pages/edit-round/EditRound';
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 						<Route path="round" element={<Round />} />
 						<Route path="login" element={<Login />} />
 						<Route path="addHazard" element={<AddHazard />} />
+						<Route path="editRound" element={<EditRound />} />
 					</Routes>
 				<Footer />
 			</div>

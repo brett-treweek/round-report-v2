@@ -9,6 +9,12 @@ import { Button } from '../../components/ui/button/Button.styled';
 import { folder, camera } from '../../assets/icons';
 
 const AddHazard = () => {
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+	}
+
+
 	return (
 		<StyledAddHazard>
 			<AddHazardForm>
@@ -56,7 +62,7 @@ const AddHazard = () => {
 						<img src={camera} alt="camera" />
 					</IconContainer>
 				</AddImageContainer>
-				<Button width="100%">Submit</Button>
+				<Button onClick={handleSubmit} width="100%">Submit</Button>
 			</AddHazardForm>
 		</StyledAddHazard>
 	);

@@ -6,7 +6,7 @@ const StyledHome = styled.section`
 	align-items: center;
 	justify-content: start;
 	gap: 1rem;
-	height: 80vh;
+	min-height: 80vh;
 	width: 100vw;
 	text-align: center;
 	background-color: ${({ theme }) => theme.background};

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-
-const StyledAddHazard = styled.section`
+const StyledEditRound = styled.section`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -10,13 +9,14 @@ const StyledAddHazard = styled.section`
 	background-color: ${({ theme }) => theme.background};
 `;
 
-export const AddHazardForm = styled.form`
+export const EditRoundForm = styled.form`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 2rem;
-	gap: 2rem;
+	padding: 3rem 2rem;
+	gap: 1rem;
 	width: 80vw;
 	max-width: 500px;
 	background-color: ${({ theme }) => theme.main};
@@ -26,27 +26,8 @@ export const AddHazardForm = styled.form`
 	h1 {
 		color: ${({ theme }) => theme.textLight};
 		font-weight: 500;
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
 `;
 
-export const AddImageContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	
-	& > h2 {
-		color: ${({theme}) => theme.textLight};
-		/* font-size: 1.5rem; */
-		font-weight: 500;
-		
-	}
-`;
-
-export const IconContainer = styled.div`
-	display: flex;
-	gap: 1rem;
-`
-
-export default StyledAddHazard;
+export default StyledEditRound;
