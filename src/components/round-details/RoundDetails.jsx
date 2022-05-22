@@ -1,5 +1,5 @@
 import React from 'react'
-import StyledDetails, { DetailsCard } from './RoundDetails.styled';
+import StyledDetails, { DetailsCard, IconContainer } from './RoundDetails.styled';
 import { Icon } from '@iconify/react';
 import {Button} from '../../components/ui/button/Button.styled';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,18 @@ const RoundDetails = ({roundDeets, changeView, view}) => {
 		<StyledDetails>
 			<DetailsCard>
 				{roundDeets ? (
+					<IconContainer>
 					<Button onClick={changeView}>{view}</Button>
+					<Link to={'/editRound'}>
+						<Icon
+							className="icon"
+							icon="ci:edit"
+							color="#fff"
+							height="50"
+						/>
+					</Link>
+					</IconContainer>
+					
 				) : (
 					<a href="tel:9300600">
 						<Icon
@@ -43,16 +54,6 @@ const RoundDetails = ({roundDeets, changeView, view}) => {
 					{roundDeets ? <p>{roundDeets.lpo}</p> : <p>Ph: 9300600</p>}
 					<p>wcc: 135780</p>
 				</div>
-				{roundDeets ? (
-					<Link to={'/editRound'}>
-						<Icon
-							className="icon"
-							icon="ci:edit"
-							color="#fff"
-							height="50"
-						/>
-					</Link>
-				) : null}
 			</DetailsCard>
 		</StyledDetails>
   );

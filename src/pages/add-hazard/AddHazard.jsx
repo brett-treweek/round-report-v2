@@ -7,6 +7,7 @@ import StyledAddHazard, {
 import CancelButton from '../../components/ui/cancel-button/CancelButton';
 import Input from '../../components/ui/input/input';
 import { Button } from '../../components/ui/button/Button.styled';
+import { Icon } from '@iconify/react';
 import { folder, camera } from '../../assets/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -70,8 +71,16 @@ const AddHazard = () => {
 				<AddImageContainer>
 					<h2>Image</h2>
 					<IconContainer>
-						<img src={folder} alt="folder" />
-						<img src={camera} alt="camera" />
+						<Icon
+							className="icon"
+							icon="bxs:folder-plus"
+							height="45"
+						/>
+						<Icon
+							className="icon"
+							icon="bxs:camera-plus"
+							height="45"
+						/>
 					</IconContainer>
 				</AddImageContainer>
 				<Button onClick={handleSubmit} width="100%">

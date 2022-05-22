@@ -8,13 +8,15 @@ const Footer = () => {
 		<StyledFooter>
 			<div className="footer-inner-container">
 				<Link to="/">
-					<Icon className='icon' icon="entypo:home" />
+					<Icon className="icon" icon="entypo:home" />
 				</Link>
 				<Link to="/addHazard">
-					<HazardButton>Add Hazard</HazardButton>
+					<HazardButton>
+						<Icon icon="carbon:add" color="white" height="40" />
+					</HazardButton>
 				</Link>
 				<Link to="/login">
-					<Icon className='icon' icon="bxs:user" />
+					<Icon className="icon" icon="bxs:user" />
 				</Link>
 			</div>
 		</StyledFooter>

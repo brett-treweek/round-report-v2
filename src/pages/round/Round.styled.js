@@ -5,11 +5,11 @@ const StyledRound = styled.section`
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
-	gap: 1rem;
+	/* gap: 1rem; */
 	min-height: 80vh;
 	/* width: 100vw; */
 	text-align: center;
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.main};
 `;
 
 export default StyledRound;

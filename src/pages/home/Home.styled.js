@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 const StyledHome = styled.section`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: start;
+	justify-content: space-between;
 	gap: 1rem;
 	min-height: 80vh;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 	text-align: center;
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.main};
 `;
 
 export default StyledHome;

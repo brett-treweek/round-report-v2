@@ -10,9 +10,8 @@ const StyledHeader = styled.header`
 	align-items: center;
 	justify-content: center;
 	font-weight: 500;
-	background-color: ${({ theme }) => theme.background};
-	color: ${({ theme }) => theme.main};
-	box-shadow: ${({ theme }) => theme.boxShadow};
+	background-color: ${({ theme }) => theme.main};
+	color: ${({ theme }) => theme.textLight};
 	z-index: 1000;
 
 	div {
@@ -25,13 +24,15 @@ const StyledHeader = styled.header`
 	}
 
 	div h1 {
-		font-size: 1.5rem;
-		color: ${({ theme }) => theme.main};
-		font-weight: 700;
+		font-size: 1.1rem;
+		/* color: ${({ theme }) => theme.main}; */
+		font-weight: 600;
+		line-height: 1.6;
 	}
 
 	div h4 {
-		font-weight: 500;
+		font-weight: 400;
+		font-size: 0.9rem;
 	}
 
 	img {

@@ -6,7 +6,7 @@ const StyledEditRound = styled.section`
 	justify-content: center;
 	padding: 1rem;
 	min-height: 80vh;
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.main};
 `;
 
 export const EditRoundForm = styled.form`
@@ -19,8 +19,8 @@ export const EditRoundForm = styled.form`
 	gap: 1rem;
 	width: 80vw;
 	max-width: 500px;
-	background-color: ${({ theme }) => theme.main};
-	box-shadow: ${({ theme }) => theme.boxShadow};
+	background: linear-gradient(145deg, #181832, #1d1d3b);
+	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
 	border-radius: 15px;
 
 	h1 {

@@ -1,6 +1,5 @@
 import React from 'react'
 import StyledHeader from './Header.styled';
-import logo from '../../assets/icons/dog.png'
 
 const Header = () => {
   return (
