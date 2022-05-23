@@ -12,9 +12,9 @@ const Round = () => {
 
 	const currentRound = {
 		round: 'Round 2',
-		start: 'Start: address',
-		relay: 'Relay: address',
-		lpo: 'LPO: address',
+		start: '5 Smith st Perth 6000',
+		relay: '5 Smith st Perth 6000',
+		lpo: '5 Smith st Perth 6000',
 	};
 
 	const hazards = [

@@ -6,7 +6,7 @@ const StyledAddHazard = styled.section`
 	justify-content: center;
 	padding: 1rem;
 	min-height: 80vh;
-	background-color: ${({ theme }) => theme.main};
+	background-color: ${({ theme }) => theme.background};
 `;
 
 export const AddHazardForm = styled.form`
@@ -19,13 +19,13 @@ export const AddHazardForm = styled.form`
 	gap: 1rem;
 	width: 80vw;
 	max-width: 500px;
-	background: linear-gradient(145deg, #181832, #1d1d3b);
-	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
+	background: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	border-radius: 15px;
 
 	h1 {
-		color: ${({ theme }) => theme.textLight};
-		font-weight: 500;
+		color: ${({ theme }) => theme.text};
+		font-weight: 700;
 		font-size: 1.2rem;
 	}
 `;
@@ -37,9 +37,9 @@ export const AddImageContainer = styled.div`
 	width: 100%;
 
 	& > h2 {
-		color: ${({ theme }) => theme.textLight};
+		color: ${({ theme }) => theme.text};
 		font-size: 1rem;
-		font-weight: 500;
+		font-weight: 600;
 	}
 `;
 
@@ -48,13 +48,12 @@ export const IconContainer = styled.div`
 	gap: 2rem;
 
 	& > .icon {
-		padding: 5px;
-		border: 2px solid #005e87;
-		color: ${({ theme }) => theme.textLight};
+		padding: 7px;
+		border: 2px solid ${({ theme }) => theme.highlight};
+		color: ${({ theme }) => theme.light};
 		border-radius: 16px;
 		background: ${({ theme }) => theme.highlight};
-		box-shadow: inset 5px 5px 10px #002d41, inset -5px -5px 10px #008fcd,
-			5px 5px 16px #0b0b16, -5px -5px 16px #2b2b58;
+		box-shadow: ${({ theme }) => theme.boxShadowButton};
 		cursor: pointer;
 	}
 `;

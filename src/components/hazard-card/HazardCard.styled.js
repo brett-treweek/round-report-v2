@@ -10,16 +10,15 @@ const StyledHazardCard = styled.article`
 	min-height: 30vh;
 	width: 90vw;
 	max-width: 500px;
-	border: 10px solid #1b1b37;
-	color: ${({ theme }) => theme.textDark};
-	background-color: ${({ theme }) => theme.background};
-
-	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
+	border: 5px solid ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.text};
+	background-color: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	border-radius: 16px;
 
 	h2 {
 		font-size: 1.3rem;
-		font-weight: 700;
+		font-weight: 600;
 	}
 
 	h4 {
@@ -33,7 +32,8 @@ const StyledHazardCard = styled.article`
 	}
 
 	p {
-		font-size: 0.7rem;
+		font-size: 0.8rem;
+		font-weight: 500;
 	}
 
 	& > img {

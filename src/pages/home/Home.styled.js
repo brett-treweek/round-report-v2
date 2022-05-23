@@ -5,13 +5,12 @@ const StyledHome = styled.section`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	min-height: 80vh;
+	justify-content: center;
 	height: 100%;
+	min-height: 80vh;
 	width: 100%;
 	text-align: center;
-	background-color: ${({ theme }) => theme.main};
+	background-color: ${({ theme }) => theme.background};
 `;
 
 export default StyledHome;

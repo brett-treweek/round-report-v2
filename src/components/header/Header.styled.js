@@ -4,34 +4,30 @@ const StyledHeader = styled.header`
 	position: sticky;
 	top: 0;
 	height: 10vh;
-	min-height: 70px;
+	/* min-height: 70px; */
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-weight: 500;
-	background-color: ${({ theme }) => theme.main};
-	color: ${({ theme }) => theme.textLight};
+	background-color: ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.text};
 	z-index: 1000;
 
 	div {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		position: absolute;
-		/* left: 50%;
-		transform: translateX(-50%); */
 	}
 
 	div h1 {
-		font-size: 1.1rem;
-		/* color: ${({ theme }) => theme.main}; */
-		font-weight: 600;
-		line-height: 1.6;
+		color: ${({ theme }) => theme.highlight};
+		font-size: 1.5rem;
+		font-weight: 800;
 	}
 
 	div h4 {
-		font-weight: 400;
+		font-weight: 500;
 		font-size: 0.9rem;
 	}
 

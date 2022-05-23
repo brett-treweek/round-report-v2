@@ -1,10 +1,15 @@
 const theme = {
-	background: '#E4E4E4',
-	main: '#1B1B37',
+	background: '#D2D8DE',
+	backgroundCard: 'linear-gradient(145deg, #bdc2c8, #e1e7ee)',
 	highlight: '#005E87',
-	textLight: '#fff',
-	textDark: '#000',
-	boxShadow: '0px 0px 15px hsl(0, 0%, 0%, 0.5)',
+	text: '#000',
+	light: '#fff',
+	dark: '#000',
+	boxShadowCard: '5px 5px 22px #545659, -5px -5px 22px #ffffff',
+	boxShadowButton:
+		'inset 5px 5px 10px #002d41, inset -5px -5px 10px #008fcd,5px 5px 10px #545659, -5px -5px 10px #ffffff',
 };
 
 export default theme;
+
+

@@ -10,12 +10,11 @@ const StyledCancelButton = styled.button`
 	height: 30px;
 	width: 30px;
 	padding: 10px;
-	border: 2px solid #005e87;
+	border: 2px solid ${({ theme }) => theme.highlight};
 	border-radius: 50%;
 	background: ${({ theme }) => theme.highlight};
-	box-shadow: inset 5px 5px 10px #002d41, inset -5px -5px 10px #008fcd,
-		5px 5px 16px #0b0b16, -5px -5px 16px #2b2b58;
-	color: ${({ theme }) => theme.textLight};
+	box-shadow: ${({ theme }) => theme.boxShadowButton};
+	color: ${({ theme }) => theme.light};
 	font-weight: 800;
 	cursor: pointer;
 `;

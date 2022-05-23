@@ -6,7 +6,7 @@ export const StyledLogin = styled.section`
     justify-content: center;
 	min-height: 80vh;
 	width: 100%;
-	background-color: ${({ theme }) => theme.main};
+	background-color: ${({ theme }) => theme.background};
 `;
 
 export const LoginForm = styled.form`
@@ -20,12 +20,12 @@ export const LoginForm = styled.form`
 	/* max-height: auto; */
 	width: 80vw;
 	max-width: 500px;
-	background: linear-gradient(145deg, #181832, #1d1d3b);
-	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
+	background: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	border-radius: 16px;
 
 	h1 {
-		color: ${({ theme }) => theme.textLight};
+		color: ${({ theme }) => theme.text};
 		font-weight: 500;
 	}
 `;

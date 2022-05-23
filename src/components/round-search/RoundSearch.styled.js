@@ -5,9 +5,9 @@ const StyledRoundSearch = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	padding: 2rem 1rem 1rem;
-	background-color: ${({ theme }) => theme.main};
-	color: ${({ theme }) => theme.textLight};
+	padding: 1rem;
+	background-color: ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.text};
 
 	@media (max-height: 730px) {
 		padding: 1rem;
@@ -22,12 +22,12 @@ export const SearchForm = styled.form`
 	width: 100%;
 	max-width: 500px;
 	height: 5rem;
-	border: 3px solid #1b1b37;
+	/* border: 3px solid ${({ theme }) => theme.background}; */
 	padding: 1rem;
 	font-size: larger;
 	border-radius: 16px;
-	background: ${({ theme }) => theme.main};
-	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
+	background: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	transition: all 300ms ease;
 
 	&:focus {
@@ -43,10 +43,10 @@ export const SearchInput = styled.input`
 	font-size: 1rem;
 	font-weight: 500;
 	text-align: center;
-	color: ${({ theme }) => theme.textDark};
+	color: ${({ theme }) => theme.text};
 	background-color: ${({ theme }) => theme.background};
-	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
-	border: 3px solid #1b1b37;
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
+	border: 3px solid ${({ theme }) => theme.background};
 	border-radius: 10px;
 
 	&:focus {
@@ -74,12 +74,11 @@ export const SearchLabel = styled.label`
 export const GoButton = styled.button`
 	height: 100%;
 	width: 80px;
-	border: solid 3px #005e87;
+	border: solid 3px ${({ theme }) => theme.highlight};
 	background-color: ${({ theme }) => theme.highlight};
 	border-radius: 13px;
-	box-shadow: inset 5px 5px 10px #002d41, inset -5px -5px 10px #008fcd,
-		5px 5px 16px #0b0b16, -5px -5px 16px #2b2b58;
-	color: ${({ theme }) => theme.textLight};
+	box-shadow: ${({ theme }) => theme.boxShadowButton};
+	color: ${({ theme }) => theme.light};
 	font-weight: 500;
 	font-size: 1rem;
 	cursor: pointer;

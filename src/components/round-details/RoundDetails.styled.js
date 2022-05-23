@@ -6,29 +6,30 @@ const StyledDetails = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 25vh;
+	/* min-height: 100%; */
+	/* height: 100%; */
 	width: 100%;
-	padding: 1rem 1rem 3rem;
-	background: linear-gradient(${({theme}) => theme.main}, transparent);
+	padding: 1rem;
+	/* background: linear-gradient(${({ theme }) => theme.background}, transparent); */
 `;
 
 export const DetailsCard = styled.div`
 	display: flex;
-	align-items: center;
-	justify-content: start;
+	flex-direction: column;
+	align-items: start;
 	padding: 1rem 2rem;
-	gap: 3rem;
+	gap: 1rem;
 	height: 100%;
 	width: 100%;
 	max-width: 500px;
 	border-radius: 15px;
 	border-bottom-right-radius: 50%;
-	color: ${({ theme }) => theme.textLight};
+	color: ${({ theme }) => theme.text};
 	opacity: 0.8;
-	background: linear-gradient(145deg, #181832, #1d1d3b);
-	box-shadow: 6px 6px 19px #0b0b16, -6px -6px 19px #2b2b58;
+	background: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	backdrop-filter: blur(2px);
-	border: 3px solid #1b1b37;
+	/* border: 3px solid ${({ theme }) => theme.background}; */
 
 	div {
 		text-align: left;
@@ -36,25 +37,30 @@ export const DetailsCard = styled.div`
 	}
 
 	h2 {
-		font-size: 1rem;
+		font-size: 1.2rem;
+		font-weight: 500;
+	}
+
+	h5 {
+		font-size: 12px;
 		font-weight: 600;
 	}
 
 	p {
-		font-size: 0.8rem;
+		font-size: 12px;
+		font-weight: 500;
 	}
 
 	.icon {
 		padding: 10px;
 		height: 50px;
 		width: 70px;
-		color: ${({ theme }) => theme.textLight};
+		color: ${({ theme }) => theme.light};
 		border-radius: 16px;
 		background: ${({ theme }) => theme.highlight};
-		box-shadow: inset 5px 5px 10px #002d41, inset -5px -5px 10px #008fcd,
-			5px 5px 16px #0b0b16, -5px -5px 16px #2b2b58;
-		border: solid 3px #005e87;
-		transition: all 300ms ease;
+		box-shadow: ${({ theme }) => theme.boxShadowButton};
+		border: solid 3px ${({ theme }) => theme.highlight};
+		/* transition: all 300ms ease; */
 	}
 
 	.icon:hover {
@@ -62,10 +68,28 @@ export const DetailsCard = styled.div`
 	}
 `;
 
-	export const IconContainer = styled.div`
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	`;
+export const Inline = styled.div`
+	display: flex;
+	gap: 5px;
+`;
+export const InnerContainer = styled.div`
+	display: flex;
+	width: 100%;
+	align-items: start;
+	justify-content: space-between;
+`;
+
+export const IconContainer = styled.div`
+	display: flex;
+	width: 100%;
+	align-items: start;
+	justify-content: start;
+	gap: 1rem;
+
+	.admin {
+		/* background-color: yellow;
+		color: black; */
+	}
+`;
 
 export default StyledDetails;

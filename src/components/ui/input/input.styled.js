@@ -7,8 +7,9 @@ export const InputContainer = styled.div`
     width: 100%;
 `
 export const StyledLabel = styled.label`
-    color: ${({theme}) => theme.textLight};
+    color: ${({theme}) => theme.text};
     font-size: 0.8rem;
+    font-weight: 500;
 `
 export const StyledInput = styled.input`
     width: 100%;
