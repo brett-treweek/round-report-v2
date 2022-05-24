@@ -8,6 +8,7 @@ import Round from './pages/round/Round';
 import Login from './pages/login/Login';
 import AddHazard from './pages/add-hazard/AddHazard';
 import EditRound from './pages/edit-round/EditRound';
+import ErrorPage from './pages/error-page/Error-page';
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 						<Route path="login" element={<Login />} />
 						<Route path="addHazard" element={<AddHazard />} />
 						<Route path="editRound" element={<EditRound />} />
+						<Route path="/*" element={<ErrorPage />} />
 					</Routes>
 				<Footer />
 			</div>

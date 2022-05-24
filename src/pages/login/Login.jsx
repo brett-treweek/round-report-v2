@@ -8,8 +8,10 @@ import Alert from '../../components/ui/alert/Alert';
 import { useAppContext } from '../../context/appContext';
 
 let initialLoginState = {
-	username: '',
+	name: '',
+	email: '',
 	password: '',
+	isMember: true,
 };
 
 const Login = () => {
@@ -17,7 +19,8 @@ const Login = () => {
 
 	const [loginState, setLoginState] = useState(initialLoginState);
 
-	const { displayAlert } = useAppContext();
+	const { displayAlert, isLoading, showAlert, registerUser } =
+		useAppContext();
 
 	const handleChange = (e) => {
 		setLoginState({ ...loginState, [e.target.name]: e.target.value });
@@ -26,40 +29,49 @@ const Login = () => {
 	// function to handle submit of login or signup.
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const { username, password } = loginState;
-		if (!username || !password) {
+		const { email, password } = loginState;
+		if (!email || !password) {
 			displayAlert();
-			return
+			return;
 		}
 		console.log(loginState);
 		// navigate('/');
 	};
 
+	// function to handle cancel btn.
 	const handleCancel = (e) => {
 		e.preventDefault();
 		navigate(-1);
 	};
 
-	//   const emailChangeHandler = () => {}
-	//   const validateEmailHandler = () => {}
-	//   const emailIsValid = () => {}
-
-	//   const passwordChangeHandler = () => {}
-	//   const validatePasswordHandler = () => {}
-	//   const passwordIsValid = () => {}
+	// function to toggle isMember- login/signUp
+	const toggleMember = () => {
+		setLoginState({ ...loginState, isMember: !loginState.isMember });
+	};
 
 	return (
 		<StyledLogin>
 			<LoginForm onSubmit={handleSubmit}>
 				<CancelButton onClick={handleCancel} />
-				<h1>Log In</h1>
+				<h1>{loginState.isMember ? 'Log In' : 'Register'}</h1>
 				<Alert />
+				{!loginState.isMember && (
+					<Input
+						id="name"
+						label="Name"
+						type="text"
+						name="name"
+						value={loginState.name}
+						handleChange={handleChange}
+					/>
+				)}
+
 				<Input
-					id="username"
-					label="Username"
-					type="username"
-					name="username"
-					value={loginState.value}
+					id="email"
+					label="Email"
+					type="email"
+					name="email"
+					value={loginState.email}
 					handleChange={handleChange}
 				/>
 				<Input
@@ -67,7 +79,7 @@ const Login = () => {
 					label="Password"
 					type="password"
 					name="password"
-					value={loginState.value}
+					value={loginState.password}
 					handleChange={handleChange}
 				/>
 				{/* {error ? (
@@ -81,6 +93,12 @@ const Login = () => {
 				<Button type="submit" className="button" width="100%">
 					Go
 				</Button>
+				<p>
+					{loginState.isMember ? 'Need to sign up? ' : 'Already registered? '}
+					<button className='switch' type='button' onClick={toggleMember}>
+						{loginState.isMember ? 'Register' : 'LogIn'}
+					</button>
+				</p>
 			</LoginForm>
 		</StyledLogin>
 	);

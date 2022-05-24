@@ -28,6 +28,19 @@ export const LoginForm = styled.form`
 		color: ${({ theme }) => theme.text};
 		font-weight: 500;
 	}
+
+	p {
+		font-weight: 500;
+	}
+
+	.switch {
+		border: none;
+		color: ${({ theme }) => theme.highlight};
+		background-color: transparent;
+		font-weight: 500;
+		font-size: 1rem;
+		cursor: pointer;
+	}
 `;
 
 
