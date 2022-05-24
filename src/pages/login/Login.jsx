@@ -4,22 +4,35 @@ import Input from '../../components/ui/input/input';
 import { Button } from '../../components/ui/button/Button.styled';
 import { LoginForm, StyledLogin } from './Login.styled';
 import CancelButton from '../../components/ui/cancel-button/CancelButton';
+import Alert from '../../components/ui/alert/Alert';
+import { useAppContext } from '../../context/appContext';
 
-// let initialLoginState = {
-// 	email: '',
-// 	password: '',
-//   isValid: ''
-// };
+let initialLoginState = {
+	username: '',
+	password: '',
+};
 
 const Login = () => {
 	const navigate = useNavigate();
 
-	// const [loginState, setLoginState] = useState(initialLoginState);
+	const [loginState, setLoginState] = useState(initialLoginState);
+
+	const { displayAlert } = useAppContext();
+
+	const handleChange = (e) => {
+		setLoginState({ ...loginState, [e.target.name]: e.target.value });
+	};
 
 	// function to handle submit of login or signup.
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		navigate('/');
+		const { username, password } = loginState;
+		if (!username || !password) {
+			displayAlert();
+			return
+		}
+		console.log(loginState);
+		// navigate('/');
 	};
 
 	const handleCancel = (e) => {
@@ -40,24 +53,22 @@ const Login = () => {
 			<LoginForm onSubmit={handleSubmit}>
 				<CancelButton onClick={handleCancel} />
 				<h1>Log In</h1>
+				<Alert />
 				<Input
 					id="username"
 					label="Username"
 					type="username"
-					// isValid={emailIsValid}
-					// value={loginState.value}
-					// onChange={emailChangeHandler}
-					// onBlur={validateEmailHandler}
+					name="username"
+					value={loginState.value}
+					handleChange={handleChange}
 				/>
 				<Input
 					id="password"
 					label="Password"
 					type="password"
-					autoComplete="off"
-					// isValid={passwordIsValid}
-					// value={passwordState.value}
-					// onChange={passwordChangeHandler}
-					// onBlur={validatePasswordHandler}
+					name="password"
+					value={loginState.value}
+					handleChange={handleChange}
 				/>
 				{/* {error ? (
 					<div>

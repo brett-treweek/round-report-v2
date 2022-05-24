@@ -8,9 +8,9 @@ const Input = (props) => {
 			<StyledInput
 				type={props.type}
 				id={props.id}
+				name={props.name}
 				value={props.value}
-                onChange={props.onChange}
-                onBlur={props.onBlur}
+				onChange={props.handleChange}
 			></StyledInput>
 		</InputContainer>
 	);
