@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/ui/input/input';
 import { Button } from '../../components/ui/button/Button.styled';
@@ -16,26 +16,18 @@ let initialLoginState = {
 
 const Login = () => {
 	const navigate = useNavigate();
-
 	const [loginState, setLoginState] = useState(initialLoginState);
-
-	const { displayAlert, isLoading, showAlert, registerUser } =
+	const { user, displayAlert, isLoading, showAlert, registerUser, loginUser } =
 		useAppContext();
 
-	const handleChange = (e) => {
-		setLoginState({ ...loginState, [e.target.name]: e.target.value });
+	// function to toggle isMember- login/signUp
+	const toggleMember = () => {
+		setLoginState({ ...loginState, isMember: !loginState.isMember });
 	};
 
-	// function to handle submit of login or signup.
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const { email, password } = loginState;
-		if (!email || !password) {
-			displayAlert();
-			return;
-		}
-		console.log(loginState);
-		// navigate('/');
+	// function to handle input change of form
+	const handleChange = (e) => {
+		setLoginState({ ...loginState, [e.target.name]: e.target.value });
 	};
 
 	// function to handle cancel btn.
@@ -44,17 +36,40 @@ const Login = () => {
 		navigate(-1);
 	};
 
-	// function to toggle isMember- login/signUp
-	const toggleMember = () => {
-		setLoginState({ ...loginState, isMember: !loginState.isMember });
+	// function to handle submit of login or signup.
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const { name, email, password, isMember } = loginState;
+
+		if (!email || !password) {
+			displayAlert();
+			return;
+		}
+
+		const currentUser = { name, email, password };
+		if (isMember) {
+			loginUser(currentUser);
+		} else {
+			registerUser(currentUser);
+		}
 	};
+
+	// function to navigate to homepage after successful signIn
+	// useEffect(() => {
+	// 	console.log('useEffect running');
+	// 	if (user) {
+	// 		setTimeout(() => {
+	// 			navigate('/');
+	// 		}, 3000);
+	// 	}
+	// }, [user, navigate]);
 
 	return (
 		<StyledLogin>
 			<LoginForm onSubmit={handleSubmit}>
 				<CancelButton onClick={handleCancel} />
 				<h1>{loginState.isMember ? 'Log In' : 'Register'}</h1>
-				<Alert />
+				{ showAlert && <Alert />}
 				{!loginState.isMember && (
 					<Input
 						id="name"
@@ -90,12 +105,23 @@ const Login = () => {
 					</div>
 				) : null} */}
 
-				<Button type="submit" className="button" width="100%">
+				<Button
+					type="submit"
+					className="button"
+					width="100%"
+					disabled={isLoading}
+				>
 					Go
 				</Button>
 				<p>
-					{loginState.isMember ? 'Need to sign up? ' : 'Already registered? '}
-					<button className='switch' type='button' onClick={toggleMember}>
+					{loginState.isMember
+						? 'Need to sign up? '
+						: 'Already registered? '}
+					<button
+						className="switch"
+						type="button"
+						onClick={toggleMember}
+					>
 						{loginState.isMember ? 'Register' : 'LogIn'}
 					</button>
 				</p>
