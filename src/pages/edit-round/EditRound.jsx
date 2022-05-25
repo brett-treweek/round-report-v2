@@ -60,9 +60,9 @@ const EditRound = () => {
 					// onBlur={validateEmailHandler}
 				/>
 				<Input
-					id="wcc"
-					label="WCC"
-					type="number"
+					id="postie"
+					label="Postie"
+					type="text"
 					// isValid={emailIsValid}
 					// value={loginState.value}
 					// onChange={emailChangeHandler}

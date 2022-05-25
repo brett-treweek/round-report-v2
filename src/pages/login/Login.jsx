@@ -69,7 +69,7 @@ const Login = () => {
 			<LoginForm onSubmit={handleSubmit}>
 				<CancelButton onClick={handleCancel} />
 				<h1>{loginState.isMember ? 'Log In' : 'Register'}</h1>
-				{ showAlert && <Alert />}
+				{showAlert && <Alert />}
 				{!loginState.isMember && (
 					<Input
 						id="name"
@@ -88,6 +88,7 @@ const Login = () => {
 					name="email"
 					value={loginState.email}
 					handleChange={handleChange}
+					autoComplete="username"
 				/>
 				<Input
 					id="password"
@@ -96,6 +97,7 @@ const Login = () => {
 					name="password"
 					value={loginState.password}
 					handleChange={handleChange}
+					autoComplete="current-password"
 				/>
 				{/* {error ? (
 					<div>
