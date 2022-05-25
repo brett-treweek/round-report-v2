@@ -11,6 +11,7 @@ import {
 	LOGIN_USER_BEGIN,
 	LOGIN_USER_SUCCESS,
 	LOGIN_USER_ERROR,
+	LOGOUT_USER
 } from './actions';
 
 const token = localStorage.getItem('token')
@@ -98,6 +99,11 @@ const AppProvider = ({ children }) => {
 		clearAlert();
 	}
 
+	const logoutUser = (user) => {
+		dispatch({type: LOGOUT_USER})
+		removeUserFromLocalStorage(user)
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -105,6 +111,7 @@ const AppProvider = ({ children }) => {
 				displayAlert,
 				registerUser,
 				loginUser,
+				logoutUser
 			}}
 		>
 			{children}

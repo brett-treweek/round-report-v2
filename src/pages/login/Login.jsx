@@ -55,14 +55,14 @@ const Login = () => {
 	};
 
 	// function to navigate to homepage after successful signIn
-	// useEffect(() => {
-	// 	console.log('useEffect running');
-	// 	if (user) {
-	// 		setTimeout(() => {
-	// 			navigate('/');
-	// 		}, 3000);
-	// 	}
-	// }, [user, navigate]);
+	useEffect(() => {
+		console.log('useEffect running');
+		if (user) {
+			setTimeout(() => {
+				navigate('/');
+			}, 3000);
+		}
+	}, [user, navigate]);
 
 	return (
 		<StyledLogin>
