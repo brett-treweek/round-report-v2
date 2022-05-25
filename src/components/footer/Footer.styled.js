@@ -23,8 +23,9 @@ const StyledFooter = styled.footer`
 	}
 
 	.icon {
-		height: 60px;
-		width: 60px;
+		/* position: relative; */
+		height: 70px;
+		width: 70px;
 		padding: 17px;
 		background-color: ${({ theme }) => theme.highlight};
 		border-radius: 50%;
@@ -33,6 +34,11 @@ const StyledFooter = styled.footer`
 		border: solid 3px ${({ theme }) => theme.highlight};
 		box-shadow: ${({ theme }) => theme.boxShadowButton};
 	}
+
+	.logoutBtn {
+		font-size: 12px;
+	}
+
 `;
 
 export const HazardButton = styled.button`
