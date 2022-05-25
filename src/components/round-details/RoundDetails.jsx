@@ -62,7 +62,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 				{roundDeets ? (
 					<IconContainer>
 						<Button className='admin'>Print Report</Button>
-						<Link to={'/editRound'}>
+						<Link to={'/edit-round'}>
 							<Icon
 								className="icon admin"
 								icon="ci:edit"

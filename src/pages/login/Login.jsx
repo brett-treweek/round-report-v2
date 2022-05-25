@@ -54,12 +54,12 @@ const Login = () => {
 		}
 	};
 
-	// function to navigate to homepage after successful signIn
+	// function to navigate to last page in history after successful signIn
 	useEffect(() => {
 		console.log('useEffect running');
 		if (user) {
 			setTimeout(() => {
-				navigate('/');
+				navigate(-1);
 			}, 1000);
 		}
 	}, [user, navigate]);

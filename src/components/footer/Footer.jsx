@@ -13,7 +13,7 @@ const Footer = () => {
 		if (!user) {
 			navigate('/login');
 		} else {
-			navigate('/addHazard');
+			navigate('/add-hazard');
 		}
 	};
 

@@ -6,3 +6,4 @@ export { default as Home } from './home/Home';
 export { default as Login } from './login/Login';
 export { default as Round } from './round/Round';
 export { default as UserProfile } from './user-profile/UserProfile';
+export { default as ProtectedRoute } from './ProtectedRoute';

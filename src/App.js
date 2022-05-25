@@ -8,7 +8,14 @@ import {
 	AddHazard,
 	ErrorPage,
 	EditRound,
+	ProtectedRoute,
 } from './pages/index';
+import {
+	AllHazards,
+	AllRounds,
+	AllUsers,
+	SharedLayout,
+} from './pages/admin/index';
 import { Header, Footer } from './components/index';
 import { Routes, Route } from 'react-router-dom';
 
@@ -21,8 +28,34 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="round" element={<Round />} />
 					<Route path="login" element={<Login />} />
-					<Route path="addHazard" element={<AddHazard />} />
-					<Route path="editRound" element={<EditRound />} />
+					<Route
+						path="add-hazard"
+						element={
+							<ProtectedRoute>
+								<AddHazard />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="edit-round"
+						element={
+							<ProtectedRoute>
+								<EditRound />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="admin"
+						element={
+							<ProtectedRoute>
+								<SharedLayout />
+							</ProtectedRoute>
+						}
+					>
+						<Route index element={<AllHazards />} />
+						<Route path="all-rounds" element={<AllRounds />} />
+						<Route path="all-users" element={<AllUsers />} />
+					</Route>
 					<Route path="/*" element={<ErrorPage />} />
 				</Routes>
 				<Footer />
