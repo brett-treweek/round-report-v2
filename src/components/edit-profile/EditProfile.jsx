@@ -19,7 +19,11 @@ const EditProfile = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('update user');
+		if (!name || !email || !lastName || !round) {
+			displayAlert()
+			return
+		}
+		updateUser({name, email, lastName, round})
 	};
 
 	// function to handle cancel btn.

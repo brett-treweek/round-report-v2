@@ -14,10 +14,10 @@ export const ProfileForm = styled.form`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 4rem 2rem;
-	gap: 1rem;
+	padding: 2rem;
+	gap: 0.7rem;
 	height: 100%;
-	width: 80vw;
+	width: 90vw;
 	max-width: 500px;
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};

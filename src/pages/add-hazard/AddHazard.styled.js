@@ -15,9 +15,9 @@ export const AddHazardForm = styled.form`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 2rem;
-	gap: 1rem;
-	width: 80vw;
+	padding: 2rem 1rem;
+	gap: 0.5rem;
+	width: 90vw;
 	max-width: 500px;
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
@@ -27,6 +27,11 @@ export const AddHazardForm = styled.form`
 		color: ${({ theme }) => theme.text};
 		font-weight: 700;
 		font-size: 1.2rem;
+	}
+
+	@media(min-width: 1000px){
+		gap: 1rem;
+		padding: 3rem 2rem;
 	}
 `;
 

@@ -3,17 +3,58 @@ import styled from 'styled-components';
 const StyledUserProfile = styled.section`
 	position: relative;
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 2rem;
-	padding: 1rem;
+	padding:  0.5rem 1rem;
 	min-height: 80vh;
 	width: 100%;
 	background-color: ${({ theme }) => theme.background};
 
-	.title{
+	.title {
 		font-weight: 600;
+	}
+`;
+
+export const UserCard = styled.div`
+	position: ${({ position }) => 'sticky' || 'static'};
+	top: ${({ top }) => '10vh'};
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	padding: 1rem 2rem;
+	gap: 0.5rem;
+	height: 100%;
+	width: 100%;
+	max-width: 500px;
+	border-radius: 15px;
+	border-bottom-right-radius: 50%;
+	color: ${({ theme }) => theme.text};
+	opacity: 0.9;
+	background: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
+	backdrop-filter: blur(10px);
+	border: 3px solid ${({ theme }) => theme.backgroundCard};
+
+	div {
+		text-align: left;
+		line-height: 1.4;
+	}
+
+	h2 {
+		font-size: 1.2rem;
+		font-weight: 500;
+	}
+
+	h5 {
+		font-size: 12px;
+		font-weight: 600;
+	}
+
+	p {
+		font-size: 12px;
+		font-weight: 500;
 	}
 `;
 

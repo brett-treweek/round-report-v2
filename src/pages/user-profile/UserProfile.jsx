@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../context/appContext';
-import StyledUserProfile from './UserProfile.styled';
+import StyledUserProfile, { UserCard } from './UserProfile.styled';
 import { Button, ButtonContainer } from '../../components/ui/button/Button.styled';
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../../components/edit-profile/EditProfile';
 import HazardCard from '../../components/hazard-card/HazardCard';
-import { DetailsCard } from '../../components/round-details/RoundDetails.styled';
 
 const UserProfile = () => {
 	const { user, showAlert, updateUser, isLoading, logoutUser } =
@@ -47,8 +46,14 @@ const UserProfile = () => {
 
 	return (
 		<StyledUserProfile>
-			<DetailsCard position top>
-				<h2 className="title">{capitilize(user.name)}{user.lastname && ' '+capitilize(user.lastname)}{'\'s'}  Profile</h2>
+			<UserCard position top>
+				<h2 className="title">
+					{capitilize(user.name)}
+					{user.lastname && ' ' + capitilize(user.lastname)}
+					{"'s"} Profile
+				</h2>
+				<p>Email: {user.email}</p>
+				{user.round && <p> Round: {user.round} </p>}
 				<ButtonContainer>
 					<Button onClick={() => setProfileToggle(!profileToggle)}>
 						{profileToggle ? 'Hazards' : 'Edit Profile'}
@@ -62,7 +67,7 @@ const UserProfile = () => {
 						Logout
 					</Button>
 				</ButtonContainer>
-			</DetailsCard>
+			</UserCard>
 			{profileToggle ? (
 				<EditProfile setProfileToggle={setProfileToggle} />
 			) : (
