@@ -9,6 +9,7 @@ import {
 	ErrorPage,
 	EditRound,
 	ProtectedRoute,
+	UserProfile,
 } from './pages/index';
 import {
 	AllHazards,
@@ -27,7 +28,16 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="round" element={<Round />} />
+					{/* <Route path="user-profile" element={<UserProfile />} /> */}
 					<Route path="login" element={<Login />} />
+					<Route
+						path="user-profile"
+						element={
+							<ProtectedRoute>
+								<UserProfile />
+							</ProtectedRoute>
+						}
+					/>
 					<Route
 						path="add-hazard"
 						element={

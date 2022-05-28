@@ -29,18 +29,9 @@ const Footer = () => {
 				</HazardButton>
 
 				{user ? (
-					<Button
-						className="logoutBtn"
-						height="70px"
-						width="70px"
-						br="100%"
-						onClick={()=> {
-							logoutUser(user)
-							navigate('/')
-						}}
-					>
-						Logout
-					</Button>
+					<Link className="loginBtn" to="/user-profile">
+						<Icon className="icon" icon="bxs:user" />
+					</Link>
 				) : (
 					<Link className="loginBtn" to="/login">
 						<Icon className="icon" icon="bxs:user" />
@@ -52,3 +43,17 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+{/* <Button
+	className="logoutBtn"
+	height="70px"
+	width="70px"
+	br="100%"
+	onClick={() => {
+		logoutUser(user);
+		navigate('/');
+	}}
+>
+	Logout
+</Button> */}

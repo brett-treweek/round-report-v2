@@ -1,17 +1,16 @@
 import React from 'react';
 import { InputContainer, StyledInput, StyledLabel } from './input.styled';
 
-const Input = (props) => {
+const Input = ({label, name, type, value, handleChange, autoComplete}) => {
 	return (
 		<InputContainer>
-			<StyledLabel htmlFor={props.id}>{props.label}</StyledLabel>
+			<StyledLabel htmlFor={name}>{label || name}</StyledLabel>
 			<StyledInput
-				type={props.type}
-				id={props.id}
-				name={props.name}
-				value={props.value}
-				onChange={props.handleChange}
-				autoComplete={props.autoComplete}
+				type={type}
+				name={name}
+				value={value}
+				onChange={handleChange}
+				autoComplete={autoComplete}
 			></StyledInput>
 		</InputContainer>
 	);
