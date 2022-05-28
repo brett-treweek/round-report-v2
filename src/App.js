@@ -28,7 +28,6 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="round" element={<Round />} />
-					{/* <Route path="user-profile" element={<UserProfile />} /> */}
 					<Route path="login" element={<Login />} />
 					<Route
 						path="user-profile"

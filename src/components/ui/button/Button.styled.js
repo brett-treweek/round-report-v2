@@ -13,3 +13,15 @@ export const Button = styled.button`
 	font-size: 13px;
 	cursor: pointer;
 `;
+export const ButtonContainer = styled.div`
+	height: ${({ height }) => height || '100%'};
+	width: ${({ width }) => width || '100%'};
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 2rem;
+	border: none;
+	background-color: transparent;
+`;
+

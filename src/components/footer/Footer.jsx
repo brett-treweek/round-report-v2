@@ -1,19 +1,29 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import StyledFooter, { HazardButton } from './Footer.styled';
 import { Icon } from '@iconify/react';
-import { Button } from '../ui/button/Button.styled';
+// import { Button } from '../ui/button/Button.styled';
 import { useAppContext } from '../../context/appContext';
 
 const Footer = () => {
-	const { logoutUser, user } = useAppContext();
+	const { user } = useAppContext();
 	const navigate = useNavigate();
+	const location = useLocation();
+	// console.log(location);
 
 	const addHazardHandler = () => {
 		if (!user) {
 			navigate('/login');
 		} else {
 			navigate('/add-hazard');
+		}
+	};
+
+	const profileClickHandler = () => {
+		if (location.pathname !== '/user-profile') {
+			navigate('/user-profile');
+		} else {
+			navigate(-1);
 		}
 	};
 
@@ -29,11 +39,11 @@ const Footer = () => {
 				</HazardButton>
 
 				{user ? (
-					<Link className="loginBtn" to="/user-profile">
+					<div onClick={profileClickHandler}>
 						<Icon className="icon" icon="bxs:user" />
-					</Link>
+					</div>
 				) : (
-					<Link className="loginBtn" to="/login">
+					<Link to="/login">
 						<Icon className="icon" icon="bxs:user" />
 					</Link>
 				)}
@@ -43,17 +53,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-{/* <Button
-	className="logoutBtn"
-	height="70px"
-	width="70px"
-	br="100%"
-	onClick={() => {
-		logoutUser(user);
-		navigate('/');
-	}}
->
-	Logout
-</Button> */}

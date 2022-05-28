@@ -38,7 +38,6 @@ const StyledFooter = styled.footer`
 	.logoutBtn {
 		font-size: 12px;
 	}
-
 `;
 
 export const HazardButton = styled.button`

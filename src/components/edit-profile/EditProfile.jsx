@@ -4,13 +4,16 @@ import { useAppContext } from '../../context/appContext';
 import Input from '../ui/input/input';
 import { Button } from '../ui/button/Button.styled';
 import StyledEditProfile, { ProfileForm } from './EditProfile.styled';
+import CancelButton from '../ui/cancel-button/CancelButton';
+import { useNavigate } from 'react-router-dom';
 
-const EditProfile = () => {
+const EditProfile = (props) => {
 	const { user, showAlert, displayAlert, updateUser, isLoading } =
 		useAppContext();
+	const navigate = useNavigate();
 
 	const [name, setName] = useState(user?.name);
-	const [lastName, setLastName] = useState(user?.lastName);
+	const [lastName, setLastName] = useState(user?.lastname);
 	const [email, setEmail] = useState(user?.email);
 	const [round, setRound] = useState(user?.round);
 
@@ -19,9 +22,16 @@ const EditProfile = () => {
 		console.log('update user');
 	};
 
+	// function to handle cancel btn.
+	const handleCancel = (e) => {
+		e.preventDefault();
+		props.setProfileToggle(false)
+	};
+
 	return (
 		<StyledEditProfile>
 			<ProfileForm onSubmit={handleSubmit}>
+				<CancelButton onClick={handleCancel} />
 				<h3>Edit Profile</h3>
 				{showAlert && <Alert />}
 				<Input

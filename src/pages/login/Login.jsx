@@ -36,7 +36,7 @@ const Login = () => {
 		navigate(-1);
 	};
 
-	// function to handle submit of login or signup.
+	// function to handle submit of login or signup. Enter button is not working!
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { name, email, password, isMember } = loginState;
@@ -99,14 +99,6 @@ const Login = () => {
 					handleChange={handleChange}
 					autoComplete="current-password"
 				/>
-				{/* {error ? (
-					<div>
-						<p className="error-text">
-							The provided credentials are incorrect
-						</p>
-					</div>
-				) : null} */}
-
 				<Button
 					type="submit"
 					className="button"

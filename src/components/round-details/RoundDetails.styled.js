@@ -14,6 +14,8 @@ const StyledDetails = styled.div`
 `;
 
 export const DetailsCard = styled.div`
+	position: ${({ position }) => 'sticky' || 'static'};
+	top: ${({ top }) => '11vh'};
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -25,7 +27,7 @@ export const DetailsCard = styled.div`
 	border-radius: 15px;
 	border-bottom-right-radius: 50%;
 	color: ${({ theme }) => theme.text};
-	opacity: 0.8;
+	opacity: 0.9;
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	backdrop-filter: blur(2px);

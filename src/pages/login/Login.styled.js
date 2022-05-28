@@ -17,7 +17,6 @@ export const LoginForm = styled.form`
 	justify-content: center;
 	padding: 4rem 2rem;
 	gap: 1rem;
-	/* max-height: auto; */
 	width: 80vw;
 	max-width: 500px;
 	background: ${({ theme }) => theme.backgroundCard};

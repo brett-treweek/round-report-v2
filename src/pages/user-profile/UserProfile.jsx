@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledUserProfile from './UserProfile.styled';
-import { Button } from '../../components/ui/button/Button.styled';
+import { Button, ButtonContainer } from '../../components/ui/button/Button.styled';
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../../components/edit-profile/EditProfile';
 import HazardCard from '../../components/hazard-card/HazardCard';
+import { DetailsCard } from '../../components/round-details/RoundDetails.styled';
 
 const UserProfile = () => {
 	const { user, showAlert, updateUser, isLoading, logoutUser } =
@@ -12,6 +13,13 @@ const UserProfile = () => {
 
 	const navigate = useNavigate();
 	const [profileToggle, setProfileToggle] = useState(false);
+
+	const capitilize = (word) => {
+		return word.charAt(0).toUpperCase() + word.slice(1);
+	}
+
+	
+	
 
 	const hazards = [
 		{
@@ -39,25 +47,27 @@ const UserProfile = () => {
 
 	return (
 		<StyledUserProfile>
-			<h1>{user.name}'s Profile</h1>
-			<div>
-				<Button
-					onClick={() => {
-						logoutUser(user);
-						navigate('/');
-					}}
-				>
-					Logout
-				</Button>
-				<Button onClick={() => setProfileToggle(!profileToggle)}>
-					{profileToggle ? 'Hazards' : 'Edit Profile'}
-				</Button>
-			</div>
+			<DetailsCard position top>
+				<h2 className="title">{capitilize(user.name)}{user.lastname && ' '+capitilize(user.lastname)}{'\'s'}  Profile</h2>
+				<ButtonContainer>
+					<Button onClick={() => setProfileToggle(!profileToggle)}>
+						{profileToggle ? 'Hazards' : 'Edit Profile'}
+					</Button>
+					<Button
+						onClick={() => {
+							logoutUser(user);
+							navigate('/');
+						}}
+					>
+						Logout
+					</Button>
+				</ButtonContainer>
+			</DetailsCard>
 			{profileToggle ? (
-				<EditProfile />
+				<EditProfile setProfileToggle={setProfileToggle} />
 			) : (
 				<>
-					<h2>Your Hazards</h2>
+					<h2 className="title">Your Hazards</h2>
 					{hazards.map((hazard, index) => (
 						<HazardCard
 							key={hazard.id}
