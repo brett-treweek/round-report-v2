@@ -1,73 +1,89 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useAppContext } from '../../context/appContext';
 import StyledAddHazard, {
 	AddHazardForm,
 	AddImageContainer,
-  IconContainer,
+	IconContainer,
 } from './AddHazard.styled';
 import CancelButton from '../../components/ui/cancel-button/CancelButton';
 import Input from '../../components/ui/input/input';
 import { Button } from '../../components/ui/button/Button.styled';
+import Alert from '../../components/ui/alert/Alert';
 import { Icon } from '@iconify/react';
-import { folder, camera } from '../../assets/icons';
 import { useNavigate } from 'react-router-dom';
 
-
 const AddHazard = () => {
-		const navigate = useNavigate();
-
+	const {
+		showAlert,
+		displayAlert,
+		isLoading,
+		isEditing,
+		hazardRound,
+		hazardTypeOptions,
+		hazardType,
+		hazardAddress,
+		handleChange,
+		clearValues,
+		createHazard
+	} = useAppContext();
+	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
-		e.preventDefault()
-		navigate('/');
-	}
-
-		const handleCancel = (e) => {
-			e.preventDefault();
+		e.preventDefault();
+		if (!hazardRound || !hazardType || !hazardAddress) {
+			displayAlert()
+			return
+		}
+		if (isEditing) {
+			// eventually edit hazard()
+			return
+		}
+		createHazard()
+		setTimeout(() => {
 			navigate(-1);
-		};
+		}, 1000);
+	};
+	const handleHazardInput = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
+		handleChange({name, value})
+	};
 
+	const handleCancel = (e) => {
+		e.preventDefault();
+		navigate(-1);
+	};
 
 	return (
 		<StyledAddHazard>
 			<AddHazardForm>
-				<CancelButton onClick={handleCancel} />
-				<h1>Add Hazard</h1>
+				<h1>{isEditing ? 'Edit Hazard' : 'Add Hazard'}</h1>
+				{showAlert && <Alert />}
 				<Input
-					id="address"
-					label="Address"
+					name="hazardAddress"
+					value={hazardAddress}
+					label="Hazard Address"
 					type="text"
-					// isValid={emailIsValid}
-					// value={loginState.value}
-					// onChange={emailChangeHandler}
-					// onBlur={validateEmailHandler}
+					handleChange={handleHazardInput}
 				/>
 				<Input
-					id="roundNumber"
+					name="hazardRound"
+					value={hazardRound}
 					label="Round Number"
 					type="number"
-					// isValid={emailIsValid}
-					// value={loginState.value}
-					// onChange={emailChangeHandler}
-					// onBlur={validateEmailHandler}
+					handleChange={handleHazardInput}
+					min="0"
+					max="50"
 				/>
 				<Input
-					id="hazardType"
+					name="hazardType"
+					value={hazardType}
 					label="Hazard Type"
-					type="dropdown"
-					// isValid={emailIsValid}
-					// value={loginState.value}
-					// onChange={emailChangeHandler}
-					// onBlur={validateEmailHandler}
+					type="select"
+					options={hazardTypeOptions}
+					handleChange={handleHazardInput}
 				/>
-				<Input
-					id="message"
-					label="Message"
-					type="text"
-					// isValid={emailIsValid}
-					// value={loginState.value}
-					// onChange={emailChangeHandler}
-					// onBlur={validateEmailHandler}
-				/>
+
 				<AddImageContainer>
 					<h2>Image</h2>
 					<IconContainer>
@@ -83,9 +99,19 @@ const AddHazard = () => {
 						/>
 					</IconContainer>
 				</AddImageContainer>
-				<Button onClick={handleSubmit} width="100%">
+				<Button type="submit" onClick={handleSubmit} width="100%" disabled={isLoading}>
 					Submit
 				</Button>
+				<Button
+					onClick={(e) => {
+						e.preventDefault();
+						clearValues();
+					}}
+					width="40%"
+				>
+					Clear
+				</Button>
+				<CancelButton onClick={handleCancel} />
 			</AddHazardForm>
 		</StyledAddHazard>
 	);

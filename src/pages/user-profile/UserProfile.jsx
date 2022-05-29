@@ -49,7 +49,7 @@ const UserProfile = () => {
 			<UserCard position top>
 				<h2 className="title">
 					{capitilize(user.name)}
-					{user.lastname && ' ' + capitilize(user.lastname)}
+					{user.lastName && ' ' + capitilize(user.lastName)}
 					{"'s"} Profile
 				</h2>
 				<p>Email: {user.email}</p>

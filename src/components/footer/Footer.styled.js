@@ -33,6 +33,7 @@ const StyledFooter = styled.footer`
 		transition: all 300ms ease;
 		border: solid 3px ${({ theme }) => theme.highlight};
 		box-shadow: ${({ theme }) => theme.boxShadowButton};
+		cursor: pointer;
 	}
 
 	.logoutBtn {
@@ -56,7 +57,6 @@ export const HazardButton = styled.button`
 	color: ${({ theme }) => theme.textLight};
 	background-color: ${({ theme }) => theme.highlight};
 	box-shadow: ${({ theme }) => theme.boxShadowButton};
-
 	cursor: pointer;
 	transition: all 300ms linear;
 

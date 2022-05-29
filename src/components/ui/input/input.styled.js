@@ -19,3 +19,12 @@ export const StyledInput = styled.input`
     padding: 1rem;
 `;
 
+export const StyledSelect = styled.select`
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    padding: 0.2rem;
+    margin-bottom: 1rem;
+`;
+

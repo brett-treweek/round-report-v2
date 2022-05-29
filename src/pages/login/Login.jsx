@@ -17,8 +17,14 @@ let initialLoginState = {
 const Login = () => {
 	const navigate = useNavigate();
 	const [loginState, setLoginState] = useState(initialLoginState);
-	const { user, displayAlert, isLoading, showAlert, registerUser, loginUser } =
-		useAppContext();
+	const {
+		user,
+		displayAlert,
+		isLoading,
+		showAlert,
+		registerUser,
+		loginUser,
+	} = useAppContext();
 
 	// function to toggle isMember- login/signUp
 	const toggleMember = () => {
@@ -67,7 +73,6 @@ const Login = () => {
 	return (
 		<StyledLogin>
 			<LoginForm onSubmit={handleSubmit}>
-				<CancelButton onClick={handleCancel} />
 				<h1>{loginState.isMember ? 'Log In' : 'Register'}</h1>
 				{showAlert && <Alert />}
 				{!loginState.isMember && (
@@ -119,6 +124,7 @@ const Login = () => {
 						{loginState.isMember ? 'Register' : 'LogIn'}
 					</button>
 				</p>
+				<CancelButton onClick={handleCancel} />
 			</LoginForm>
 		</StyledLogin>
 	);

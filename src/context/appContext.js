@@ -11,12 +11,19 @@ import {
 	LOGIN_USER_BEGIN,
 	LOGIN_USER_SUCCESS,
 	LOGIN_USER_ERROR,
-	LOGOUT_USER
+	LOGOUT_USER,
+	UPDATE_USER_BEGIN,
+	UPDATE_USER_SUCCESS,
+	UPDATE_USER_ERROR,
+	HANDLE_CHANGE,
+	CLEAR_VALUES,
+	CREATE_HAZARD_BEGIN,
+	CREATE_HAZARD_SUCCESS,
+	CREATE_HAZARD_ERROR,
 } from './actions';
-import { useNavigate } from 'react-router-dom';
 
-const token = localStorage.getItem('token')
-const user = localStorage.getItem('user')
+const token = localStorage.getItem('token');
+const user = localStorage.getItem('user');
 
 const initialState = {
 	isLoading: false,
@@ -25,12 +32,60 @@ const initialState = {
 	alertType: '',
 	user: user ? JSON.parse(user) : null,
 	token: token,
+	isEditing: false,
+	editHazardId: '',
+	hazardRound: '0',
+	hazardTypeOptions: [
+		'Aggressive Dog',
+		'Aggressive Human',
+		'Aggressive Magpie',
+		'Blind Driveway',
+		'Slippery Surface',
+		'School',
+		'Intersection',
+		'Roadworks',
+		'Missing Letterbox',
+		'Other',
+	],
+	hazardType: 'Aggressive Dog',
+	hazardAddress: '',
 };
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	// Axios instance
+	const authFetch = axios.create({
+		baseURL: '/api/v1',
+	});
+
+	// Axios request interceptor
+	authFetch.interceptors.request.use(
+		(config) => {
+			config.headers.common['Authorization'] = `Bearer ${state.token}`;
+			return config;
+		},
+		(error) => {
+			return Promise.reject(error);
+		}
+	);
+
+	// Axios response interceptor
+	authFetch.interceptors.response.use(
+		(response) => {
+			return response;
+		},
+		(error) => {
+			// console.log(error.response);
+			if (error.response.status === 401) {
+				logoutUser();
+				console.log('AUTH ERROR 401 YO!');
+			}
+			return Promise.reject(error);
+		}
+	);
 
 	const clearAlert = () => {
 		setTimeout(() => {
@@ -80,7 +135,7 @@ const AppProvider = ({ children }) => {
 	const loginUser = async (currentUser) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
-			const {data} = await axios.post(
+			const { data } = await axios.post(
 				'/api/v1/auth/login',
 				currentUser
 			);
@@ -98,12 +153,63 @@ const AppProvider = ({ children }) => {
 			});
 		}
 		clearAlert();
-	}
+	};
 
 	const logoutUser = (user) => {
-		dispatch({type: LOGOUT_USER})
-		removeUserFromLocalStorage(user)
-	}
+		dispatch({ type: LOGOUT_USER });
+		removeUserFromLocalStorage(user);
+	};
+
+	const updateUser = async (currentUser) => {
+		dispatch({ type: UPDATE_USER_BEGIN });
+		try {
+			const { data } = await authFetch.patch(
+				'/auth/updateUser',
+				currentUser
+			);
+			const { user, token } = data;
+			dispatch({ type: UPDATE_USER_SUCCESS, payload: { user, token } });
+			addUserToLocalStorage({ user, token });
+		} catch (error) {
+			if (error.response.status !== 401) {
+				dispatch({
+					type: UPDATE_USER_ERROR,
+					payload: { msg: error.response.data.msg },
+				});
+			}
+		}
+		clearAlert();
+	};
+
+	const handleChange = ({ name, value }) => {
+		dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
+	};
+
+	const clearValues = () => {
+		dispatch({ type: CLEAR_VALUES });
+	};
+
+	const createHazard = async () => {
+		dispatch({ type: CREATE_HAZARD_BEGIN });
+		try {
+			const { hazardRound, hazardAddress, hazardType } = state;
+			await authFetch.post('/hazards', {
+				hazardRound,
+				hazardAddress,
+				hazardType,
+			});
+			dispatch({ type: CREATE_HAZARD_SUCCESS });
+			dispatch({ type: CLEAR_VALUES });
+			clearAlert()
+		} catch (error) {
+			if (error.response.status === 401) {
+				dispatch({
+					type: CREATE_HAZARD_ERROR,
+					payload: { msg: error.payload.msg },
+				});
+			}
+		}
+	};
 
 	return (
 		<AppContext.Provider
@@ -112,7 +218,11 @@ const AppProvider = ({ children }) => {
 				displayAlert,
 				registerUser,
 				loginUser,
-				logoutUser
+				logoutUser,
+				updateUser,
+				handleChange,
+				clearValues,
+				createHazard
 			}}
 		>
 			{children}

@@ -1,61 +1,69 @@
 import {
-    DISPLAY_ALERT,
-    CLEAR_ALERT,
-    REGISTER_USER_BEGIN,
-    REGISTER_USER_SUCCESS,
-    REGISTER_USER_ERROR,
-    LOGIN_USER_BEGIN,
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR,
-    LOGOUT_USER
-} from './actions'
+	DISPLAY_ALERT,
+	CLEAR_ALERT,
+	REGISTER_USER_BEGIN,
+	REGISTER_USER_SUCCESS,
+	REGISTER_USER_ERROR,
+	LOGIN_USER_BEGIN,
+	LOGIN_USER_SUCCESS,
+	LOGIN_USER_ERROR,
+	LOGOUT_USER,
+	UPDATE_USER_BEGIN,
+	UPDATE_USER_SUCCESS,
+	UPDATE_USER_ERROR,
+	HANDLE_CHANGE,
+	CLEAR_VALUES,
+	CREATE_HAZARD_BEGIN,
+	CREATE_HAZARD_SUCCESS,
+	CREATE_HAZARD_ERROR
+} from './actions';
 
-import { initialState } from './appContext'
+import { initialState } from './appContext';
 
 const reducer = (state, action) => {
-    if (action.type === DISPLAY_ALERT) {
-        return {
-            ...state,
-            showAlert: true,
-            alertType: 'danger',
-            alertText: 'Please provide all values!',
-        }
-    }
-    if (action.type === CLEAR_ALERT) {
-        return {
-            ...state,
-            showAlert: false,
-            alertType: '',
-            alertText: '',
-        }
-    }
-    if (action.type === REGISTER_USER_BEGIN) {
-        return {
-            ...state,
-            isLoading: true,
-        }
-    }
-    if (action.type === REGISTER_USER_SUCCESS) {
-        return {
-            ...state,
-            isLoading: false,
-            token: action.payload.token,
-            user: action.payload.user,
-            showAlert: true,
-            alertType: 'success',
-            alertText: 'Registration Successful, Redirecting...'
-        }
-    }
-    if (action.type === REGISTER_USER_ERROR) {
-        return {
-            ...state,
-            isLoading: false,
-            showAlert: true,
-            alertType: 'danger',
-            alertText: action.payload.msg,
-        }
-    }
-    if (action.type === LOGIN_USER_BEGIN) {
+	if (action.type === DISPLAY_ALERT) {
+		return {
+			...state,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: 'Please provide all values!',
+		};
+	}
+	if (action.type === CLEAR_ALERT) {
+		return {
+			...state,
+			showAlert: false,
+			alertType: '',
+			alertText: '',
+		};
+	}
+	if (action.type === REGISTER_USER_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+	if (action.type === REGISTER_USER_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			token: action.payload.token,
+			user: action.payload.user,
+			showAlert: true,
+			alertType: 'success',
+			alertText: 'Registration Successful, Redirecting...',
+		};
+	}
+	if (action.type === REGISTER_USER_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
+		};
+	}
+	if (action.type === LOGIN_USER_BEGIN) {
 		return {
 			...state,
 			isLoading: true,
@@ -85,10 +93,80 @@ const reducer = (state, action) => {
 		return {
 			...initialState,
 			user: null,
-            token: null,
+			token: null,
 		};
 	}
-    throw new Error(`no such action : ${action.type}`)
-}
+	if (action.type === UPDATE_USER_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+	if (action.type === UPDATE_USER_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			token: action.payload.token,
+			user: action.payload.user,
+			showAlert: true,
+			alertType: 'success',
+			alertText: 'User Profile Updated!',
+		};
+	}
+	if (action.type === UPDATE_USER_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
+		};
+	}
+	if (action.type === HANDLE_CHANGE) {
+		return {
+			...state,
+			[action.payload.name]: action.payload.value,
+		};
+	}
+	if (action.type === CLEAR_VALUES) {
+		const initialState = {
+			isEditing: false,
+			editHazardId: '',
+			hazardRound: '0',
+			hazardType: 'Aggressive Dog',
+			hazardAddress: '',
+		};
+		return {
+			...state,
+			...initialState,
+		};
+	}
+	if (action.type === CREATE_HAZARD_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+	if (action.type === CREATE_HAZARD_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'success',
+			alertText: "Hazard Created",
+		};
+	}
+	if (action.type === CREATE_HAZARD_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
+		};
+	}
+
+	throw new Error(`no such action : ${action.type}`);
+};
 
 export default reducer;
