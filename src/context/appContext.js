@@ -167,7 +167,10 @@ const AppProvider = ({ children }) => {
 				'/auth/updateUser',
 				currentUser
 			);
+			console.log('data1', data);
+
 			const { user, token } = data;
+			console.log('data2', data);
 			dispatch({ type: UPDATE_USER_SUCCESS, payload: { user, token } });
 			addUserToLocalStorage({ user, token });
 		} catch (error) {
@@ -200,15 +203,15 @@ const AppProvider = ({ children }) => {
 			});
 			dispatch({ type: CREATE_HAZARD_SUCCESS });
 			dispatch({ type: CLEAR_VALUES });
-			clearAlert()
+			clearAlert();
 		} catch (error) {
-			if (error.response.status === 401) {
-				dispatch({
-					type: CREATE_HAZARD_ERROR,
-					payload: { msg: error.payload.msg },
-				});
-			}
+			if (error.response.status === 401) return;
+			dispatch({
+				type: CREATE_HAZARD_ERROR,
+				payload: { msg: error.payload.msg },
+			});
 		}
+		clearAlert()
 	};
 
 	return (
@@ -222,7 +225,7 @@ const AppProvider = ({ children }) => {
 				updateUser,
 				handleChange,
 				clearValues,
-				createHazard
+				createHazard,
 			}}
 		>
 			{children}

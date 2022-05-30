@@ -65,7 +65,7 @@ const Login = () => {
 		console.log('useEffect running');
 		if (user) {
 			setTimeout(() => {
-				navigate(-1);
+				navigate('/');
 			}, 1000);
 		}
 	}, [user, navigate]);
