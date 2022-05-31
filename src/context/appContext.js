@@ -103,7 +103,7 @@ const AppProvider = ({ children }) => {
 		localStorage.setItem('token', token);
 	};
 
-	const removeUserFromLocalStorage = ({ user, token }) => {
+	const removeUserFromLocalStorage = () => {
 		localStorage.removeItem('user');
 		localStorage.removeItem('token');
 	};
@@ -155,9 +155,9 @@ const AppProvider = ({ children }) => {
 		clearAlert();
 	};
 
-	const logoutUser = (user) => {
+	const logoutUser = () => {
 		dispatch({ type: LOGOUT_USER });
-		removeUserFromLocalStorage(user);
+		removeUserFromLocalStorage();
 	};
 
 	const updateUser = async (currentUser) => {
@@ -196,14 +196,14 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: CREATE_HAZARD_BEGIN });
 		try {
 			const { hazardRound, hazardAddress, hazardType } = state;
-			await authFetch.post('/hazards', {
+			const hazard = await authFetch.post('/hazards', {
 				hazardRound,
 				hazardAddress,
 				hazardType,
 			});
 			dispatch({ type: CREATE_HAZARD_SUCCESS });
 			dispatch({ type: CLEAR_VALUES });
-			clearAlert();
+			console.log('Hazard Created', hazard);
 		} catch (error) {
 			if (error.response.status === 401) return;
 			dispatch({
