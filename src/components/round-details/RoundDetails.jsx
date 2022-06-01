@@ -16,14 +16,14 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 				<InnerContainer>
 					<div>
 						{roundDeets ? (
-							<h2>{roundDeets.round}</h2>
+							<h2>Round {roundDeets.roundNumber}</h2>
 						) : (
 							<h2>Palmyra DC</h2>
 						)}
 						{roundDeets ? (
 							<Inline>
 								<h5>Start:</h5>
-								<p>{roundDeets.start}</p>
+								<p>{roundDeets.startAddress}</p>
 							</Inline>
 						) : (
 							<p>8 Absolon St. Palmyra 6157</p>

@@ -61,6 +61,7 @@ const Login = () => {
 	};
 
 	// function to navigate to last page in history after successful signIn
+	// I think this is rerendering page twice!!!
 	useEffect(() => {
 		console.log('useEffect running');
 		if (user) {

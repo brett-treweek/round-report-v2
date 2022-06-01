@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const StyledHazardCard = styled.article`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
-	padding: 1rem 0;
+	padding: 1rem;
 	margin-bottom: 2rem;
 	min-height: 30vh;
 	width: 90vw;
@@ -39,7 +39,7 @@ const StyledHazardCard = styled.article`
 	& > img {
 		height: 220px;
 		width: 100%;
-		margin: 1rem;
+		margin: 1rem 0;
 	}
 `;
 

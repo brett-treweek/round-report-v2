@@ -20,11 +20,16 @@ import {
 	CREATE_HAZARD_BEGIN,
 	CREATE_HAZARD_SUCCESS,
 	CREATE_HAZARD_ERROR,
+	GET_ALL_HAZARDS_BEGIN,
+	GET_ALL_HAZARDS_SUCCESS,
+	GET_ONE_ROUND_BEGIN,
+	GET_ONE_ROUND_SUCCESS,
 } from './actions';
 
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
 
+// Need to add state for userHazards to use in user-profile page.
 const initialState = {
 	isLoading: false,
 	showAlert: false,
@@ -49,6 +54,10 @@ const initialState = {
 	],
 	hazardType: 'Aggressive Dog',
 	hazardAddress: '',
+	allHazards: [],
+	totalAllHazards: 0,
+	round: null,
+	roundHazards: []
 };
 
 const AppContext = React.createContext();
@@ -211,7 +220,56 @@ const AppProvider = ({ children }) => {
 				payload: { msg: error.payload.msg },
 			});
 		}
-		clearAlert()
+		clearAlert();
+	};
+
+	const getAllHazards = async () => {
+		let url = `/hazards`;
+		dispatch({ type: GET_ALL_HAZARDS_BEGIN });
+		try {
+			const { data } = await authFetch(url);
+			console.log(data);
+			const { hazards, totalHazards } = data;
+			dispatch({
+				type: GET_ALL_HAZARDS_SUCCESS,
+				payload: {
+					hazards,
+					totalHazards,
+				},
+			});
+		} catch (error) {
+			console.log(error.response);
+			// Need to activate this eventually
+			// logoutUser()
+		}
+		clearAlert();
+	};
+
+	const getOneRound = async (roundNumber) => {
+		let url = `/round/${roundNumber}`;
+		dispatch({ type: GET_ONE_ROUND_BEGIN });
+
+		try {
+			const { data } = await authFetch(url);
+
+			const round = data.round
+			const roundHazards = data.roundHazards
+
+			console.log('Data from getOneRound',round, roundHazards);
+		
+			dispatch({
+				type: GET_ONE_ROUND_SUCCESS,
+				payload: {
+					round,
+					roundHazards,
+				},
+			});
+		} catch (error) {
+			console.log(error.response);
+			// Need to activate this eventually
+			// logoutUser()
+		}
+		clearAlert();
 	};
 
 	return (
@@ -226,6 +284,8 @@ const AppProvider = ({ children }) => {
 				handleChange,
 				clearValues,
 				createHazard,
+				getAllHazards,
+				getOneRound,
 			}}
 		>
 			{children}

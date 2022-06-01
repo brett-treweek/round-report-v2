@@ -15,7 +15,11 @@ import {
 	CLEAR_VALUES,
 	CREATE_HAZARD_BEGIN,
 	CREATE_HAZARD_SUCCESS,
-	CREATE_HAZARD_ERROR
+	CREATE_HAZARD_ERROR,
+	GET_ALL_HAZARDS_BEGIN,
+	GET_ALL_HAZARDS_SUCCESS,
+	GET_ONE_ROUND_BEGIN,
+	GET_ONE_ROUND_SUCCESS
 } from './actions';
 
 import { initialState } from './appContext';
@@ -163,6 +167,36 @@ const reducer = (state, action) => {
 			showAlert: true,
 			alertType: 'danger',
 			alertText: action.payload.msg,
+		};
+	}
+	if (action.type === GET_ALL_HAZARDS_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+			showAlert: false,
+		};
+	}
+	if (action.type === GET_ALL_HAZARDS_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			allHazards: action.payload.hazards,
+			totalAllHazards: action.payload.totalHazards
+		};
+	}
+	if (action.type === GET_ONE_ROUND_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+			showAlert: false,
+		};
+	}
+	if (action.type === GET_ONE_ROUND_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			round: action.payload.round,
+			roundHazards: action.payload.roundHazards
 		};
 	}
 

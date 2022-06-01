@@ -1,62 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAppContext } from '../../context/appContext';
 import StyledRound from './Round.styled';
 import Map from '../../components/map/Map';
 import RoundDetails from '../../components/round-details/RoundDetails';
 import HazardCard from '../../components/hazard-card/HazardCard';
 
 const Round = () => {
+	const { getOneRound, isLoading, round, roundHazards } =
+		useAppContext();
 	const [view, setView] = useState('List');
 	const changeView = () => {
 		view === 'List' ? setView('Map') : setView('List');
 	};
 
-	const currentRound = {
-		round: 'Round 2',
-		start: '5 Smith st Perth 6000',
-		relay: '5 Smith st Perth 6000',
-		lpo: '5 Smith st Perth 6000',
-	};
-
-	const hazards = [
-		{
-			title: 'Aggressive Dog',
-			address: '5 Smith st Perth 6000',
-			user: 'Brett Treweek',
-			date: '01/06/2022',
-			id: 1,
-		},
-		{
-			title: 'Aggressive Cat',
-			address: '10 Jones st Perth 6000',
-			user: 'John Doe',
-			date: '05/06/2022',
-			id: 2,
-		},
-		{
-			title: 'Aggressive Bird',
-			address: '15 Central st Perth 6000',
-			user: 'Jane Doe',
-			date: '15/06/2022',
-			id: 3,
-		},
-	];
+	// I think this useEffect is rendering page twice!
+	useEffect(()=> {
+		getOneRound(1)
+	},[])
+	
 
 	return (
+		// <h1>What</h1>
 		<StyledRound>
 			<RoundDetails
 				position
 				top
 				jc="start"
-				roundDeets={currentRound}
+				roundDeets={round}
 				changeView={changeView}
 				view={view}
 			/>
 			{view === 'List' ? (
-				<Map/>
+				<Map />
 			) : (
-				hazards.map((hazard, index) => (
-					<HazardCard key={hazard.id} hazard={hazard} index={index} />
-				))
+				roundHazards.map((hazard) => {
+					return <HazardCard {...hazard} key={hazard._id} />;
+				})
 			)}
 		</StyledRound>
 	);

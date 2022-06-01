@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import EditProfile from '../../components/edit-profile/EditProfile';
 import HazardCard from '../../components/hazard-card/HazardCard';
 
+
+// TODO set users hazards in state when logIn, display them here.
 const UserProfile = () => {
 	const { user, showAlert, updateUser, isLoading, logoutUser } =
 		useAppContext();
@@ -17,32 +19,6 @@ const UserProfile = () => {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
 
-	
-	
-
-	const hazards = [
-		{
-			title: 'Aggressive Dog',
-			address: '5 Smith st Perth 6000',
-			user: 'Brett Treweek',
-			date: '01/06/2022',
-			id: 1,
-		},
-		{
-			title: 'Aggressive Cat',
-			address: '10 Jones st Perth 6000',
-			user: 'John Doe',
-			date: '05/06/2022',
-			id: 2,
-		},
-		{
-			title: 'Aggressive Bird',
-			address: '15 Central st Perth 6000',
-			user: 'Jane Doe',
-			date: '15/06/2022',
-			id: 3,
-		},
-	];
 
 	return (
 		<StyledUserProfile>
@@ -73,13 +49,13 @@ const UserProfile = () => {
 			) : (
 				<>
 					<h2 className="title">Your Hazards</h2>
-					{hazards.map((hazard, index) => (
+					{/* {hazards.map((hazard, index) => (
 						<HazardCard
 							key={hazard.id}
 							hazard={hazard}
 							index={index}
 						/>
-					))}
+					))} */}
 				</>
 			)}
 		</StyledUserProfile>
