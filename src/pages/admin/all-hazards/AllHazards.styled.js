@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const StyledAllHazards = styled.section`
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     text-align: center;
     padding: 2rem;
 `

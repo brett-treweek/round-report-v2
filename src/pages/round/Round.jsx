@@ -6,7 +6,8 @@ import RoundDetails from '../../components/round-details/RoundDetails';
 import HazardCard from '../../components/hazard-card/HazardCard';
 
 const Round = () => {
-	const { getOneRound, isLoading, round, roundHazards } = useAppContext();
+	const { getOneRound, isLoading, selectedRound, round, roundHazards } =
+		useAppContext();
 	const [view, setView] = useState('List');
 	const changeView = () => {
 		view === 'List' ? setView('Map') : setView('List');
@@ -14,11 +15,13 @@ const Round = () => {
 
 	// I think this useEffect is rendering page twice!
 	useEffect(() => {
-		getOneRound(1);
+		if (!selectedRound) {
+			return
+		}
+		getOneRound(selectedRound);
 	}, []);
 
 	return (
-		// <h1>What</h1>
 		<StyledRound>
 			<RoundDetails
 				position
@@ -28,6 +31,7 @@ const Round = () => {
 				changeView={changeView}
 				view={view}
 			/>
+
 			{view === 'List' ? (
 				<Map />
 			) : (

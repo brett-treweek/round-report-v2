@@ -19,7 +19,8 @@ import {
 	GET_ALL_HAZARDS_BEGIN,
 	GET_ALL_HAZARDS_SUCCESS,
 	GET_ONE_ROUND_BEGIN,
-	GET_ONE_ROUND_SUCCESS
+	GET_ONE_ROUND_SUCCESS,
+	SET_ROUND,
 } from './actions';
 
 import { initialState } from './appContext';
@@ -132,6 +133,7 @@ const reducer = (state, action) => {
 			[action.payload.name]: action.payload.value,
 		};
 	}
+// at some stage need to add editRound details
 	if (action.type === CLEAR_VALUES) {
 		const initialState = {
 			isEditing: false,
@@ -183,6 +185,12 @@ const reducer = (state, action) => {
 			isLoading: false,
 			allHazards: action.payload.hazards,
 			totalAllHazards: action.payload.totalHazards
+		};
+	}
+	if (action.type === SET_ROUND) {
+		return {
+			...state,
+			selectedRound: action.payload.round,
 		};
 	}
 	if (action.type === GET_ONE_ROUND_BEGIN) {

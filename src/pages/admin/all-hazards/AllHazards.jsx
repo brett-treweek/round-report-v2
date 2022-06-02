@@ -40,6 +40,7 @@ const AllHazards = () => {
 											<HazardCard
 												{...hazard}
 												key={hazard._id}
+												index={index + 1}
 											/>
 										);
 									})}

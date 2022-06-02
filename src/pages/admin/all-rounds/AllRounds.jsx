@@ -1,8 +1,11 @@
 import React from 'react'
+import StyledAllRounds from './AllRounds.styled'
 
 const AllRounds = () => {
   return (
-    <div>AllRounds</div>
+    <StyledAllRounds>
+      <h1>Rounds</h1>
+    </StyledAllRounds>
   )
 }
 

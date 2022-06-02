@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Alert from '../../components/ui/alert/Alert';
 import { useAppContext } from '../../context/appContext';
 import Input from '../ui/input/input';
@@ -7,7 +8,13 @@ import StyledEditProfile, { ProfileForm } from './EditProfile.styled';
 import CancelButton from '../ui/cancel-button/CancelButton';
 
 const EditProfile = (props) => {
-	console.log('Edit profile rendered');
+	const navigate = useNavigate();
+	const navigateHome = () =>{
+		setTimeout(() => {
+			navigate('/');
+		}, 1000);
+	}
+
 	const { user, showAlert, displayAlert, updateUser, isLoading } =
 		useAppContext();
 
@@ -19,16 +26,17 @@ const EditProfile = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name || !email || !lastName || !round) {
-			displayAlert()
-			return
+			displayAlert();
+			return;
 		}
-		updateUser({ name, email, lastName, round })
+		updateUser({ name, email, lastName, round });
+		navigateHome()
 	};
 
 	// function to handle cancel btn.
 	const handleCancel = (e) => {
 		e.preventDefault();
-		props.setProfileToggle(false)
+		props.setProfileToggle(false);
 	};
 
 	return (

@@ -24,6 +24,7 @@ import {
 	GET_ALL_HAZARDS_SUCCESS,
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
+	SET_ROUND,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -58,6 +59,7 @@ const initialState = {
 	allHazards: [],
 	totalAllHazards: 0,
 	// Selected Round
+	selectedRound: null,
 	round: null,
 	roundHazards: [],
 };
@@ -251,6 +253,13 @@ const AppProvider = ({ children }) => {
 		clearAlert();
 	};
 
+	const setRound = (number) => {
+		dispatch({
+			type: SET_ROUND,
+			payload: { round: number }
+		});
+	};
+
 	const getOneRound = async (roundNumber) => {
 		let url = `/round/${roundNumber}`;
 		dispatch({ type: GET_ONE_ROUND_BEGIN });
@@ -291,6 +300,7 @@ const AppProvider = ({ children }) => {
 				clearValues,
 				createHazard,
 				getAllHazards,
+				setRound,
 				getOneRound,
 			}}
 		>
