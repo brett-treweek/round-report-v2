@@ -154,6 +154,7 @@ const reducer = (state, action) => {
 	if (action.type === CREATE_HAZARD_SUCCESS) {
 		return {
 			...state,
+			user: action.payload.user,
 			isLoading: false,
 			showAlert: true,
 			alertType: 'success',

@@ -4,7 +4,7 @@ import dog from '../../assets/images/hazardImage.png';
 import { remove, pin, print, edit } from '../../assets/icons/index';
 import moment from 'moment';
 
-const HazardCard = ({hazardRound, hazardType, hazardAddress, message, createdAt, img, alt, createdByUsername}) => {
+const HazardCard = ({hazardRound, hazardType, hazardAddress, message, createdAt, img, alt, createdByUsername, index}) => {
 
   const date = moment(createdAt).format('Do MMM, YYYY');
   
@@ -12,7 +12,7 @@ const HazardCard = ({hazardRound, hazardType, hazardAddress, message, createdAt,
   return (
 		<StyledHazardCard>
 			<p>Round {hazardRound}</p>
-			<h3>{hazardType}</h3>
+			<h3>{index}. {hazardType}</h3>
 			<h4>{hazardAddress}</h4>
       <p>"{message}"</p>
 			<p>Created by: {createdByUsername}</p>

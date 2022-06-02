@@ -33,13 +33,14 @@ const user = localStorage.getItem('user');
 const initialState = {
 	isLoading: false,
 	showAlert: false,
+	isEditing: false,
 	alertText: '',
 	alertType: '',
 	user: user ? JSON.parse(user) : null,
 	token: token,
-	isEditing: false,
+	// All Hazards
 	editHazardId: '',
-	hazardRound: '0',
+	hazardRound: '',
 	hazardTypeOptions: [
 		'Aggressive Dog',
 		'Aggressive Human',
@@ -56,8 +57,9 @@ const initialState = {
 	hazardAddress: '',
 	allHazards: [],
 	totalAllHazards: 0,
+	// Selected Round
 	round: null,
-	roundHazards: []
+	roundHazards: [],
 };
 
 const AppContext = React.createContext();
@@ -210,7 +212,11 @@ const AppProvider = ({ children }) => {
 				hazardAddress,
 				hazardType,
 			});
-			dispatch({ type: CREATE_HAZARD_SUCCESS });
+			console.log('Hazard Response', hazard);
+			dispatch({
+				type: CREATE_HAZARD_SUCCESS,
+				payload: { user: hazard.data.user },
+			});
 			dispatch({ type: CLEAR_VALUES });
 			console.log('Hazard Created', hazard);
 		} catch (error) {
@@ -252,11 +258,11 @@ const AppProvider = ({ children }) => {
 		try {
 			const { data } = await authFetch(url);
 
-			const round = data.round
-			const roundHazards = data.roundHazards
+			const round = data.round;
+			const roundHazards = data.roundHazards;
 
-			console.log('Data from getOneRound',round, roundHazards);
-		
+			console.log('Data from getOneRound', round, roundHazards);
+
 			dispatch({
 				type: GET_ONE_ROUND_SUCCESS,
 				payload: {

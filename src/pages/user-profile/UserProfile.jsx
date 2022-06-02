@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledUserProfile, { UserCard } from './UserProfile.styled';
-import { Button, ButtonContainer } from '../../components/ui/button/Button.styled';
+import {
+	Button,
+	ButtonContainer,
+} from '../../components/ui/button/Button.styled';
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../../components/edit-profile/EditProfile';
 import HazardCard from '../../components/hazard-card/HazardCard';
-
 
 // TODO set users hazards in state when logIn, display them here.
 const UserProfile = () => {
@@ -17,19 +19,20 @@ const UserProfile = () => {
 
 	const capitilize = (word) => {
 		return word.charAt(0).toUpperCase() + word.slice(1);
-	}
+	};
 
+	const { hazards, name, lastName, email, round } = user;
 
 	return (
 		<StyledUserProfile>
 			<UserCard position top>
 				<h2 className="title">
-					{capitilize(user.name)}
-					{user.lastName && ' ' + capitilize(user.lastName)}
+					{capitilize(name)}
+					{user.lastName && ' ' + capitilize(lastName)}
 					{"'s"} Profile
 				</h2>
-				<p>Email: {user.email}</p>
-				{user.round && <p> Round: {user.round} </p>}
+				<p>Email: {email}</p>
+				{round && <p> Round: {round} </p>}
 				<ButtonContainer>
 					<Button onClick={() => setProfileToggle(!profileToggle)}>
 						{profileToggle ? 'Hazards' : 'Edit Profile'}
@@ -48,14 +51,14 @@ const UserProfile = () => {
 				<EditProfile setProfileToggle={setProfileToggle} />
 			) : (
 				<>
-					<h2 className="title">Your Hazards</h2>
-					{/* {hazards.map((hazard, index) => (
+					{hazards.length > 0 ? <h2 className="title">Your Hazards</h2> : 'You have no hazards'}
+					{hazards.map((hazard, index) => (
 						<HazardCard
-							key={hazard.id}
-							hazard={hazard}
-							index={index}
+							index={index + 1}
+							key={hazard._id}
+							{...hazard}
 						/>
-					))} */}
+					))}
 				</>
 			)}
 		</StyledUserProfile>
