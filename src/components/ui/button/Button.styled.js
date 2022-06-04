@@ -20,7 +20,7 @@ export const ButtonContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: ${({ jc }) => jc || 'start'};
-	gap: 2rem;
+	gap: ${({ gap }) => gap || '2rem'};
 	border: none;
 	background-color: transparent;
 `;

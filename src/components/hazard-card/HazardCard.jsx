@@ -1,31 +1,42 @@
-import React from 'react'
-import StyledHazardCard, { HazardCardButtonsContainer } from './HazardCard.styled';
+import React from 'react';
+import StyledHazardCard, {
+	HazardCardButtonsContainer,
+} from './HazardCard.styled';
 import dog from '../../assets/images/hazardImage.png';
 import { remove, pin, print, edit } from '../../assets/icons/index';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import moment from 'moment';
 
-const HazardCard = ({hazardRound, hazardType, hazardAddress, message, createdAt, alt, createdByUsername, imageUrl, index}) => {
+const HazardCard = ({
+	hazardRound,
+	hazardType,
+	hazardAddress,
+	message,
+	createdAt,
+	alt,
+	createdByUsername,
+	imageUrl,
+	index,
+}) => {
+	const date = moment(createdAt).format('Do MMM, YYYY');
 
-  const date = moment(createdAt).format('Do MMM, YYYY');
-
-   const cld = new Cloudinary({
+	const cld = new Cloudinary({
 		cloud: {
 			cloudName: 'tigmarine',
 		},
-   });
+	});
 
-   const img = cld.image(imageUrl);
-   
-  
+	const img = cld.image(imageUrl);
 
-  return (
+	return (
 		<StyledHazardCard>
 			<p>Round {hazardRound}</p>
-			<h3>{index}. {hazardType}</h3>
+			<h3>
+				{index}. {hazardType}
+			</h3>
 			<h4>{hazardAddress}</h4>
-      <p>"{message}"</p>
+			{message && <p>"{message}"</p>}
 			<p>Created by: {createdByUsername}</p>
 			<p>{date}</p>
 			<AdvancedImage cldImg={img} alt={alt || 'hazard image'} />
@@ -36,7 +47,7 @@ const HazardCard = ({hazardRound, hazardType, hazardAddress, message, createdAt,
 				<img src={remove} alt="remove" />
 			</HazardCardButtonsContainer>
 		</StyledHazardCard>
-  );
-}
+	);
+};
 
-export default HazardCard
+export default HazardCard;

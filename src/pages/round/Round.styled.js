@@ -6,7 +6,7 @@ const StyledRound = styled.section`
 	align-items: center;
 	justify-content: start;
 	min-height: 80vh;
-	text-align: center;
+	/* text-align: center; */
 	background-color: ${({ theme }) => theme.background};
 `;
 

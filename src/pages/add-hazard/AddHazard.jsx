@@ -46,6 +46,10 @@ const AddHazard = () => {
 			displayAlert();
 			return;
 		}
+		if (image && !imageAdded) {
+			displayAlert('Please confirm image')
+			return
+		}
 		if (isEditing) {
 			// eventually edit hazard()
 			return;
@@ -70,7 +74,7 @@ const AddHazard = () => {
 	const confirmImage = (e) => {
 		e.preventDefault();
 		uploadImage(image);
-		setImageAdded(true)
+		setImageAdded(true);
 	};
 
 	const handleCancel = (e) => {
@@ -118,25 +122,24 @@ const AddHazard = () => {
 					options={hazardTypeOptions}
 					handleChange={handleHazardInput}
 				/>
+
 				<AddImageContainer>
-					<ButtonContainer jc="space-between">
-						<h3>Image</h3>
+					<h4>Image</h4>
+					<ButtonContainer jc="end" gap="0.5rem">
 						<input
 							ref={imageInputRef}
 							style={{ display: 'none' }}
 							type="file"
 							onChange={(e) => setImage(e.target.files[0])}
 						/>
-						<p>
-							{image ? imageInputRef.current.files[0].name : null}
-						</p>
+
 						{!imageAdded && (
 							<>
 								<Button
 									ref={addImageRef}
 									type="button"
-									height="50px"
-									width="100px"
+									height="40px"
+									width="80px"
 									onClick={onAddImage}
 									disabled={isLoading}
 								>
@@ -145,8 +148,8 @@ const AddHazard = () => {
 
 								<Button
 									ref={confirmImageRef}
-									height="50px"
-									width="100px"
+									height="40px"
+									width="80px"
 									style={{ display: 'none' }}
 									onClick={confirmImage}
 									disabled={isLoading}
@@ -157,6 +160,10 @@ const AddHazard = () => {
 						)}
 					</ButtonContainer>
 				</AddImageContainer>
+				<div style={{ textAlign: 'left', width: '100%', padding: '1rem' }}>
+					<p>{image ? imageInputRef.current.files[0].name : null}</p>
+				</div>
+
 				<Button
 					type="submit"
 					onClick={handleSubmit}

@@ -108,11 +108,15 @@ const AppProvider = ({ children }) => {
 	const clearAlert = () => {
 		setTimeout(() => {
 			dispatch({ type: CLEAR_ALERT });
-		}, 3000);
+		}, 2000);
 	};
 
-	const displayAlert = () => {
-		dispatch({ type: DISPLAY_ALERT });
+	const displayAlert = (message) => {
+		const fallback = 'Please provide all values!';
+		dispatch({
+			type: DISPLAY_ALERT,
+			payload: { message: message || fallback },
+		});
 		clearAlert();
 	};
 
