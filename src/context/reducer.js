@@ -144,6 +144,7 @@ const reducer = (state, action) => {
 			hazardRound: '0',
 			hazardType: 'Aggressive Dog',
 			hazardAddress: '',
+			imageUrl: ''
 		};
 		return {
 			...state,

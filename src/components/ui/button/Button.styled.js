@@ -19,7 +19,7 @@ export const ButtonContainer = styled.div`
 	padding: 5px;
 	display: flex;
 	align-items: center;
-	justify-content: start;
+	justify-content: ${({ jc }) => jc || 'start'};
 	gap: 2rem;
 	border: none;
 	background-color: transparent;

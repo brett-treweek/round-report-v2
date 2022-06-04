@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledAddHazard, {
 	AddHazardForm,
 	AddImageContainer,
-	IconContainer,
+	// IconContainer,
 } from './AddHazard.styled';
 import CancelButton from '../../components/ui/cancel-button/CancelButton';
 import Input from '../../components/ui/input/input';
-import { Button } from '../../components/ui/button/Button.styled';
+import {
+	Button,
+	ButtonContainer,
+} from '../../components/ui/button/Button.styled';
 import Alert from '../../components/ui/alert/Alert';
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
 
 const AddHazard = () => {
 	const [image, setImage] = useState();
+	const [imageAdded, setImageAdded] = useState(false);
+	const imageInputRef = useRef();
+	const confirmImageRef = useRef();
+	const addImageRef = useRef();
 
 	const {
 		showAlert,
@@ -33,6 +40,8 @@ const AddHazard = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log(imageInputRef);
+
 		if (!hazardRound || !hazardType || !hazardAddress) {
 			displayAlert();
 			return;
@@ -45,7 +54,7 @@ const AddHazard = () => {
 
 		setTimeout(() => {
 			navigate(-1);
-		}, 2000);
+		}, 1000);
 	};
 
 	const handleHazardInput = (e) => {
@@ -54,16 +63,36 @@ const AddHazard = () => {
 		handleChange({ name, value });
 	};
 
+	const onAddImage = () => {
+		imageInputRef.current.click();
+	};
+
+	const confirmImage = (e) => {
+		e.preventDefault();
+		uploadImage(image);
+		setImageAdded(true)
+	};
 
 	const handleCancel = (e) => {
 		e.preventDefault();
 		navigate(-1);
 	};
 
+	useEffect(() => {
+		console.log(
+			'useEffect imageinputref.current.files',
+			imageInputRef.current.files
+		);
+		if (imageInputRef.current.files.length > 0) {
+			confirmImageRef.current.style = { display: 'block' };
+			// imageInputRef.current.style = { display: 'none' };
+		}
+	}, [image]);
+
 	return (
 		<StyledAddHazard>
 			<AddHazardForm>
-				<h1>{isEditing ? 'Edit Hazard' : 'Add Hazard'}</h1>
+				<h1>{isEditing ? 'Edit Hazard' : 'Create Hazard'}</h1>
 				{showAlert && <Alert />}
 				<Input
 					name="hazardAddress"
@@ -89,30 +118,44 @@ const AddHazard = () => {
 					options={hazardTypeOptions}
 					handleChange={handleHazardInput}
 				/>
-
 				<AddImageContainer>
-					<h2>Image</h2>
-					<IconContainer>
+					<ButtonContainer jc="space-between">
+						<h3>Image</h3>
 						<input
+							ref={imageInputRef}
+							style={{ display: 'none' }}
 							type="file"
 							onChange={(e) => setImage(e.target.files[0])}
 						/>
-						<button onClick={(e) => {
-							e.preventDefault()
-							uploadImage(image)}}>
-							confirm image
-						</button>
-						{/* <Icon
-							className="icon"
-							icon="bxs:folder-plus"
-							height="45"
-						/> */}
-						{/* <Icon
-							className="icon"
-							icon="bxs:camera-plus"
-							height="45"
-						/> */}
-					</IconContainer>
+						<p>
+							{image ? imageInputRef.current.files[0].name : null}
+						</p>
+						{!imageAdded && (
+							<>
+								<Button
+									ref={addImageRef}
+									type="button"
+									height="50px"
+									width="100px"
+									onClick={onAddImage}
+									disabled={isLoading}
+								>
+									{!image ? 'Add Image' : 'change'}
+								</Button>
+
+								<Button
+									ref={confirmImageRef}
+									height="50px"
+									width="100px"
+									style={{ display: 'none' }}
+									onClick={confirmImage}
+									disabled={isLoading}
+								>
+									Confirm
+								</Button>
+							</>
+						)}
+					</ButtonContainer>
 				</AddImageContainer>
 				<Button
 					type="submit"
@@ -122,15 +165,15 @@ const AddHazard = () => {
 				>
 					Submit
 				</Button>
-				<Button
+				{/* <Button
 					onClick={(e) => {
 						e.preventDefault();
 						clearValues();
 					}}
-					width="40%"
+					width="100%"
 				>
 					Clear
-				</Button>
+				</Button> */}
 				<CancelButton onClick={handleCancel} />
 			</AddHazardForm>
 		</StyledAddHazard>
@@ -138,3 +181,10 @@ const AddHazard = () => {
 };
 
 export default AddHazard;
+
+/* <Icon
+							className="icon"
+							icon="bxs:folder-plus"
+							height="45"
+							onClick={onAddImage}
+						/> */
