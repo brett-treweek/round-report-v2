@@ -3,6 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@cloudinary/react": "^1.4.1",
+		"@cloudinary/url-gen": "^1.8.0",
 		"axios": "^0.27.2",
 		"moment": "^2.29.3",
 		"normalize.css": "^8.0.1",

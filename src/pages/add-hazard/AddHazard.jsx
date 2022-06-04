@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useState } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledAddHazard, {
 	AddHazardForm,
@@ -13,6 +13,8 @@ import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
 
 const AddHazard = () => {
+	const [image, setImage] = useState();
+
 	const {
 		showAlert,
 		displayAlert,
@@ -24,30 +26,34 @@ const AddHazard = () => {
 		hazardAddress,
 		handleChange,
 		clearValues,
-		createHazard
+		uploadImage,
+		createHazard,
 	} = useAppContext();
 	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!hazardRound || !hazardType || !hazardAddress) {
-			displayAlert()
-			return
+			displayAlert();
+			return;
 		}
 		if (isEditing) {
 			// eventually edit hazard()
-			return
+			return;
 		}
-		createHazard()
+		createHazard();
+
 		setTimeout(() => {
 			navigate(-1);
-		}, 1000);
+		}, 2000);
 	};
+
 	const handleHazardInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
-		handleChange({name, value})
+		handleChange({ name, value });
 	};
+
 
 	const handleCancel = (e) => {
 		e.preventDefault();
@@ -87,19 +93,33 @@ const AddHazard = () => {
 				<AddImageContainer>
 					<h2>Image</h2>
 					<IconContainer>
-						<Icon
+						<input
+							type="file"
+							onChange={(e) => setImage(e.target.files[0])}
+						/>
+						<button onClick={(e) => {
+							e.preventDefault()
+							uploadImage(image)}}>
+							confirm image
+						</button>
+						{/* <Icon
 							className="icon"
 							icon="bxs:folder-plus"
 							height="45"
-						/>
-						<Icon
+						/> */}
+						{/* <Icon
 							className="icon"
 							icon="bxs:camera-plus"
 							height="45"
-						/>
+						/> */}
 					</IconContainer>
 				</AddImageContainer>
-				<Button type="submit" onClick={handleSubmit} width="100%" disabled={isLoading}>
+				<Button
+					type="submit"
+					onClick={handleSubmit}
+					width="100%"
+					disabled={isLoading}
+				>
 					Submit
 				</Button>
 				<Button

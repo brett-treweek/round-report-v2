@@ -17,6 +17,9 @@ import {
 	UPDATE_USER_ERROR,
 	HANDLE_CHANGE,
 	CLEAR_VALUES,
+	UPLOAD_IMAGE_BEGIN,
+	UPLOAD_IMAGE_SUCCESS,
+	UPLOAD_IMAGE_ERROR,
 	CREATE_HAZARD_BEGIN,
 	CREATE_HAZARD_SUCCESS,
 	CREATE_HAZARD_ERROR,
@@ -39,7 +42,8 @@ const initialState = {
 	alertType: '',
 	user: user ? JSON.parse(user) : null,
 	token: token,
-	// All Hazards
+	// Add Hazard
+	imageUrl: '',
 	editHazardId: '',
 	hazardRound: '',
 	hazardTypeOptions: [
@@ -56,6 +60,7 @@ const initialState = {
 	],
 	hazardType: 'Aggressive Dog',
 	hazardAddress: '',
+	// All hazards
 	allHazards: [],
 	totalAllHazards: 0,
 	// Selected Round
@@ -205,14 +210,38 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: CLEAR_VALUES });
 	};
 
+	const uploadImage = async (image) => {
+		dispatch({ type: UPLOAD_IMAGE_BEGIN });
+		const formData = new FormData();
+		formData.append('file', image);
+		formData.append('upload_preset', 'xyjakd3z');
+		try {
+			const { data } = await axios.post(
+				'https://api.cloudinary.com/v1_1/tigmarine/image/upload',
+				formData
+			);
+			console.log('Cloudinary Response', data);
+			const { public_id } = data;
+			dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: { public_id } });
+			console.log('imageUrl', public_id);
+		} catch (error) {
+			dispatch({
+				type: UPLOAD_IMAGE_ERROR,
+				payload: { msg: 'Image Upload Failed' },
+			});
+		}
+		clearAlert();
+	};
+
 	const createHazard = async () => {
 		dispatch({ type: CREATE_HAZARD_BEGIN });
 		try {
-			const { hazardRound, hazardAddress, hazardType } = state;
+			const { hazardRound, hazardAddress, hazardType, imageUrl } = state;
 			const hazard = await authFetch.post('/hazards', {
 				hazardRound,
 				hazardAddress,
 				hazardType,
+				imageUrl,
 			});
 			console.log('Hazard Response', hazard);
 			dispatch({
@@ -256,7 +285,7 @@ const AppProvider = ({ children }) => {
 	const setRound = (number) => {
 		dispatch({
 			type: SET_ROUND,
-			payload: { round: number }
+			payload: { round: number },
 		});
 	};
 
@@ -298,6 +327,7 @@ const AppProvider = ({ children }) => {
 				updateUser,
 				handleChange,
 				clearValues,
+				uploadImage,
 				createHazard,
 				getAllHazards,
 				setRound,

@@ -13,6 +13,9 @@ import {
 	UPDATE_USER_ERROR,
 	HANDLE_CHANGE,
 	CLEAR_VALUES,
+	UPLOAD_IMAGE_BEGIN,
+	UPLOAD_IMAGE_SUCCESS,
+	UPLOAD_IMAGE_ERROR,
 	CREATE_HAZARD_BEGIN,
 	CREATE_HAZARD_SUCCESS,
 	CREATE_HAZARD_ERROR,
@@ -145,6 +148,31 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			...initialState,
+		};
+	}
+	if (action.type === UPLOAD_IMAGE_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+	if (action.type === UPLOAD_IMAGE_SUCCESS) {
+		return {
+			...state,
+			imageUrl: action.payload.public_id,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'success',
+			alertText: 'Image Confirmed',
+		};
+	}
+	if (action.type === UPLOAD_IMAGE_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
 		};
 	}
 	if (action.type === CREATE_HAZARD_BEGIN) {
