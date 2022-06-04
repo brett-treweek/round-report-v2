@@ -124,7 +124,18 @@ const AddHazard = () => {
 				/>
 
 				<AddImageContainer>
-					<h4>Image</h4>
+					{/* <h4>Image</h4> */}
+					<div
+						style={{
+							textAlign: 'left',
+							width: '100%',
+							padding: '1rem',
+						}}
+					>
+						<p>
+							{image ? imageInputRef.current.files[0].name : null}
+						</p>
+					</div>
 					<ButtonContainer jc="end" gap="0.5rem">
 						<input
 							ref={imageInputRef}
@@ -139,7 +150,7 @@ const AddHazard = () => {
 									ref={addImageRef}
 									type="button"
 									height="40px"
-									width="80px"
+									width="100px"
 									onClick={onAddImage}
 									disabled={isLoading}
 								>
@@ -160,9 +171,6 @@ const AddHazard = () => {
 						)}
 					</ButtonContainer>
 				</AddImageContainer>
-				<div style={{ textAlign: 'left', width: '100%', padding: '1rem' }}>
-					<p>{image ? imageInputRef.current.files[0].name : null}</p>
-				</div>
 
 				<Button
 					type="submit"
