@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 
 const StyledMap = styled.div`
-	padding: 0 1rem;
+	/* padding: 0 1rem; */
 	min-height: 30vh;
-	height: 50vh;
+	height: 46vh;
 	max-width: 600px;
 	width: 100%;
 `;

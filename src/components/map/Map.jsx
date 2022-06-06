@@ -3,14 +3,14 @@ import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 import { useAppContext } from '../../context/appContext';
 import StyledMap from './Map.styled';
 
-function Map({ roundDeets }) {
+function Map({ roundDeets, totalHazards }) {
 	console.log('map component rendered');
-	const { round } = useAppContext();
+	const { round, roundHazards, allHazards } = useAppContext();
 	const { isLoaded } = useJsApiLoader({
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 	});
 
-	const mapRef = useRef();
+	// const mapRef = useRef();
 
 	const containerStyle = {
 		width: '100%',
@@ -28,39 +28,46 @@ function Map({ roundDeets }) {
 		[]
 	);
 
-	const onLoad = useCallback((map) => {
-		mapRef.current = map;
-	}, []);
+	// const onLoad = useCallback((map) => {
+	// 	mapRef.current = map;
+	// }, []);
 
-	const onUnmount = React.useCallback(function callback(map) {
-		mapRef.current = false;
-	}, []);
+	// const onUnmount = React.useCallback(function callback(map) {
+	// 	mapRef.current = false;
+	// }, []);
 
 	return isLoaded ? (
 		<StyledMap>
 			<GoogleMap
 				mapContainerStyle={containerStyle}
-				center={
-					roundDeets
-						? {
-								lat: round.startAddress.lat,
-								lng: round.startAddress.lng,
-						  }
-						: center
-				}
-				zoom={14}
+				center={roundDeets ? round.startAddress.latlng : center}
+				zoom={12}
 				options={options}
-				onLoad={onLoad}
-				onUnmount={onUnmount}
+				// onLoad={onLoad}
+				// onUnmount={onUnmount}
 			>
-				{roundDeets && (
-					<MarkerF
-						position={{
-							lat: round.startAddress.lat,
-							lng: round.startAddress.lng,
-						}}
-					/>
-				)}
+				<MarkerF position={center} />
+				{roundDeets && <MarkerF position={round.startAddress.latlng} />}
+				{roundDeets && roundHazards
+					? roundHazards.map((hazard) => {
+							return (
+								<MarkerF
+									key={hazard._id}
+									position={hazard.hazardAddress.latlng}
+								/>
+							);
+					  })
+					: null}
+				{totalHazards && allHazards
+					? allHazards.map((hazard) => {
+							return (
+								<MarkerF
+									key={hazard._id}
+									position={hazard.hazardAddress.latlng}
+								/>
+							);
+					  })
+					: null}
 			</GoogleMap>
 		</StyledMap>
 	) : (

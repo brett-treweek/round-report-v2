@@ -6,7 +6,7 @@ import RoundDetails from '../../components/round-details/RoundDetails';
 import RoundSearch from '../../components/round-search/RoundSearch';
 import StyledHome from './Home.styled';
 
-const Home = ({isLoaded}) => {
+const Home = () => {
     console.log('home page rendered');
 
   const excecutedRef = useRef(false); 
@@ -23,7 +23,7 @@ const Home = ({isLoaded}) => {
   return (
     <StyledHome>
       <RoundSearch/>
-      <Map isLoaded={isLoaded}/>
+      <Map totalHazards/>
       <RoundDetails icon/>
     </StyledHome>
   )

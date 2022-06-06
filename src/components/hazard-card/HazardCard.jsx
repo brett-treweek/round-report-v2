@@ -2,7 +2,6 @@ import React from 'react';
 import StyledHazardCard, {
 	HazardCardButtonsContainer,
 } from './HazardCard.styled';
-import dog from '../../assets/images/hazardImage.png';
 import { remove, pin, print, edit } from '../../assets/icons/index';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
@@ -36,7 +35,7 @@ const HazardCard = ({
 			<h3>
 				{index}. {hazardType}
 			</h3>
-			<h4>{hazardAddress}</h4>
+			<h4>{hazardAddress.address}</h4>
 			{message && <p>"{message}"</p>}
 			<p>Created by: {createdByUsername}</p>
 			<p>{date}</p>

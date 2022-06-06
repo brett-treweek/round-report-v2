@@ -28,11 +28,14 @@ import {
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
 	SET_ROUND,
-	MAP_IS_LOADED,
+
 } from './actions';
 
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
+const round = localStorage.getItem('round');
+const roundHazards = localStorage.getItem('roundHazards');
+
 
 // Need to add state for userHazards to use in user-profile page.
 const initialState = {
@@ -67,8 +70,8 @@ const initialState = {
 	totalAllHazards: 0,
 	// Selected Round
 	selectedRound: null,
-	round: null,
-	roundHazards: [],
+	round: round ? JSON.parse(round) : null,
+	roundHazards: roundHazards ? JSON.parse(roundHazards) : [],
 };
 
 const AppContext = React.createContext();
@@ -304,7 +307,8 @@ const AppProvider = ({ children }) => {
 
 			const round = data.round;
 			const roundHazards = data.roundHazards;
-
+			localStorage.setItem('round', JSON.stringify(round));
+			localStorage.setItem('roundHazards', JSON.stringify(roundHazards));
 			console.log('Data from getOneRound', round, roundHazards);
 
 			dispatch({
