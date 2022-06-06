@@ -8,12 +8,13 @@ import StyledEditProfile, { ProfileForm } from './EditProfile.styled';
 import CancelButton from '../ui/cancel-button/CancelButton';
 
 const EditProfile = (props) => {
+	console.log('edit-profile component rendered');
 	const navigate = useNavigate();
-	const navigateHome = () =>{
+	const navigateHome = () => {
 		setTimeout(() => {
 			navigate('/');
 		}, 1000);
-	}
+	};
 
 	const { user, showAlert, displayAlert, updateUser, isLoading } =
 		useAppContext();
@@ -30,7 +31,7 @@ const EditProfile = (props) => {
 			return;
 		}
 		updateUser({ name, email, lastName, round });
-		navigateHome()
+		navigateHome();
 	};
 
 	// function to handle cancel btn.

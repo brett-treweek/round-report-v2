@@ -1,5 +1,6 @@
-// import Home from './pages/home/Home';
 import { ThemeProvider } from 'styled-components';
+// import { useAppContext } from './context/appContext';
+
 import theme from './assets/theme/theme';
 import {
 	Home,
@@ -20,13 +21,22 @@ import {
 import { Header, Footer } from './components/index';
 import { Routes, Route } from 'react-router-dom';
 
+
 function App() {
+
+console.log('app rendered');
+
+
+
+
+
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="App">
 				<Header />
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/" element={<Home/>} />
 					<Route path="round" element={<Round />} />
 					<Route path="login" element={<Login />} />
 					<Route

@@ -10,6 +10,7 @@ import { Button } from '../../components/ui/button/Button.styled';
 import { Link } from 'react-router-dom';
 
 const RoundDetails = ({ roundDeets, changeView, view }) => {
+	console.log('roundDetails component rendered');
 	return (
 		<StyledDetails>
 			<DetailsCard>
@@ -23,7 +24,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 						{roundDeets ? (
 							<Inline>
 								<h5>Start:</h5>
-								<p>{roundDeets.startAddress}</p>
+								<p>{roundDeets.startAddress.address}</p>
 							</Inline>
 						) : (
 							<p>8 Absolon St. Palmyra 6157</p>
@@ -31,7 +32,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 						{roundDeets ? (
 							<Inline>
 								<h5>Relay:</h5>
-								<p>{roundDeets.relay}</p>
+								<p>{roundDeets.relay.address}</p>
 							</Inline>
 						) : (
 							<p>John Smith</p>
@@ -39,7 +40,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 						{roundDeets ? (
 							<Inline>
 								<h5>LPO:</h5>
-								<p>{roundDeets.lpo}</p>
+								<p>{roundDeets.lpo.address}</p>
 							</Inline>
 						) : (
 							<>

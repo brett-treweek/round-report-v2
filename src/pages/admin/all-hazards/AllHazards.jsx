@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppContext } from '../../../context/appContext';
 import HazardSearch from '../../../components/hazard-search/HazardSearch';
 import StyledAllHazards, {
@@ -9,13 +9,12 @@ import StyledAllHazards, {
 import HazardCard from '../../../components/hazard-card/HazardCard';
 
 const AllHazards = () => {
-	const { getAllHazards, isLoading, allHazards, totalAllHazards } =
+	console.log('allHazards page rendered');
+	const { isLoading, allHazards, totalAllHazards } =
 		useAppContext();
 
 // I think this useEffect is rendering page twice!!!
-	useEffect(() => {
-		getAllHazards();
-	}, []);
+
 
 	return (
 		<StyledAllHazards>

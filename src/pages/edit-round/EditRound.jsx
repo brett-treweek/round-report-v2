@@ -6,6 +6,8 @@ import CancelButton from '../../components/ui/cancel-button/CancelButton';
 import { useNavigate } from 'react-router-dom';
 
 const EditRound = () => {
+	  console.log('editRound page rendered');
+
 	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {

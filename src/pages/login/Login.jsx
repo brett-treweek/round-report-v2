@@ -15,6 +15,8 @@ let initialLoginState = {
 };
 
 const Login = () => {
+	console.log('login page rendered');
+
 	const navigate = useNavigate();
 	const [loginState, setLoginState] = useState(initialLoginState);
 	const {

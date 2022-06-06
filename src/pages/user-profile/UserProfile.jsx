@@ -11,6 +11,8 @@ import HazardCard from '../../components/hazard-card/HazardCard';
 
 // TODO set users hazards in state when logIn, display them here.
 const UserProfile = () => {
+	    console.log('user-profile page rendered');
+
 	const { user, showAlert, updateUser, isLoading, logoutUser } =
 		useAppContext();
 

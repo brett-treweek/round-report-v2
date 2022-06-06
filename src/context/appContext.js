@@ -28,6 +28,7 @@ import {
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
 	SET_ROUND,
+	MAP_IS_LOADED,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -35,6 +36,7 @@ const user = localStorage.getItem('user');
 
 // Need to add state for userHazards to use in user-profile page.
 const initialState = {
+	mapIsLoaded: {},
 	isLoading: false,
 	showAlert: false,
 	isEditing: false,

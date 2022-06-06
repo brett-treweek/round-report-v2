@@ -1,88 +1,71 @@
-import React from 'react';
-import {
-	useJsApiLoader,
-	GoogleMap,
-	Marker,
-	InfoWindow,
-} from '@react-google-maps/api';
+import React, { useCallback, useMemo, useState, useRef } from 'react';
+import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { useAppContext } from '../../context/appContext';
 import StyledMap from './Map.styled';
-import { MapTheme } from '../../assets/theme/mapTheme';
 
-const center = {
-	lat: -32.03784,
-	lng: 115.80174,
-};
-
-const Map = () => {
-	const { isLoaded, loadError } = useJsApiLoader({
+function Map({ roundDeets }) {
+	console.log('map component rendered');
+	const { round } = useAppContext();
+	const { isLoaded } = useJsApiLoader({
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 	});
 
-	if (loadError) return <p>"error loading map"</p>;
-	if (!isLoaded) {
-		return <p>Loading...</p>;
-	}
+	const mapRef = useRef();
 
-	return (
+	const containerStyle = {
+		width: '100%',
+		height: '100%',
+	};
+
+	const center = useMemo(() => ({ lat: -32.03784, lng: 115.80174 }), []);
+
+	const options = useMemo(
+		() => ({
+			disableDefaultUI: true,
+			clickableIcons: false,
+			mapId: '5ef80f0325514b92',
+		}),
+		[]
+	);
+
+	const onLoad = useCallback((map) => {
+		mapRef.current = map;
+	}, []);
+
+	const onUnmount = React.useCallback(function callback(map) {
+		mapRef.current = false;
+	}, []);
+
+	return isLoaded ? (
 		<StyledMap>
 			<GoogleMap
-				center={center}
-				zoom={12.5}
-				mapContainerStyle={{ width: '100%', height: '100%' }}
-				options={{
-					styles: MapTheme,
-					zoomControl: false,
-					streetViewControl: false,
-					fullscreenControl: false,
-					mapTypeControl: false,
-				}}
+				mapContainerStyle={containerStyle}
+				center={
+					roundDeets
+						? {
+								lat: round.startAddress.lat,
+								lng: round.startAddress.lng,
+						  }
+						: center
+				}
+				zoom={14}
+				options={options}
+				onLoad={onLoad}
+				onUnmount={onUnmount}
 			>
-        <Marker position={center}/>
-				{/* {props &&
-					props.hazardData.map((marker) => (
-						<Marker
-							key={marker._id}
-							position={{ lat: marker.lat, lng: marker.lng }}
-							icon={{
-								url: './icons/redwarning.png',
-								scaledSize: new window.google.maps.Size(25, 25),
-							}}
-							onClick={() => {
-								setSelected(marker);
-							}}
-						/>
-					))}
-
-				{selected ? (
-					<InfoWindow
-						className="infoWindow"
-						position={{ lat: selected.lat, lng: selected.lng }}
-						onCloseClick={() => {
-							console.log(selected);
-							setSelected(null);
+				{roundDeets && (
+					<MarkerF
+						position={{
+							lat: round.startAddress.lat,
+							lng: round.startAddress.lng,
 						}}
-					>
-						<div className="infoContainer">
-							<h3 className="infoH3">{selected.hazardType}</h3>
-							<p className="infoP">{selected.address}</p>
-							<p className="infoP">
-								Round Number: {selected.roundNumber}
-							</p>
-							<p className="infoP">{selected.message}</p>
-							{Auth.loggedIn() && (
-								<button
-									className="infoDelete"
-									onClick={handleDelete}
-								>
-									Delete
-								</button>
-							)}
-						</div>
-					</InfoWindow>
-				) : null} */}
+					/>
+				)}
 			</GoogleMap>
 		</StyledMap>
+	) : (
+		<h1>Loading...</h1>
 	);
-};
+}
 
 export default React.memo(Map);

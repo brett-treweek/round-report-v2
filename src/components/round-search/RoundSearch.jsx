@@ -10,14 +10,16 @@ import StyledRoundSearch, {
 } from './RoundSearch.styled';
 
 const RoundSearch = () => {
+	console.log('roundSearch component rendered');
 	const [chosenNumber, setChosenNumber] = useState(null);
-	const { setRound, selectedRound } = useAppContext();
+	const { setRound, selectedRound, getOneRound } = useAppContext();
 	let navigate = useNavigate();
 
 	console.log('selectedRound on mount', selectedRound);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+		getOneRound(selectedRound);
 		navigate('/round');
 	};
 

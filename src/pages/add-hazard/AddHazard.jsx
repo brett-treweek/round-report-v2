@@ -40,7 +40,7 @@ const AddHazard = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(imageInputRef);
+		console.log('addHazard page rendered');
 
 		if (!hazardRound || !hazardType || !hazardAddress) {
 			displayAlert();

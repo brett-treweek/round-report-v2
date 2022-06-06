@@ -3,6 +3,8 @@ import { Outlet, Link } from 'react-router-dom';
 import StyledSharedLayout from './SharedLayout.styled';
 
 const SharedLayout = () => {
+	  console.log('shared layout rendered');
+
 	return (
 		<StyledSharedLayout>
 			<h1>shared layout</h1>

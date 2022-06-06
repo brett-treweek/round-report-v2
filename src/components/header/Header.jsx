@@ -2,6 +2,7 @@ import React from 'react'
 import StyledHeader from './Header.styled';
 
 const Header = () => {
+  console.log('header component rendered');
   return (
     <StyledHeader>
         {/* <img src={logo} alt='logo'/> */}
