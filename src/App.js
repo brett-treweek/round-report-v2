@@ -29,21 +29,11 @@ function App() {
 	const places = useMemo(() => 
 		['places']
 	,[])
-	const { mapIsLoaded } = useAppContext()
+	const { mapIsLoaded, user } = useAppContext()
 	const { isLoaded } = useJsApiLoader({
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 		libraries: places,
 	});
-
-	const bounds = useMemo(
-		() =>
-			([
-				{ lat: -34, lng: 113 },
-				{ lat: -30, lng: 118 },
-			]),
-		[]
-	);
-	console.log('bounds', bounds);
 
 	console.log('app rendered', isLoaded);
 
@@ -53,7 +43,7 @@ function App() {
 			return
 		}
 		mapIsLoaded()
-	}, [isLoaded]);
+	}, [isLoaded, user]);
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -75,7 +65,7 @@ function App() {
 						path="add-hazard"
 						element={
 							<ProtectedRoute>
-								<AddHazard bounds={bounds}/>
+								<AddHazard />
 							</ProtectedRoute>
 						}
 					/>
