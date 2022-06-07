@@ -1,5 +1,8 @@
+import { useEffect, useMemo } from 'react';
 import { ThemeProvider } from 'styled-components';
-// import { useAppContext } from './context/appContext';
+import { useJsApiLoader } from '@react-google-maps/api';
+
+import { useAppContext } from './context/appContext';
 
 import theme from './assets/theme/theme';
 import {
@@ -20,23 +23,44 @@ import {
 } from './pages/admin/index';
 import { Header, Footer } from './components/index';
 import { Routes, Route } from 'react-router-dom';
-
+// const places = ['places']
 
 function App() {
+	const places = useMemo(() => 
+		['places']
+	,[])
+	const { mapIsLoaded } = useAppContext()
+	const { isLoaded } = useJsApiLoader({
+		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+		libraries: places,
+	});
 
-console.log('app rendered');
+	const bounds = useMemo(
+		() =>
+			([
+				{ lat: -34, lng: 113 },
+				{ lat: -30, lng: 118 },
+			]),
+		[]
+	);
+	console.log('bounds', bounds);
 
+	console.log('app rendered', isLoaded);
 
-
-
-
+	useEffect(() => {
+		console.log('useEffect running');
+		if (!isLoaded) {
+			return
+		}
+		mapIsLoaded()
+	}, [isLoaded]);
 
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="App">
 				<Header />
 				<Routes>
-					<Route path="/" element={<Home/>} />
+					<Route path="/" element={<Home />} />
 					<Route path="round" element={<Round />} />
 					<Route path="login" element={<Login />} />
 					<Route
@@ -51,7 +75,7 @@ console.log('app rendered');
 						path="add-hazard"
 						element={
 							<ProtectedRoute>
-								<AddHazard />
+								<AddHazard bounds={bounds}/>
 							</ProtectedRoute>
 						}
 					/>

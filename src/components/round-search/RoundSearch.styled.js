@@ -26,6 +26,7 @@ export const SearchForm = styled.form`
 	padding: 1rem;
 	font-size: larger;
 	border-radius: 16px;
+	z-index: 100;
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	transition: all 300ms ease;

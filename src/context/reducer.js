@@ -24,12 +24,19 @@ import {
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
 	SET_ROUND,
+	MAP_LOADED
 } from './actions';
 
 import { initialState } from './appContext';
 
 const reducer = (state, action) => {
 	
+	if (action.type === MAP_LOADED) {
+		return {
+			...state,
+			mapLoaded: true
+		};
+	}
 	if (action.type === DISPLAY_ALERT) {
 		return {
 			...state,

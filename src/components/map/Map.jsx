@@ -1,14 +1,13 @@
 import React, { useCallback, useMemo, useState, useRef } from 'react';
-import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF } from '@react-google-maps/api';
 import { useAppContext } from '../../context/appContext';
 import StyledMap from './Map.styled';
 
+
 function Map({ roundDeets, totalHazards }) {
-	console.log('map component rendered');
-	const { round, roundHazards, allHazards } = useAppContext();
-	const { isLoaded } = useJsApiLoader({
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-	});
+	const { round, roundHazards, allHazards, mapLoaded } = useAppContext();
+	console.log('map component rendered', mapLoaded);
+	
 
 	// const mapRef = useRef();
 
@@ -18,6 +17,7 @@ function Map({ roundDeets, totalHazards }) {
 	};
 
 	const center = useMemo(() => ({ lat: -32.03784, lng: 115.80174 }), []);
+	
 
 	const options = useMemo(
 		() => ({
@@ -36,7 +36,7 @@ function Map({ roundDeets, totalHazards }) {
 	// 	mapRef.current = false;
 	// }, []);
 
-	return isLoaded ? (
+	return mapLoaded ? (
 		<StyledMap>
 			<GoogleMap
 				mapContainerStyle={containerStyle}

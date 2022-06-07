@@ -28,6 +28,7 @@ import {
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
 	SET_ROUND,
+	MAP_LOADED,
 
 } from './actions';
 
@@ -39,7 +40,7 @@ const roundHazards = localStorage.getItem('roundHazards');
 
 // Need to add state for userHazards to use in user-profile page.
 const initialState = {
-	mapIsLoaded: {},
+	mapLoaded: false,
 	isLoading: false,
 	showAlert: false,
 	isEditing: false,
@@ -109,6 +110,10 @@ const AppProvider = ({ children }) => {
 			return Promise.reject(error);
 		}
 	);
+
+	const mapIsLoaded = () => {
+		dispatch({ type: MAP_LOADED });
+	}
 
 	const clearAlert = () => {
 		setTimeout(() => {
@@ -330,6 +335,7 @@ const AppProvider = ({ children }) => {
 		<AppContext.Provider
 			value={{
 				...state,
+				mapIsLoaded,
 				displayAlert,
 				registerUser,
 				loginUser,

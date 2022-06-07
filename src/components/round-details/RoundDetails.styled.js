@@ -6,11 +6,13 @@ const StyledDetails = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 100;
 	/* min-height: 100%; */
 	/* height: 100%; */
 	width: 100%;
 	padding: 1rem;
-	/* background: linear-gradient(${({ theme }) => theme.background}, transparent); */
+	/* background: linear-gradient(${({ theme }) =>
+		theme.background}, transparent); */
 `;
 
 export const DetailsCard = styled.div`
@@ -31,6 +33,7 @@ export const DetailsCard = styled.div`
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	backdrop-filter: blur(2px);
+	
 	/* border: 3px solid ${({ theme }) => theme.background}; */
 
 	div {

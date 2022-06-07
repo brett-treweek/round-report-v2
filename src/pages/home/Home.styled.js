@@ -5,7 +5,8 @@ const StyledHome = styled.section`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
+	padding: 0  0 2rem ;
 	height: 100%;
 	min-height: 80vh;
 	width: 100%;

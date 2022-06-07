@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledAddHazard, {
 	AddHazardForm,
@@ -14,6 +14,8 @@ import {
 import Alert from '../../components/ui/alert/Alert';
 // import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
+import { Autocomplete } from '@react-google-maps/api';
+import Places from '../../components/places/Places';
 
 const AddHazard = () => {
 	const [image, setImage] = useState();
@@ -61,6 +63,7 @@ const AddHazard = () => {
 		}, 1000);
 	};
 
+
 	const handleHazardInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
@@ -82,6 +85,8 @@ const AddHazard = () => {
 		navigate(-1);
 	};
 
+
+
 	useEffect(() => {
 		console.log(
 			'useEffect imageinputref.current.files',
@@ -97,14 +102,15 @@ const AddHazard = () => {
 		<StyledAddHazard>
 			<AddHazardForm>
 				<h1>{isEditing ? 'Edit Hazard' : 'Create Hazard'}</h1>
-				{showAlert && <Alert />}
-				<Input
-					name="hazardAddress"
-					value={hazardAddress}
-					label="Hazard Address"
-					type="text"
-					handleChange={handleHazardInput}
-				/>
+				{showAlert && <Alert />}	
+					<Places
+						// name="hazardAddress"
+						// value={hazardAddress}
+						// label="Hazard Address"
+						// type="text"
+						// handleChange={handleHazardInput}
+					/>
+
 				<Input
 					name="hazardRound"
 					value={hazardRound}
