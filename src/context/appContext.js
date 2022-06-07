@@ -82,7 +82,7 @@ const AppProvider = ({ children }) => {
 
 	// Axios instance
 	const authFetch = axios.create({
-		baseURL: '/api/v1',
+		baseURL: 'https://round-report-v2.herokuapp.com/api/v1',
 	});
 
 	// Axios request interceptor
@@ -144,7 +144,7 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
 		try {
 			const response = await axios.post(
-				'/api/v1/auth/register',
+				'https://round-report-v2.herokuapp.com/api/v1/auth/register',
 				currentUser
 			);
 			console.log('response', response);
@@ -168,7 +168,7 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
 			const { data } = await axios.post(
-				'/api/v1/auth/login',
+				'https://round-report-v2.herokuapp.com/api/v1/auth/login',
 				currentUser
 			);
 			console.log('response', data);

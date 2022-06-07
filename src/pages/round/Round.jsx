@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledRound from './Round.styled';
 import Map from '../../components/map/Map';
@@ -7,7 +6,7 @@ import RoundDetails from '../../components/round-details/RoundDetails';
 import HazardCard from '../../components/hazard-card/HazardCard';
 
 const Round = () => {
-	const { isLoading, round, roundHazards, getOneRound } = useAppContext();
+	const { isLoading, round, roundHazards } = useAppContext();
 	// const excecutedRef = useRef(false);
 	console.log('Round page Rendered', round);
 	const [view, setView] = useState('List');

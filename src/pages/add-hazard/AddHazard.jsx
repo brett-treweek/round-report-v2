@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledAddHazard, {
 	AddHazardForm,
@@ -12,9 +12,7 @@ import {
 	ButtonContainer,
 } from '../../components/ui/button/Button.styled';
 import Alert from '../../components/ui/alert/Alert';
-// import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
-import { Autocomplete } from '@react-google-maps/api';
 import Places from '../../components/places/Places';
 
 const AddHazard = () => {
@@ -34,7 +32,7 @@ const AddHazard = () => {
 		hazardType,
 		hazardAddress,
 		handleChange,
-		clearValues,
+		// clearValues,
 		uploadImage,
 		createHazard,
 	} = useAppContext();

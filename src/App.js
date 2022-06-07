@@ -23,7 +23,6 @@ import {
 } from './pages/admin/index';
 import { Header, Footer } from './components/index';
 import { Routes, Route } from 'react-router-dom';
-// const places = ['places']
 
 function App() {
 	const places = useMemo(() => 

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { GoogleMap, MarkerF } from '@react-google-maps/api';
 import { useAppContext } from '../../context/appContext';
 import StyledMap from './Map.styled';

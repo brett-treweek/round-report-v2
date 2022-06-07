@@ -13,7 +13,7 @@ import HazardCard from '../../components/hazard-card/HazardCard';
 const UserProfile = () => {
 	    console.log('user-profile page rendered');
 
-	const { user, showAlert, updateUser, isLoading, logoutUser } =
+	const { user, logoutUser } =
 		useAppContext();
 
 	const navigate = useNavigate();
