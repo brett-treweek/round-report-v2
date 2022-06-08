@@ -49,10 +49,10 @@ function App() {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/round" element={<Round />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="round" element={<Round />} />
+					<Route path="login" element={<Login />} />
 					<Route
-						path="/user-profile"
+						path="user-profile"
 						element={
 							<ProtectedRoute>
 								<UserProfile />
@@ -60,7 +60,7 @@ function App() {
 						}
 					/>
 					<Route
-						path="/add-hazard"
+						path="add-hazard"
 						element={
 							<ProtectedRoute>
 								<AddHazard />
@@ -68,7 +68,7 @@ function App() {
 						}
 					/>
 					<Route
-						path="/edit-round"
+						path="edit-round"
 						element={
 							<ProtectedRoute>
 								<EditRound />
@@ -76,7 +76,7 @@ function App() {
 						}
 					/>
 					<Route
-						path="/admin"
+						path="admin"
 						element={
 							<ProtectedRoute>
 								<SharedLayout />
