@@ -1,12 +1,18 @@
 import React from 'react';
+import { useAppContext } from '../../context/appContext';
 import usePlacesAutocomplete, {
 	getGeocode,
 	getLatLng,
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import StyledPlaces, { PlacesInput, PlacesLabel, PlacesList, PlacesUl } from './Places.styled';
+import StyledPlaces, {
+	PlacesInput,
+	PlacesLabel,
+	PlacesList,
+	PlacesUl,
+} from './Places.styled';
 
-const Places = () => {
+const Places = ({ label, name }) => {
 	const {
 		ready,
 		value,
@@ -15,11 +21,12 @@ const Places = () => {
 		clearSuggestions,
 	} = usePlacesAutocomplete({
 		requestOptions: {
-			location: { lat: () => -32.03784, lng: () => 115.80174 },
-			radius: 5000,
+			location: { lat: () => -32.051687, lng: () => 115.790637 },
+			radius: 3000,
 		},
 		debounce: 300,
 	});
+	const { handleChange } = useAppContext();
 
 	const ref = useOnclickOutside(() => {
 		// When user clicks outside of the component, we can dismiss
@@ -39,12 +46,26 @@ const Places = () => {
 			// by setting the second parameter to "false"
 			setValue(description, false);
 			clearSuggestions();
+			// const name = 'hazardAddress'
+			// const value = description
+
+			// console.log('Address description', description);
+			// console.log('name', name);
+			// handleChange({name, value});
 
 			// Get latitude and longitude via utility functions
 			getGeocode({ address: description }).then((results) => {
 				try {
 					const { lat, lng } = getLatLng(results[0]);
 					console.log('📍 Coordinates: ', { lat, lng });
+
+					// const name = 'hazardAddress';
+					const value = {
+						address: description,
+						latlng: { lat: lat, lng: lng },
+					};
+					
+					handleChange({ name, value });
 				} catch (error) {
 					console.log('😱 Error: ', error);
 				}
@@ -60,14 +81,14 @@ const Places = () => {
 
 			return (
 				<PlacesList key={place_id} onClick={handleSelect(suggestion)}>
-					{main_text},  {secondary_text}
+					{main_text}, {secondary_text}
 				</PlacesList>
 			);
 		});
 
 	return (
 		<StyledPlaces ref={ref}>
-			<PlacesLabel>Address</PlacesLabel>
+			<PlacesLabel>{label}</PlacesLabel>
 			<PlacesInput
 				value={value}
 				onChange={handleInput}

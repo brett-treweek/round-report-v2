@@ -38,14 +38,23 @@ export const AddHazardForm = styled.form`
 
 export const AddImageContainer = styled.div`
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	width: 100%;
+	padding: 0.3rem;
+	margin-bottom: 1rem;
+	background: ${({ theme }) => theme.backgroundCard};
+	box-shadow: ${({ theme }) => theme.boxShadowCard};
+	border-radius: 15px;
 
 	& > h2 {
 		color: ${({ theme }) => theme.text};
 		font-size: 1rem;
 		font-weight: 600;
+	}
+	p {
+		font-size: 10px;
 	}
 `;
 

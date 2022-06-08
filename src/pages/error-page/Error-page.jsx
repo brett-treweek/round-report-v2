@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import StyledErrorPage from './Error-page.styled'
 
 const ErrorPage = () => {
-    console.log('error page rendered');
+    // console.log('error page rendered');
 
   return (
     <StyledErrorPage>

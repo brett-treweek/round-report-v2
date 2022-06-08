@@ -7,9 +7,9 @@ import HazardCard from '../../components/hazard-card/HazardCard';
 import { Footer } from '../../components';
 
 const Round = () => {
+	// console.log('Round page Rendered');
 	const { isLoading, round, roundHazards, getOneRound, selectedRound } = useAppContext();
 	const excecutedRef = useRef(false);
-	console.log('Round page Rendered', round);
 	const [view, setView] = useState('List');
 
 	const changeView = () => {
@@ -17,13 +17,13 @@ const Round = () => {
 	};
 
 	useEffect(() => {
-		console.log('!!!!!!!!!!!!!!!!');
+		// console.log('!!!!!!!!!!!!!!!!');
 		if (excecutedRef.current) {
 			return;
 		}
 		getOneRound(selectedRound || round.roundNumber)
 		excecutedRef.current = true;
-		console.log('Round useEffect ran');
+		// console.log('Round useEffect ran');
 	},[round.roundNumber, getOneRound, selectedRound]);
 
 	if (isLoading) {

@@ -18,7 +18,7 @@ const HazardCard = ({
 	imageUrl,
 	index,
 }) => {
-	console.log('hazardCard component rendered');
+	// console.log('hazardCard component rendered');
 	const date = moment(createdAt).format('Do MMM, YYYY');
 
 	const cld = new Cloudinary({

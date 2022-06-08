@@ -12,7 +12,7 @@ import Footer from '../../components/footer/Footer';
 
 // TODO set users hazards in state when logIn, display them here.
 const UserProfile = () => {
-	console.log('user-profile page rendered');
+	// console.log('user-profile page rendered');
 
 	const { user, logoutUser } = useAppContext();
 

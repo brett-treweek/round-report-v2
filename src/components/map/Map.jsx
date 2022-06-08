@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import { GoogleMap, MarkerF } from '@react-google-maps/api';
 import { useAppContext } from '../../context/appContext';
 import StyledMap from './Map.styled';
+import {post} from '../../assets/icons/index'
 
 
 function Map({ roundDeets, totalHazards }) {
 	const { round, roundHazards, allHazards, mapLoaded } = useAppContext();
-	console.log('map component rendered', mapLoaded);
-	
+	// console.log('map component rendered', mapLoaded);
 
 	// const mapRef = useRef();
 
@@ -17,13 +17,12 @@ function Map({ roundDeets, totalHazards }) {
 	};
 
 	const center = useMemo(() => ({ lat: -32.03784, lng: 115.80174 }), []);
-	
 
 	const options = useMemo(
 		() => ({
 			disableDefaultUI: true,
 			clickableIcons: false,
-			mapId: '5ef80f0325514b92',
+			// mapId: '5ef80f0325514b92',
 		}),
 		[]
 	);
@@ -46,7 +45,7 @@ function Map({ roundDeets, totalHazards }) {
 				// onLoad={onLoad}
 				// onUnmount={onUnmount}
 			>
-				<MarkerF position={center} />
+				<MarkerF position={center} icon={post} />
 				{roundDeets && <MarkerF position={round.startAddress.latlng} />}
 				{roundDeets && roundHazards
 					? roundHazards.map((hazard) => {

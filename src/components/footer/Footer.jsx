@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 import { useAppContext } from '../../context/appContext';
 
 const Footer = () => {
-	console.log('footer component rendered');
+	// console.log('footer component rendered');
 	const { user } = useAppContext();
 	const navigate = useNavigate();
 	const location = useLocation();

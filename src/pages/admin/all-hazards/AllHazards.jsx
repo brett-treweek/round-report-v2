@@ -9,7 +9,7 @@ import StyledAllHazards, {
 import HazardCard from '../../../components/hazard-card/HazardCard';
 
 const AllHazards = () => {
-	console.log('allHazards page rendered');
+	// console.log('allHazards page rendered');
 	const { isLoading, allHazards, totalAllHazards } =
 		useAppContext();
 

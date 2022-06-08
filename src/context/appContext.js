@@ -65,7 +65,17 @@ const initialState = {
 		'Other',
 	],
 	hazardType: 'Aggressive Dog',
-	hazardAddress: '',
+	hazardAddress: {
+		address: '',
+		latlng: {
+			lat: null,
+			lng: null
+		}
+	},
+	// hazardLatLng: {
+	// 	lat: null,
+	// 	lng: null
+	// },
 	// All hazards
 	allHazards: [],
 	totalAllHazards: 0,
@@ -251,10 +261,11 @@ const AppProvider = ({ children }) => {
 	const createHazard = async () => {
 		dispatch({ type: CREATE_HAZARD_BEGIN });
 		try {
-			const { hazardRound, hazardAddress, hazardType, imageUrl } = state;
+			const { hazardRound, hazardAddress, hazardLatLng, hazardType, imageUrl } = state;
 			const hazard = await authFetch.post('/hazards', {
 				hazardRound,
 				hazardAddress,
+				hazardLatLng,
 				hazardType,
 				imageUrl,
 			});

@@ -1,26 +1,68 @@
 // Custom theme for google map
 export const MapTheme = [
 	{
-		featureType: 'administrative',
+		featureType: 'all',
 		elementType: 'labels.text.fill',
 		stylers: [
 			{
-				color: '#444444',
+				color: '#ffffff',
 			},
 		],
 	},
 	{
-		featureType: 'administrative.locality',
-		elementType: 'labels.text.fill',
-		stylers: [
-			{
-				color: '#ea5613',
-			},
-		],
-	},
-	{
-		featureType: 'administrative.locality',
+		featureType: 'all',
 		elementType: 'labels.text.stroke',
+		stylers: [
+			{
+				color: '#000000',
+			},
+			{
+				lightness: 13,
+			},
+		],
+	},
+	{
+		featureType: 'administrative',
+		elementType: 'geometry.fill',
+		stylers: [
+			{
+				color: '#000000',
+			},
+		],
+	},
+	{
+		featureType: 'administrative',
+		elementType: 'geometry.stroke',
+		stylers: [
+			{
+				color: '#144b53',
+			},
+			{
+				lightness: 14,
+			},
+			{
+				weight: 1.4,
+			},
+		],
+	},
+	{
+		featureType: 'administrative.locality',
+		elementType: 'labels',
+		stylers: [
+			{
+				visibility: 'on',
+			},
+			{
+				weight: '0.11',
+			},
+			{
+				color: '#daff00',
+			},
+		],
+	},
+	{
+		featureType: 'administrative.neighborhood',
+		elementType: 'labels.icon',
 		stylers: [
 			{
 				visibility: 'off',
@@ -32,25 +74,7 @@ export const MapTheme = [
 		elementType: 'all',
 		stylers: [
 			{
-				color: '#f2f2f2',
-			},
-		],
-	},
-	{
-		featureType: 'landscape.man_made',
-		elementType: 'geometry.fill',
-		stylers: [
-			{
-				color: '#ecede9',
-			},
-		],
-	},
-	{
-		featureType: 'landscape.natural.terrain',
-		elementType: 'geometry.fill',
-		stylers: [
-			{
-				color: '#0de136',
+				color: '#08304b',
 			},
 		],
 	},
@@ -64,14 +88,35 @@ export const MapTheme = [
 		],
 	},
 	{
-		featureType: 'poi.park',
-		elementType: 'geometry.fill',
+		featureType: 'poi',
+		elementType: 'geometry',
 		stylers: [
 			{
-				color: '#d5f6ce',
+				color: '#0c4152',
 			},
 			{
+				lightness: 5,
+			},
+		],
+	},
+	{
+		featureType: 'poi.school',
+		elementType: 'labels',
+		stylers: [
+			{
+				visibility: 'off',
+			},
+		],
+	},
+	{
+		featureType: 'poi.school',
+		elementType: 'labels.icon',
+		stylers: [
+			{
 				visibility: 'on',
+			},
+			{
+				weight: '0.46',
 			},
 		],
 	},
@@ -80,46 +125,22 @@ export const MapTheme = [
 		elementType: 'all',
 		stylers: [
 			{
-				saturation: -100,
-			},
-			{
-				lightness: 45,
-			},
-		],
-	},
-	{
-		featureType: 'road.highway',
-		elementType: 'all',
-		stylers: [
-			{
-				visibility: 'simplified',
-			},
-		],
-	},
-	{
-		featureType: 'road.highway',
-		elementType: 'geometry.fill',
-		stylers: [
-			{
-				color: '#e0d4ba',
-			},
-		],
-	},
-	{
-		featureType: 'road.highway.controlled_access',
-		elementType: 'geometry.fill',
-		stylers: [
-			{
-				color: '#f9c4c4',
-			},
-			{
 				visibility: 'on',
 			},
+			{
+				hue: '#ff0000',
+			},
+			{
+				saturation: '1',
+			},
+			{
+				weight: '1.03',
+			},
 		],
 	},
 	{
-		featureType: 'road.highway.controlled_access',
-		elementType: 'geometry.stroke',
+		featureType: 'road',
+		elementType: 'labels.icon',
 		stylers: [
 			{
 				visibility: 'off',
@@ -127,16 +148,76 @@ export const MapTheme = [
 		],
 	},
 	{
-		featureType: 'road.arterial',
+		featureType: 'road.highway',
 		elementType: 'geometry.fill',
 		stylers: [
 			{
-				color: '#f4f7d6',
+				color: '#000000',
+			},
+		],
+	},
+	{
+		featureType: 'road.highway',
+		elementType: 'geometry.stroke',
+		stylers: [
+			{
+				color: '#0b434f',
+			},
+			{
+				lightness: 25,
 			},
 		],
 	},
 	{
 		featureType: 'road.arterial',
+		elementType: 'geometry.fill',
+		stylers: [
+			{
+				color: '#000000',
+			},
+		],
+	},
+	{
+		featureType: 'road.arterial',
+		elementType: 'geometry.stroke',
+		stylers: [
+			{
+				color: '#0b3d51',
+			},
+			{
+				lightness: 16,
+			},
+		],
+	},
+	{
+		featureType: 'road.local',
+		elementType: 'geometry',
+		stylers: [
+			{
+				color: '#000000',
+			},
+		],
+	},
+	{
+		featureType: 'road.local',
+		elementType: 'labels',
+		stylers: [
+			{
+				visibility: 'on',
+			},
+			{
+				weight: '0.01',
+			},
+			{
+				saturation: '0',
+			},
+			{
+				lightness: '-42',
+			},
+		],
+	},
+	{
+		featureType: 'road.local',
 		elementType: 'labels.icon',
 		stylers: [
 			{
@@ -149,7 +230,7 @@ export const MapTheme = [
 		elementType: 'all',
 		stylers: [
 			{
-				visibility: 'off',
+				color: '#146474',
 			},
 		],
 	},
@@ -158,40 +239,7 @@ export const MapTheme = [
 		elementType: 'all',
 		stylers: [
 			{
-				color: '#0021ff',
-			},
-			{
-				visibility: 'on',
-			},
-		],
-	},
-	{
-		featureType: 'water',
-		elementType: 'geometry.fill',
-		stylers: [
-			{
-				color: '#005E89',
-			},
-		],
-	},
-	{
-		featureType: 'water',
-		elementType: 'labels.text',
-		stylers: [
-			{
-				visibility: 'on',
-			},
-			{
-				color: '#ffffff',
-			},
-		],
-	},
-	{
-		featureType: 'water',
-		elementType: 'labels.text.stroke',
-		stylers: [
-			{
-				visibility: 'off',
+				color: '#021019',
 			},
 		],
 	},

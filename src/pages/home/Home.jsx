@@ -8,7 +8,7 @@ import StyledHome from './Home.styled';
 import { Footer, Header } from '../../components/index.js';
 
 const Home = () => {
-	console.log('home page rendered');
+	// console.log('home page rendered');
 
 	const excecutedRef = useRef(false);
 	const { getAllHazards } = useAppContext();

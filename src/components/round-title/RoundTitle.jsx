@@ -2,7 +2,7 @@ import React from 'react';
 import StyledRoundTitle, { RoundTitleInner, OptionsContainer } from './RoundTitle.styled';
 
 const RoundTitle = () => {
-	console.log('roundTitle component rendered');
+	// console.log('roundTitle component rendered');
 	return (
 		<StyledRoundTitle>
 			<RoundTitleInner>

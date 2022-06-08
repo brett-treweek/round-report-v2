@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const RoundDetails = ({ roundDeets, changeView, view }) => {
 	const navigate = useNavigate()
-	console.log('roundDetails component rendered');
+	// console.log('roundDetails component rendered');
 	return (
 		<StyledDetails>
 			<DetailsCard>

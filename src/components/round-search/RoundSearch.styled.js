@@ -75,9 +75,9 @@ export const SearchLabel = styled.label`
 export const GoButton = styled.button`
 	position: absolute;
 	top: 5px;
-	right: 10px;
-	height: 40px;
-	width: 50px;
+	right: 0px;
+	height: 39px;
+	width: 60px;
 	border: solid 2px ${({ theme }) => theme.highlight};
 	background-color: ${({ theme }) => theme.highlight};
 	border-radius: 13px;

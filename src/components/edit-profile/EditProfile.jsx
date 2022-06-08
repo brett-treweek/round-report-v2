@@ -8,7 +8,7 @@ import StyledEditProfile, { ProfileForm } from './EditProfile.styled';
 import CancelButton from '../ui/cancel-button/CancelButton';
 
 const EditProfile = (props) => {
-	console.log('edit-profile component rendered');
+	// console.log('edit-profile component rendered');
 	const navigate = useNavigate();
 	const navigateHome = () => {
 		setTimeout(() => {

@@ -17,6 +17,7 @@ import Places from '../../components/places/Places';
 import { Footer } from '../../components';
 
 const AddHazard = () => {
+	// console.log('addHazard page rendered');
 	const [image, setImage] = useState();
 	const [imageAdded, setImageAdded] = useState(false);
 	const imageInputRef = useRef();
@@ -41,7 +42,6 @@ const AddHazard = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('addHazard page rendered');
 
 		if (!hazardRound || !hazardType || !hazardAddress) {
 			displayAlert();
@@ -87,10 +87,10 @@ const AddHazard = () => {
 
 
 	useEffect(() => {
-		console.log(
-			'useEffect imageinputref.current.files',
-			imageInputRef.current.files
-		);
+		// console.log(
+		// 	'useEffect imageinputref.current.files',
+		// 	imageInputRef.current.files
+		// );
 		if (imageInputRef.current.files.length > 0) {
 			confirmImageRef.current.style = { display: 'block' };
 			// imageInputRef.current.style = { display: 'none' };
@@ -103,9 +103,9 @@ const AddHazard = () => {
 				<h1>{isEditing ? 'Edit Hazard' : 'Create Hazard'}</h1>
 				{showAlert && <Alert />}	
 					<Places
-						// name="hazardAddress"
+						name="hazardAddress"
 						// value={hazardAddress}
-						// label="Hazard Address"
+						label="Hazard Address"
 						// type="text"
 						// handleChange={handleHazardInput}
 					/>
@@ -137,6 +137,7 @@ const AddHazard = () => {
 							padding: '1rem',
 						}}
 					>
+						<h6>Attach Image</h6>
 						<p>
 							{image ? imageInputRef.current.files[0].name : null}
 						</p>
@@ -154,8 +155,8 @@ const AddHazard = () => {
 								<Button
 									ref={addImageRef}
 									type="button"
-									height="40px"
-									width="100px"
+									height="35px"
+									width="60px"
 									onClick={onAddImage}
 									disabled={isLoading}
 								>
@@ -164,8 +165,8 @@ const AddHazard = () => {
 
 								<Button
 									ref={confirmImageRef}
-									height="40px"
-									width="80px"
+									height="35px"
+									width="60px"
 									style={{ display: 'none' }}
 									onClick={confirmImage}
 									disabled={isLoading}

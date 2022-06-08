@@ -9,14 +9,14 @@ import StyledRoundSearch, {
 } from './RoundSearch.styled';
 
 const RoundSearch = () => {
-	console.log('roundSearch component rendered');
+	// console.log('roundSearch component rendered');
 
 	// const excecutedRef = useRef(false);
 	const [chosenNumber, setChosenNumber] = useState(null);
 	const { setRound, selectedRound } = useAppContext();
 	let navigate = useNavigate();
 
-	console.log('selectedRound on mount', selectedRound);
+	// console.log('selectedRound on mount', selectedRound);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
