@@ -31,14 +31,17 @@ const HazardCard = ({
 
 	return (
 		<StyledHazardCard>
-			<p>Round {hazardRound}</p>
-			<h3>
-				{index}. {hazardType}
-			</h3>
-			<h4>{hazardAddress.address}</h4>
-			{message && <p>"{message}"</p>}
-			<p>Created by: {createdByUsername}</p>
-			<p>{date}</p>
+			<div className="hazard-details">
+				<p>Round {hazardRound}</p>
+				<h3>
+					{index}. {hazardType}
+				</h3>
+				<h4>{hazardAddress.address}</h4>
+				{message && <p>"{message}"</p>}
+				<p>
+					Created by {createdByUsername}, {date}
+				</p>
+			</div>
 			<AdvancedImage cldImg={img} alt={alt || 'hazard image'} />
 			<HazardCardButtonsContainer>
 				<img src={pin} alt="map pin" />

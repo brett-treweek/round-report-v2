@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-	height: ${({ height }) => height || '50px'};
-	width: ${({ width }) => width || '70px'};
+	height: ${({ height }) => height || '39px'};
+	width: ${({ width }) => width || '60px'};
 	padding: 5px;
-	border: solid 3px ${({ theme }) => theme.highlight};
+	border: solid 2px ${({ theme }) => theme.highlight};
 	border-radius: ${({ br }) => br || '16px'};
 	background-color: ${({ theme }) => theme.highlight};
 	box-shadow: ${({ theme }) => theme.boxShadowButton};
 	color: ${({ theme }) => theme.light};
 	font-weight: 500;
-	font-size: 13px;
+	font-size: 10px;
 	cursor: pointer;
 `;
 export const ButtonContainer = styled.div`
@@ -20,7 +20,7 @@ export const ButtonContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: ${({ jc }) => jc || 'start'};
-	gap: ${({ gap }) => gap || '2rem'};
+	gap: ${({ gap }) => gap || '1rem'};
 	border: none;
 	background-color: transparent;
 `;

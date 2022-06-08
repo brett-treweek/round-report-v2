@@ -7,9 +7,10 @@ import StyledDetails, {
 } from './RoundDetails.styled';
 import { Icon } from '@iconify/react';
 import { Button } from '../../components/ui/button/Button.styled';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RoundDetails = ({ roundDeets, changeView, view }) => {
+	const navigate = useNavigate()
 	console.log('roundDetails component rendered');
 	return (
 		<StyledDetails>
@@ -34,9 +35,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 								<h5>Relay:</h5>
 								<p>{roundDeets.relay.address}</p>
 							</Inline>
-						) : (
-							null
-						)}
+						) : null}
 						{roundDeets ? (
 							<Inline>
 								<h5>LPO:</h5>
@@ -62,8 +61,8 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 				</InnerContainer>
 				{roundDeets ? (
 					<IconContainer>
-						
 						<Button onClick={changeView}>{view}</Button>
+						<Button onClick={()=>navigate('/')}>Home</Button>
 					</IconContainer>
 				) : null}
 			</DetailsCard>
@@ -73,12 +72,13 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 
 export default RoundDetails;
 
-
-{/* <Button className='admin'>Print Report</Button>
+{
+	/* <Button className='admin'>Print Report</Button>
 						<Link to={'/edit-round'}>
 							<Icon
 								className="icon admin"
 								icon="ci:edit"
 								color="#fff"
 							/>
-						</Link> */}
+						</Link> */
+}

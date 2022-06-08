@@ -14,18 +14,19 @@ const StyledUserProfile = styled.section`
 	background-color: ${({ theme }) => theme.background};
 
 	.title {
+		margin-top: 2rem;
 		font-weight: 600;
 	}
 `;
 
 export const UserCard = styled.div`
-	position: ${({ position }) => 'sticky' || 'static'};
-	top: ${({ top }) => '1rem'};
+	position: sticky;
+	top: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
-	padding: 1rem 2rem;
-	gap: 0.5rem;
+	padding: 0.5rem;
+	gap: 0.2rem;
 	height: 100%;
 	width: 93%;
 	max-width: 500px;
@@ -40,12 +41,12 @@ export const UserCard = styled.div`
 
 	div {
 		text-align: left;
-		line-height: 1.4;
+		line-height: 1.2;
 	}
 
 	h2 {
-		font-size: 1.2rem;
-		font-weight: 500;
+		font-size: 1rem;
+		font-weight: 600;
 	}
 
 	h5 {

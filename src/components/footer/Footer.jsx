@@ -35,10 +35,14 @@ const Footer = () => {
 					<Icon className="icon" icon="entypo:home" />
 				</Link>
 
-				<HazardButton onClick={addHazardHandler}>
-					{/* <Icon icon="carbon:add" color="white" height="40" /> */}
-					Add Hazard
-				</HazardButton>
+				<Icon
+					type="button"
+					onClick={addHazardHandler}
+					className="icon add-hazard"
+					icon="carbon:add"
+					color="white"
+					height="40"
+				/>
 
 				{user ? (
 					<div onClick={profileClickHandler}>

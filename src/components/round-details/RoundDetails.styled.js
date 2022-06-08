@@ -7,8 +7,6 @@ const StyledDetails = styled.div`
 	align-items: center;
 	justify-content: center;
 	z-index: 100;
-	/* min-height: 100%; */
-	/* height: 100%; */
 	width: 100%;
 	padding: 1rem;
 	/* background: linear-gradient(${({ theme }) =>
@@ -16,13 +14,12 @@ const StyledDetails = styled.div`
 `;
 
 export const DetailsCard = styled.div`
-	/* position: ${({ position }) => 'sticky' || 'static'}; */
-	/* top: ${({ top }) => '11vh'}; */
+
 	display: flex;
 	flex-direction: column;
 	align-items: start;
-	padding: 1rem 2rem;
-	gap: 1rem;
+	padding: 0.5rem 1rem;
+	gap: 0.5rem;
 	height: 100%;
 	width: 100%;
 	max-width: 500px;
@@ -42,8 +39,8 @@ export const DetailsCard = styled.div`
 	}
 
 	h2 {
-		font-size: 1.2rem;
-		font-weight: 500;
+		font-size: 1rem;
+		font-weight: 600;
 	}
 
 	h5 {
@@ -58,8 +55,8 @@ export const DetailsCard = styled.div`
 
 	.icon {
 		padding: 10px;
-		height: 50px;
-		width: 70px;
+		height: 40px;
+		width: 60px;
 		color: ${({ theme }) => theme.light};
 		border-radius: 16px;
 		background: ${({ theme }) => theme.highlight};

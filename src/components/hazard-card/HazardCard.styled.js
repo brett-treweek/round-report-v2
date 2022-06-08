@@ -5,30 +5,35 @@ const StyledHazardCard = styled.article`
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
-	padding: 1rem;
+	/* padding: 0.5rem; */
 	margin-top: 1.5rem;
 	min-height: 30vh;
-	width: 90vw;
+	width: 95vw;
 	max-width: 500px;
-	border: 5px solid ${({ theme }) => theme.background};
+	/* border: 5px solid ${({ theme }) => theme.background}; */
 	color: ${({ theme }) => theme.text};
-	background-color: ${({ theme }) => theme.backgroundCard};
+	background-color: ${({ theme }) => theme.background};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	border-radius: 16px;
 
-	h2 {
-		font-size: 1.3rem;
-		font-weight: 600;
+	.hazard-details{
+		padding: 0.7rem;
+	}
+
+	h3 {
+		font-size: 1rem;
+		font-weight: 700;
+		margin-bottom: 0.2rem;
 	}
 
 	h4 {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		font-weight: 600;
 	}
 
 	h4,
 	h2 {
-		line-height: 1.5;
+		line-height: 1.2;
 	}
 
 	p {
@@ -37,14 +42,15 @@ const StyledHazardCard = styled.article`
 	}
 
 	& > img {
-		height: 220px;
+		height: 180px;
 		width: 100%;
-		margin: 1rem 0;
+		/* margin: 0.5rem 0; */
 	}
 `;
 
 export const HazardCardButtonsContainer = styled.div`
     display: flex;
+	padding: 0.5rem;
     width: 100%;
     height: 100%;
     align-items: center;
