@@ -1,12 +1,23 @@
-import React, { useMemo } from 'react';
-import { GoogleMap, MarkerF } from '@react-google-maps/api';
+import React, { useMemo, useState } from 'react';
+import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import { useAppContext } from '../../context/appContext';
 import StyledMap from './Map.styled';
-import {post} from '../../assets/icons/index'
-
+import { post } from '../../assets/icons/index';
+import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from '@cloudinary/url-gen';
 
 function Map({ roundDeets, totalHazards }) {
 	const { round, roundHazards, allHazards, mapLoaded } = useAppContext();
+	const [selected, setSelected] = useState(null);
+
+		const cld = new Cloudinary({
+			cloud: {
+				cloudName: 'tigmarine',
+			},
+		});
+
+
+
 	// console.log('map component rendered', mapLoaded);
 
 	// const mapRef = useRef();
@@ -45,14 +56,24 @@ function Map({ roundDeets, totalHazards }) {
 				// onLoad={onLoad}
 				// onUnmount={onUnmount}
 			>
-				<MarkerF position={center} icon={post} />
-				{roundDeets && <MarkerF position={round.startAddress.latlng} />}
+				<Marker position={center} icon={post} />
+				{roundDeets && (
+					<Marker
+						position={round.startAddress.latlng}
+						onClick={() => {
+							setSelected(this.MarkerF);
+						}}
+					/>
+				)}
 				{roundDeets && roundHazards
 					? roundHazards.map((hazard) => {
 							return (
-								<MarkerF
+								<Marker
 									key={hazard._id}
 									position={hazard.hazardAddress.latlng}
+									onClick={() => {
+										setSelected(hazard);
+									}}
 								/>
 							);
 					  })
@@ -60,13 +81,38 @@ function Map({ roundDeets, totalHazards }) {
 				{totalHazards && allHazards
 					? allHazards.map((hazard) => {
 							return (
-								<MarkerF
+								<Marker
 									key={hazard._id}
 									position={hazard.hazardAddress.latlng}
+									onClick={() => {
+										setSelected(hazard);
+										console.log('Selected', selected);
+									}}
 								/>
 							);
 					  })
 					: null}
+				{selected ? (
+					<InfoWindow
+						position={{
+							lat: selected.hazardAddress.latlng.lat,
+							lng: selected.hazardAddress.latlng.lng,
+						}}
+						onCloseClick={() => {
+							setSelected(null);
+						}}
+					>
+						<div>
+							<h3>{selected.hazardType}</h3>
+							<p>{selected.hazardAddress.address}</p>
+							<p>Round Number: {selected.roundNumber}</p>
+							<AdvancedImage
+								cldImg={cld.image(selected.imageUrl)}
+								alt={selected.alt || 'hazard image'}
+							/>
+						</div>
+					</InfoWindow>
+				) : null}
 			</GoogleMap>
 		</StyledMap>
 	) : (
