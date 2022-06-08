@@ -35,7 +35,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 								<p>{roundDeets.relay.address}</p>
 							</Inline>
 						) : (
-							<p>John Smith</p>
+							null
 						)}
 						{roundDeets ? (
 							<Inline>
@@ -62,14 +62,7 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 				</InnerContainer>
 				{roundDeets ? (
 					<IconContainer>
-						<Button className='admin'>Print Report</Button>
-						<Link to={'/edit-round'}>
-							<Icon
-								className="icon admin"
-								icon="ci:edit"
-								color="#fff"
-							/>
-						</Link>
+						
 						<Button onClick={changeView}>{view}</Button>
 					</IconContainer>
 				) : null}
@@ -79,3 +72,13 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 };
 
 export default RoundDetails;
+
+
+{/* <Button className='admin'>Print Report</Button>
+						<Link to={'/edit-round'}>
+							<Icon
+								className="icon admin"
+								icon="ci:edit"
+								color="#fff"
+							/>
+						</Link> */}

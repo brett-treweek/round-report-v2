@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 const StyledAddHazard = styled.section`
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	padding: 1rem;
-	min-height: 80vh;
+	justify-content: space-between;
+	padding-top: 5rem;
+	min-height: 100vh;
 	background-color: ${({ theme }) => theme.background};
 `;
 

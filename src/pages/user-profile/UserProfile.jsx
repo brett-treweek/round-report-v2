@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../../components/edit-profile/EditProfile';
 import HazardCard from '../../components/hazard-card/HazardCard';
+import Footer from '../../components/footer/Footer';
 
 // TODO set users hazards in state when logIn, display them here.
 const UserProfile = () => {
@@ -53,7 +54,7 @@ const UserProfile = () => {
 				<EditProfile setProfileToggle={setProfileToggle} />
 			) : (
 				<>
-					{hazards.length > 0 ? <h2 className="title">Your Hazards</h2> : 'You have no hazards'}
+					{hazards.length > 0 ? <h3 className="title">You have {hazards.length} hazards</h3> : 'You have no hazards'}
 					{hazards.map((hazard, index) => (
 						<HazardCard
 							index={index + 1}
@@ -63,6 +64,7 @@ const UserProfile = () => {
 					))}
 				</>
 			)}
+			<Footer/>
 		</StyledUserProfile>
 	);
 };

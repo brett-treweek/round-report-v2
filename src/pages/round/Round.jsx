@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppContext } from '../../context/appContext';
 import StyledRound from './Round.styled';
 import Map from '../../components/map/Map';
 import RoundDetails from '../../components/round-details/RoundDetails';
 import HazardCard from '../../components/hazard-card/HazardCard';
+import { Footer } from '../../components';
 
 const Round = () => {
-	const { isLoading, round, roundHazards } = useAppContext();
-	// const excecutedRef = useRef(false);
+	const { isLoading, round, roundHazards, getOneRound, selectedRound } = useAppContext();
+	const excecutedRef = useRef(false);
 	console.log('Round page Rendered', round);
 	const [view, setView] = useState('List');
 
@@ -15,7 +16,15 @@ const Round = () => {
 		view === 'List' ? setView('Map') : setView('List');
 	};
 
-	console.log('Round!!!', round);
+	useEffect(() => {
+		console.log('!!!!!!!!!!!!!!!!');
+		if (excecutedRef.current) {
+			return;
+		}
+		getOneRound(selectedRound || round.roundNumber)
+		excecutedRef.current = true;
+		console.log('Round useEffect ran');
+	},[round.roundNumber, getOneRound, selectedRound]);
 
 	if (isLoading) {
 		return 'Loading...';
@@ -44,6 +53,7 @@ const Round = () => {
 					);
 				})
 			)}
+		<Footer/>
 		</StyledRound>
 	);
 };

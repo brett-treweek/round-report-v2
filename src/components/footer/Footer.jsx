@@ -36,7 +36,8 @@ const Footer = () => {
 				</Link>
 
 				<HazardButton onClick={addHazardHandler}>
-					<Icon icon="carbon:add" color="white" height="40" />
+					{/* <Icon icon="carbon:add" color="white" height="40" /> */}
+					Add Hazard
 				</HazardButton>
 
 				{user ? (

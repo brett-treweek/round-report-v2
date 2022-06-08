@@ -5,10 +5,11 @@ const StyledUserProfile = styled.section`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	gap: 2rem;
-	padding:  0.5rem 1rem;
-	min-height: 80vh;
+	justify-content: space-between;
+	/* gap: 2rem; */
+	/* padding: 0 1rem; */
+	min-height: 100vh;
+	height: 100%;
 	width: 100%;
 	background-color: ${({ theme }) => theme.background};
 
@@ -19,22 +20,22 @@ const StyledUserProfile = styled.section`
 
 export const UserCard = styled.div`
 	position: ${({ position }) => 'sticky' || 'static'};
-	top: ${({ top }) => '10vh'};
+	top: ${({ top }) => '1rem'};
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	padding: 1rem 2rem;
 	gap: 0.5rem;
 	height: 100%;
-	width: 100%;
+	width: 93%;
 	max-width: 500px;
 	border-radius: 15px;
 	border-bottom-right-radius: 50%;
 	color: ${({ theme }) => theme.text};
-	opacity: 0.9;
+	opacity: 0.97;
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(2px);
 	border: 3px solid ${({ theme }) => theme.backgroundCard};
 
 	div {

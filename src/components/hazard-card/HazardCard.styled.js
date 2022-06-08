@@ -6,7 +6,7 @@ const StyledHazardCard = styled.article`
 	align-items: flex-start;
 	justify-content: center;
 	padding: 1rem;
-	margin-bottom: 2rem;
+	margin-top: 1.5rem;
 	min-height: 30vh;
 	width: 90vw;
 	max-width: 500px;

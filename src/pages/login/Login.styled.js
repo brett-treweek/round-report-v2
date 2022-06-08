@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const StyledLogin = styled.section`
 	display: flex;
+	flex-direction: column;
     align-items: center;
-    justify-content: center;
-	min-height: 80vh;
+	padding-top: 5rem;
+    justify-content: space-between;
+	min-height: 100vh;
 	width: 100%;
 	background-color: ${({ theme }) => theme.background};
 `;
@@ -17,7 +19,7 @@ export const LoginForm = styled.form`
 	justify-content: center;
 	padding: 4rem 2rem;
 	gap: 1rem;
-	width: 80vw;
+	width: 90vw;
 	max-width: 500px;
 	background: ${({ theme }) => theme.backgroundCard};
 	box-shadow: ${({ theme }) => theme.boxShadowCard};

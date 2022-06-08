@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
 	position: sticky;
-	bottom: 0;
+	bottom: 0vh;
 	height: 10vh;
 	min-height: 80px;
 	width: 100%;
@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
 	align-items: center;
 	justify-content: center;
 	padding: 1rem 2rem;
-	background-color: ${({ theme }) => theme.background};
+	background-color: transparent;
 
 	.footer-inner-container {
 		position: relative;
@@ -24,8 +24,8 @@ const StyledFooter = styled.footer`
 
 	.icon {
 		/* position: relative; */
-		height: 70px;
-		width: 70px;
+		height: 60px;
+		width: 60px;
 		padding: 17px;
 		background-color: ${({ theme }) => theme.highlight};
 		border-radius: 50%;
@@ -42,25 +42,27 @@ const StyledFooter = styled.footer`
 `;
 
 export const HazardButton = styled.button`
-	position: absolute;
+	/* position: absolute; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	top: 0;
+	/* top: 0;
 	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	height: 5rem;
-	width: 5rem;
+	transform: translateX(-50%) translateY(-50%); */
+	height: 60px;
+	width: 60px;
 	border-radius: 100%;
 	border: solid 3px ${({ theme }) => theme.highlight};
-	padding: 1rem;
-	color: ${({ theme }) => theme.textLight};
+	/* padding: 0.6rem; */
+	font-size: 0.6rem;
+	font-weight: 500;
+	color: ${({ theme }) => theme.light};
 	background-color: ${({ theme }) => theme.highlight};
 	box-shadow: ${({ theme }) => theme.boxShadowButton};
 	cursor: pointer;
 	transition: all 300ms linear;
 
-	&::after {
+	/* &::after {
 		content: 'Add Hazard';
 		color: ${({ theme }) => theme.text};
 		position: absolute;
@@ -68,7 +70,7 @@ export const HazardButton = styled.button`
 		font-size: 0.7rem;
 		font-weight: 700;
 		bottom: -25px;
-	}
+	} */
 
 	@media (max-height: 730px) {
 		height: 5rem;

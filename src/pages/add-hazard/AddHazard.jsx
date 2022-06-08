@@ -14,6 +14,7 @@ import {
 import Alert from '../../components/ui/alert/Alert';
 import { useNavigate } from 'react-router-dom';
 import Places from '../../components/places/Places';
+import { Footer } from '../../components';
 
 const AddHazard = () => {
 	const [image, setImage] = useState();
@@ -195,6 +196,7 @@ const AddHazard = () => {
 				</Button> */}
 				<CancelButton onClick={handleCancel} />
 			</AddHazardForm>
+			<Footer/>
 		</StyledAddHazard>
 	);
 };

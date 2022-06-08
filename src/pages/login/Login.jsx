@@ -6,6 +6,7 @@ import { LoginForm, StyledLogin } from './Login.styled';
 import CancelButton from '../../components/ui/cancel-button/CancelButton';
 import Alert from '../../components/ui/alert/Alert';
 import { useAppContext } from '../../context/appContext';
+import { Footer } from '../../components';
 
 let initialLoginState = {
 	name: '',
@@ -129,6 +130,7 @@ const Login = () => {
 				</p>
 				<CancelButton onClick={handleCancel} />
 			</LoginForm>
+			<Footer/>
 		</StyledLogin>
 	);
 };
