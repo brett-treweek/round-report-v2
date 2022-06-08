@@ -74,7 +74,7 @@ const initialState = {
 	allHazards: [],
 	totalAllHazards: 0,
 	// Selected Round
-	round: round ? JSON.parse(round) : {},
+	round: round ? JSON.parse(round) : null,
 	roundHazards: roundHazards ? JSON.parse(roundHazards) : [],
 };
 
