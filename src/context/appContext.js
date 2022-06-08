@@ -29,14 +29,12 @@ import {
 	GET_ONE_ROUND_SUCCESS,
 	SET_ROUND,
 	MAP_LOADED,
-
 } from './actions';
 
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
 const round = localStorage.getItem('round');
 const roundHazards = localStorage.getItem('roundHazards');
-
 
 // Need to add state for userHazards to use in user-profile page.
 const initialState = {
@@ -69,8 +67,8 @@ const initialState = {
 		address: '',
 		latlng: {
 			lat: null,
-			lng: null
-		}
+			lng: null,
+		},
 	},
 	// All hazards
 	allHazards: [],
@@ -87,7 +85,7 @@ const AppProvider = ({ children }) => {
 
 	// Axios instance
 	// https://round-report-v2.herokuapp.com
-	const url = process.env.REACT_APP_NETLIFY_URL || '/api/v1'
+	const url = 'https://round-report.netlify.app/api/v1/api/v1';
 	const authFetch = axios.create({
 		baseURL: url,
 	});
@@ -120,7 +118,7 @@ const AppProvider = ({ children }) => {
 
 	const mapIsLoaded = () => {
 		dispatch({ type: MAP_LOADED });
-	}
+	};
 
 	const clearAlert = () => {
 		setTimeout(() => {
@@ -151,7 +149,7 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
 		try {
 			const response = await axios.post(
-				`${url}/auth/register`,
+				'https://round-report.netlify.app/api/v1/auth/register',
 				currentUser
 			);
 			console.log('response', response);
@@ -174,10 +172,7 @@ const AppProvider = ({ children }) => {
 	const loginUser = async (currentUser) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
-			const { data } = await axios.post(
-				`${url}/auth/login`,
-				currentUser
-			);
+			const { data } = await axios.post('https://round-report.netlify.app/api/v1/auth/login', currentUser);
 			console.log('response', data);
 			const { user, token } = data;
 			dispatch({
@@ -257,7 +252,13 @@ const AppProvider = ({ children }) => {
 	const createHazard = async () => {
 		dispatch({ type: CREATE_HAZARD_BEGIN });
 		try {
-			const { hazardRound, hazardAddress, hazardLatLng, hazardType, imageUrl } = state;
+			const {
+				hazardRound,
+				hazardAddress,
+				hazardLatLng,
+				hazardType,
+				imageUrl,
+			} = state;
 			const hazard = await authFetch.post('/hazards', {
 				hazardRound,
 				hazardAddress,
@@ -312,7 +313,7 @@ const AppProvider = ({ children }) => {
 	};
 
 	const getOneRound = async (roundNumber) => {
-		console.log('Round Number ???',roundNumber);
+		console.log('Round Number ???', roundNumber);
 		let url = `/round/${roundNumber}`;
 		dispatch({ type: GET_ONE_ROUND_BEGIN });
 
