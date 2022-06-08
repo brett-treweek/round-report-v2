@@ -6,11 +6,12 @@ import StyledDetails, {
 	InnerContainer,
 } from './RoundDetails.styled';
 import { Icon } from '@iconify/react';
+import { pin } from '../../assets/icons/index';
 import { Button } from '../../components/ui/button/Button.styled';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const RoundDetails = ({ roundDeets, changeView, view }) => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	// console.log('roundDetails component rendered');
 	return (
 		<StyledDetails>
@@ -20,7 +21,9 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 						{roundDeets ? (
 							<h2>Round {roundDeets.roundNumber}</h2>
 						) : (
-							<h2>Palmyra DC</h2>
+							<h2>
+								Palmyra DC
+							</h2>
 						)}
 						{roundDeets ? (
 							<Inline>
@@ -49,20 +52,22 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 						)}
 					</div>
 					{roundDeets ? null : (
-						<a href="tel:9300600">
-							<Icon
-								className="icon"
-								icon="fa-solid:phone-alt"
-								// color="#DC1928"
-								// height="40"
-							/>
-						</a>
+						<>
+							<a href="tel:9300600">
+								<Icon
+									className="icon"
+									icon="fa-solid:phone-alt"
+									// color="#DC1928"
+									// height="40"
+								/>
+							</a>
+						</>
 					)}
 				</InnerContainer>
 				{roundDeets ? (
 					<IconContainer>
 						<Button onClick={changeView}>{view}</Button>
-						<Button onClick={()=>navigate('/')}>Home</Button>
+						<Button onClick={() => navigate('/')}>Home</Button>
 					</IconContainer>
 				) : null}
 			</DetailsCard>
@@ -71,14 +76,3 @@ const RoundDetails = ({ roundDeets, changeView, view }) => {
 };
 
 export default RoundDetails;
-
-{
-	/* <Button className='admin'>Print Report</Button>
-						<Link to={'/edit-round'}>
-							<Icon
-								className="icon admin"
-								icon="ci:edit"
-								color="#fff"
-							/>
-						</Link> */
-}

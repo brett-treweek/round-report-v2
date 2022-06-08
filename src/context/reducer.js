@@ -23,7 +23,7 @@ import {
 	GET_ALL_HAZARDS_SUCCESS,
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
-	SET_ROUND,
+	// SET_ROUND,
 	MAP_LOADED
 } from './actions';
 
@@ -222,12 +222,6 @@ const reducer = (state, action) => {
 			isLoading: false,
 			allHazards: action.payload.hazards,
 			totalAllHazards: action.payload.totalHazards
-		};
-	}
-	if (action.type === SET_ROUND) {
-		return {
-			...state,
-			selectedRound: action.payload.round,
 		};
 	}
 	if (action.type === GET_ONE_ROUND_BEGIN) {

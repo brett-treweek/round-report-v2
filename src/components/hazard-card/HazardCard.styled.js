@@ -16,8 +16,26 @@ const StyledHazardCard = styled.article`
 	box-shadow: ${({ theme }) => theme.boxShadowCard};
 	border-radius: 16px;
 
-	.hazard-details{
+	.hazard-details {
+		width: 100%;
 		padding: 0.7rem;
+	}
+
+	.title-container {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	.address-container {
+		display: flex;
+		width: 100%;
+	}
+
+	.image {
+		height: 250px;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
 	}
 
 	h3 {
@@ -27,8 +45,11 @@ const StyledHazardCard = styled.article`
 	}
 
 	h4 {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		font-weight: 600;
+	}
+	h5{
+		font-size: 0.7rem;
 	}
 
 	h4,

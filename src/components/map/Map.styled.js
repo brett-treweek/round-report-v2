@@ -5,9 +5,14 @@ const StyledMap = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
-	min-height: 30vh;
+	/* min-height: 30vh; */
 	height: 100%;
 	width: 100%;
+
+	.image{
+		height: 200px;
+		width: 100%;
+	}
 `;
 
 export default StyledMap;

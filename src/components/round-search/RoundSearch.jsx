@@ -13,14 +13,14 @@ const RoundSearch = () => {
 
 	// const excecutedRef = useRef(false);
 	const [chosenNumber, setChosenNumber] = useState(null);
-	const { setRound, selectedRound } = useAppContext();
+	const { getOneRound } = useAppContext();
 	let navigate = useNavigate();
 
-	// console.log('selectedRound on mount', selectedRound);
+
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		setRound(chosenNumber);
+		getOneRound(chosenNumber)
 		navigate('/round');
 	};
 
@@ -34,7 +34,6 @@ const RoundSearch = () => {
 				<SearchLabel>Round Report</SearchLabel>
 				<div style={{'position':'relative'}}>
 					<SearchInput
-						// defaultValue={selectedRound}
 						type="number"
 						min="1"
 						max="10"

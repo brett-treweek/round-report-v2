@@ -72,16 +72,11 @@ const initialState = {
 			lng: null
 		}
 	},
-	// hazardLatLng: {
-	// 	lat: null,
-	// 	lng: null
-	// },
 	// All hazards
 	allHazards: [],
 	totalAllHazards: 0,
 	// Selected Round
-	selectedRound: null,
-	round: round ? JSON.parse(round) : null,
+	round: round ? JSON.parse(round) : {},
 	roundHazards: roundHazards ? JSON.parse(roundHazards) : [],
 };
 
@@ -92,8 +87,9 @@ const AppProvider = ({ children }) => {
 
 	// Axios instance
 	// https://round-report-v2.herokuapp.com
+	const url = process.env.REACT_APP_NETLIFY_URL || '/api/v1'
 	const authFetch = axios.create({
-		baseURL: 'https://round-report-v2.herokuapp.com/api/v1',
+		baseURL: url,
 	});
 
 	// Axios request interceptor
@@ -155,7 +151,7 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
 		try {
 			const response = await axios.post(
-				'https://round-report-v2.herokuapp.com/api/v1/auth/register',
+				`${url}/auth/register`,
 				currentUser
 			);
 			console.log('response', response);
@@ -179,7 +175,7 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
 			const { data } = await axios.post(
-				'https://round-report-v2.herokuapp.com/api/v1/auth/login',
+				`${url}/auth/login`,
 				currentUser
 			);
 			console.log('response', data);
@@ -316,6 +312,7 @@ const AppProvider = ({ children }) => {
 	};
 
 	const getOneRound = async (roundNumber) => {
+		console.log('Round Number ???',roundNumber);
 		let url = `/round/${roundNumber}`;
 		dispatch({ type: GET_ONE_ROUND_BEGIN });
 

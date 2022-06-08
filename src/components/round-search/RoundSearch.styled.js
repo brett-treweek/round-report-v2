@@ -45,7 +45,7 @@ export const SearchInput = styled.input`
 	text-align: start;
 	color: ${({ theme }) => theme.text};
 	border: none;
-	background-color: ${({ theme }) => theme.background};
+	background-color: transparent;
 	/* box-shadow: ${({ theme }) => theme.boxShadowCard}; */
 	/* border: 3px solid ${({ theme }) => theme.background}; */
 	/* border-radius: 10px; */

@@ -6,8 +6,15 @@ const StyledRound = styled.section`
 	align-items: center;
 	justify-content: space-between;
 	min-height: 100vh;
-	/* text-align: center; */
+	height: 100%;
+	width: 100%;
 	background-color: ${({ theme }) => theme.background};
+
+	.footer-div {
+		position: sticky;
+		bottom: 0px;
+		width: 100%;
+	}
 `;
 
 export default StyledRound;

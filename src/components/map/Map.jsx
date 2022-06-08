@@ -5,9 +5,10 @@ import StyledMap from './Map.styled';
 import { post } from '../../assets/icons/index';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { scale } from '@cloudinary/url-gen/actions/resize';
 
 function Map({ roundDeets, totalHazards }) {
-	const { round, roundHazards, allHazards, mapLoaded } = useAppContext();
+	const { round, roundHazards, allHazards } = useAppContext();
 	const [selected, setSelected] = useState(null);
 
 		const cld = new Cloudinary({
@@ -16,18 +17,17 @@ function Map({ roundDeets, totalHazards }) {
 			},
 		});
 
+		
 
+	const containerStyle = useMemo(
+		() => ({
+			width: '100%',
+			height: '100%',
+		}),
+		[]
+	);
 
-	// console.log('map component rendered', mapLoaded);
-
-	// const mapRef = useRef();
-
-	const containerStyle = {
-		width: '100%',
-		height: '100%',
-	};
-
-	const center = useMemo(() => ({ lat: -32.03784, lng: 115.80174 }), []);
+	const center = useMemo(() => ({ lat: -32.051687, lng: 115.790637 }), []);
 
 	const options = useMemo(
 		() => ({
@@ -38,30 +38,20 @@ function Map({ roundDeets, totalHazards }) {
 		[]
 	);
 
-	// const onLoad = useCallback((map) => {
-	// 	mapRef.current = map;
-	// }, []);
-
-	// const onUnmount = React.useCallback(function callback(map) {
-	// 	mapRef.current = false;
-	// }, []);
-
-	return mapLoaded ? (
+	return (
 		<StyledMap>
 			<GoogleMap
 				mapContainerStyle={containerStyle}
 				center={roundDeets ? round.startAddress.latlng : center}
 				zoom={12}
 				options={options}
-				// onLoad={onLoad}
-				// onUnmount={onUnmount}
 			>
 				<Marker position={center} icon={post} />
 				{roundDeets && (
 					<Marker
 						position={round.startAddress.latlng}
-						onClick={() => {
-							setSelected(this.MarkerF);
+						onClick={(e) => {
+							console.log(e);
 						}}
 					/>
 				)}
@@ -107,6 +97,7 @@ function Map({ roundDeets, totalHazards }) {
 							<p>{selected.hazardAddress.address}</p>
 							<p>Round Number: {selected.roundNumber}</p>
 							<AdvancedImage
+								className='image'
 								cldImg={cld.image(selected.imageUrl)}
 								alt={selected.alt || 'hazard image'}
 							/>
@@ -115,8 +106,6 @@ function Map({ roundDeets, totalHazards }) {
 				) : null}
 			</GoogleMap>
 		</StyledMap>
-	) : (
-		<h1>Loading...</h1>
 	);
 }
 
