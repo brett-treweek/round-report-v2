@@ -29,6 +29,7 @@ export const PlacesList = styled.li`
 	font-weight: 500;
 	padding: 10px;
 	margin: 10px 0;
+	cursor: pointer;
 	/* border: 1px solid white; */
 	/* border-radius: 5px; */
 `;

@@ -1,6 +1,7 @@
 import React, { useReducer, useContext } from 'react';
 import axios from 'axios';
 
+
 import reducer from './reducer';
 import {
 	DISPLAY_ALERT,
@@ -89,6 +90,21 @@ const AppProvider = ({ children }) => {
 	const authFetch = axios.create({
 		baseURL: url,
 	});
+
+	// const useLoadMap = () => {
+	// 	const places = ['places'];
+	// 	const { isLoaded, loadError } = useJsApiLoader({
+	// 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+	// 		libraries: places,
+	// 	});
+	// 	if (loadError) {
+	// 		return loadError
+	// 	}
+	// 	if (isLoaded) {
+	// 		mapIsLoaded()
+	// 		return isLoaded
+	// 	}
+	// }
 
 	// Axios request interceptor
 	authFetch.interceptors.request.use(

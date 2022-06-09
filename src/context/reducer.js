@@ -23,7 +23,6 @@ import {
 	GET_ALL_HAZARDS_SUCCESS,
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
-	// SET_ROUND,
 	MAP_LOADED
 } from './actions';
 

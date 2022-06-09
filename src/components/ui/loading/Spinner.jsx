@@ -17,7 +17,7 @@ const Spinner = () => {
 			<Icon
 				icon="eos-icons:bubble-loading"
 				color="#699bf7"
-				height="155"
+				height="55"
 			/>
 		</SpinnerContainer>
   );

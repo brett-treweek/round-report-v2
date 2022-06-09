@@ -9,10 +9,19 @@ const StyledMap = styled.div`
 	height: 100%;
 	width: 100%;
 
-	.image{
+	.infowindow {
+		width: 230px;
+		height: 300px;
+	}
+
+	.image {
 		height: 200px;
 		width: 100%;
 	}
+`;
+
+export const InfowindowContainer = styled.div`
+	padding: 0;
 `;
 
 export default StyledMap;

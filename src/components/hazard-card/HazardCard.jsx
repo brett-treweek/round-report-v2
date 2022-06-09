@@ -5,7 +5,7 @@ import StyledHazardCard, {
 import { remove, pin, print, edit } from '../../assets/icons/index';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
-import { scale } from '@cloudinary/url-gen/actions/resize';
+import { fill } from '@cloudinary/url-gen/actions/resize';
 
 import moment from 'moment';
 
@@ -22,7 +22,6 @@ const HazardCard = ({
 }) => {
 	// console.log('hazardCard component rendered');
 	const date = moment(createdAt).format('Do MMM, YYYY');
-	console.log('111111', hazardAddress);
 	const add = hazardAddress.address.split(',');
 
 	const cld = new Cloudinary({
@@ -32,8 +31,7 @@ const HazardCard = ({
 	});
 
 	const img = cld.image(imageUrl);
-	img
-		.resize(scale().width(300))
+	// img.resize(fill().width(250).height(250));
 
 	return (
 		<StyledHazardCard>

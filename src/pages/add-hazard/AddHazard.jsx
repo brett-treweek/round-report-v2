@@ -69,7 +69,8 @@ const AddHazard = () => {
 		handleChange({ name, value });
 	};
 
-	const onAddImage = () => {
+	const onAddImage = (e) => {
+		e.preventDefault()
 		imageInputRef.current.click();
 	};
 
@@ -104,7 +105,7 @@ const AddHazard = () => {
 				{showAlert && <Alert />}	
 					<Places
 						name="hazardAddress"
-						// value={hazardAddress}
+						placeholder={hazardAddress}
 						label="Hazard Address"
 						// type="text"
 						// handleChange={handleHazardInput}

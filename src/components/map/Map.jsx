@@ -1,15 +1,30 @@
 import React, { useMemo, useState } from 'react';
+import { useJsApiLoader } from '@react-google-maps/api';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import { useAppContext } from '../../context/appContext';
-import StyledMap from './Map.styled';
+import StyledMap, { InfowindowContainer } from './Map.styled';
 import { post } from '../../assets/icons/index';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
-import { scale } from '@cloudinary/url-gen/actions/resize';
+// import { scale } from '@cloudinary/url-gen/actions/resize';
+import Spinner from '../ui/loading/Spinner';
+import moment from 'moment';
+const places = ['places']
 
-function Map({ roundDeets, totalHazards }) {
+
+function Map({ roundDeets, homeHazards }) {
 	const { round, roundHazards, allHazards } = useAppContext();
 	const [selected, setSelected] = useState(null);
+	// const places = useMemo(() => ['places'], []);
+	const formatDate = (date) => {
+			return moment(date).format('Do MMM, YYYY');
+	}
+
+	const { isLoaded } = useJsApiLoader({
+		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+		libraries: places,
+	});
+	
 
 		const cld = new Cloudinary({
 			cloud: {
@@ -33,10 +48,14 @@ function Map({ roundDeets, totalHazards }) {
 		() => ({
 			disableDefaultUI: true,
 			clickableIcons: false,
-			// mapId: '5ef80f0325514b92',
+			mapId: '5ef80f0325514b92',
 		}),
 		[]
 	);
+
+	if (!isLoaded) {
+		return <Spinner/>
+	}
 
 	return (
 		<StyledMap>
@@ -68,7 +87,7 @@ function Map({ roundDeets, totalHazards }) {
 							);
 					  })
 					: null}
-				{totalHazards && allHazards
+				{homeHazards && allHazards
 					? allHazards.map((hazard) => {
 							return (
 								<Marker
@@ -84,6 +103,7 @@ function Map({ roundDeets, totalHazards }) {
 					: null}
 				{selected ? (
 					<InfoWindow
+						className='infowindow'
 						position={{
 							lat: selected.hazardAddress.latlng.lat,
 							lng: selected.hazardAddress.latlng.lng,
@@ -92,16 +112,18 @@ function Map({ roundDeets, totalHazards }) {
 							setSelected(null);
 						}}
 					>
-						<div>
+						<InfowindowContainer>
 							<h3>{selected.hazardType}</h3>
 							<p>{selected.hazardAddress.address}</p>
-							<p>Round Number: {selected.roundNumber}</p>
+							<p>Round Number: {selected.hazardRound}</p>
+							<p>Recorded by - {selected.createdByUsername}</p>
+							<p>{formatDate(selected.createdAt)}</p>
 							<AdvancedImage
 								className='image'
 								cldImg={cld.image(selected.imageUrl)}
 								alt={selected.alt || 'hazard image'}
 							/>
-						</div>
+						</InfowindowContainer>
 					</InfoWindow>
 				) : null}
 			</GoogleMap>
