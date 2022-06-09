@@ -85,7 +85,7 @@ const AppProvider = ({ children }) => {
 
 	// Axios instance
 	// https://round-report-v2.herokuapp.com
-	const url = 'https://round-report.netlify.app/api/v1/api/v1';
+	const url = 'https://round-report-v2.herokuapp.com/api/v1';
 	const authFetch = axios.create({
 		baseURL: url,
 	});
@@ -149,7 +149,7 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
 		try {
 			const response = await axios.post(
-				'https://round-report.netlify.app/api/v1/auth/register',
+				'https://round-report-v2.herokuapp.com/api/v1/auth/register',
 				currentUser
 			);
 			console.log('response', response);
@@ -172,7 +172,10 @@ const AppProvider = ({ children }) => {
 	const loginUser = async (currentUser) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
-			const { data } = await axios.post('https://round-report.netlify.app/api/v1/auth/login', currentUser);
+			const { data } = await axios.post(
+				'https://round-report-v2.herokuapp.com/api/v1/auth/login',
+				currentUser
+			);
 			console.log('response', data);
 			const { user, token } = data;
 			dispatch({
