@@ -15,6 +15,7 @@ import {
 import {
 	AllHazards,
 	AllRounds,
+	AddRound,
 	AllUsers,
 	SharedLayout,
 } from './pages/admin/index';
@@ -65,6 +66,7 @@ function App() {
 					>
 						<Route index element={<AllHazards />} />
 						<Route path="all-rounds" element={<AllRounds />} />
+						<Route path="add-round" element={<AddRound />} />
 						<Route path="all-users" element={<AllUsers />} />
 					</Route>
 					<Route path="/*" element={<ErrorPage />} />
