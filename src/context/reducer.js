@@ -90,6 +90,7 @@ const reducer = (state, action) => {
 			isLoading: false,
 			token: action.payload.token,
 			user: action.payload.user,
+			isAdmin: action.payload.admin,
 			showAlert: true,
 			alertType: 'success',
 			alertText: 'Login Successful, Redirecting...',
@@ -109,6 +110,7 @@ const reducer = (state, action) => {
 			...initialState,
 			user: null,
 			token: null,
+			isAdmin: false
 		};
 	}
 	if (action.type === UPDATE_USER_BEGIN) {

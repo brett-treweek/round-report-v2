@@ -7,7 +7,7 @@ import { useAppContext } from '../../context/appContext';
 
 const Footer = () => {
 	// console.log('footer component rendered');
-	const { user } = useAppContext();
+	const { user, isAdmin } = useAppContext();
 	const navigate = useNavigate();
 	const location = useLocation();
 	// console.log(location);
@@ -31,10 +31,17 @@ const Footer = () => {
 	return (
 		<StyledFooter>
 			<div className="footer-inner-container">
-				<Link to="/">
+				<Link to="/" className="link">
 					<Icon className="icon" icon="entypo:home" />
 				</Link>
-
+				{isAdmin && (
+					<Link to="/admin" className="link">
+						<Icon
+							icon="eos-icons:admin"
+							className='icon'
+						/>
+					</Link>
+				)}
 				<Icon
 					type="button"
 					onClick={addHazardHandler}
@@ -49,7 +56,7 @@ const Footer = () => {
 						<Icon className="icon" icon="bxs:user" />
 					</div>
 				) : (
-					<Link to="/login">
+					<Link to="/login" className="link">
 						<Icon className="icon" icon="bxs:user" />
 					</Link>
 				)}

@@ -17,7 +17,7 @@ const Home = () => {
 		getAllHazards();
 	}, []);
 	
-	if (isLoading) return <Spinner />;
+	// if (isLoading) return <Spinner />;
 
 	return (
 		<StyledHome>

@@ -8,6 +8,7 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
 import moment from 'moment';
+import { useAppContext } from '../../context/appContext';
 
 const HazardCard = ({
 	hazardRound,
@@ -21,6 +22,7 @@ const HazardCard = ({
 	index,
 }) => {
 	// console.log('hazardCard component rendered');
+	const {isAdmin} = useAppContext()
 	const date = moment(createdAt).format('Do MMM, YYYY');
 	const add = hazardAddress.address.split(',');
 
@@ -58,12 +60,12 @@ const HazardCard = ({
 				</p>
 				<p></p>
 			</div>
-			{/* <HazardCardButtonsContainer>
+			{isAdmin && <HazardCardButtonsContainer>
 				<img src={pin} alt="map pin" />
 				<img src={print} alt="print" />
 				<img src={edit} alt="edit" />
 				<img src={remove} alt="remove" />
-			</HazardCardButtonsContainer> */}
+			</HazardCardButtonsContainer>}
 		</StyledHazardCard>
 	);
 };

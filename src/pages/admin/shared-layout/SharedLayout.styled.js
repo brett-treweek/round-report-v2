@@ -10,7 +10,7 @@ const StyledSharedLayout = styled.section`
 	flex-direction: column;
 
 	nav >*{
-		margin: 2rem;
+		padding: 1rem;
 	}
 `;
 

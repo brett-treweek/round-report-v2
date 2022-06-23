@@ -5,6 +5,7 @@ const StyledHazardSearch = styled.div`
 	height: 300px;
 	background-color: beige;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 `;

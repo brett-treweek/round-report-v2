@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useAppContext } from '../../../context/appContext';
 import HazardSearch from '../../../components/hazard-search/HazardSearch';
 import StyledAllHazards, {
@@ -7,22 +7,29 @@ import StyledAllHazards, {
   InnerHazardsGrid,
 } from './AllHazards.styled';
 import HazardCard from '../../../components/hazard-card/HazardCard';
+import Spinner from '../../../components/ui/loading/Spinner';
 
 const AllHazards = () => {
 	// console.log('allHazards page rendered');
-	const { isLoading, allHazards, totalAllHazards } =
+	const { isLoading, allHazards, totalAllHazards, getAllHazards } =
 		useAppContext();
 
 // I think this useEffect is rendering page twice!!!
-
+	useEffect(() => {
+		getAllHazards();
+	}, []);
 
 	return (
 		<StyledAllHazards>
-			All Hazards
+			<h1>Recent Activity</h1>
+			<p>blah</p>
+			<p>blah</p>
+			<p>blah</p>
+			<p>blah</p>
 			<HazardSearch />
 			<HazardsContainer>
 				{isLoading ? (
-					'Loading...'
+					<Spinner/>
 				) : (
 					<InnerHazardsContainer>
 						{totalAllHazards === 0 ? (
@@ -40,6 +47,7 @@ const AllHazards = () => {
 												{...hazard}
 												key={hazard._id}
 												index={index + 1}
+												admin
 											/>
 										);
 									})}

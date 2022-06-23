@@ -7,11 +7,12 @@ const SharedLayout = () => {
 
 	return (
 		<StyledSharedLayout>
-			<h1>shared layout</h1>
+			<h1>Administration</h1>
 			<nav>
 				<Link to="/admin">Hazards</Link>
-				<Link to="all-rounds">Rounds</Link>
 				<Link to="all-users">Users</Link>
+				<Link to="all-rounds">Rounds</Link>
+				<Link to="/">Home</Link>
 			</nav>
 			<Outlet />
 		</StyledSharedLayout>

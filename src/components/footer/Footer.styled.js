@@ -24,6 +24,11 @@ const StyledFooter = styled.footer`
 		justify-content: space-between;
 	}
 
+	.link{
+		height: 60px;
+		width: 60px;
+	}
+
 	.icon {
 		/* position: relative; */
 		height: 60px;

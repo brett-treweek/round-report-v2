@@ -34,6 +34,7 @@ import {
 
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
+const isAdmin = localStorage.getItem('admin');
 const round = localStorage.getItem('round');
 const roundHazards = localStorage.getItem('roundHazards');
 
@@ -47,6 +48,7 @@ const initialState = {
 	alertType: '',
 	user: user ? JSON.parse(user) : null,
 	token: token,
+	isAdmin: isAdmin,
 	// Add Hazard
 	imageUrl: '',
 	editHazardId: '',
@@ -86,7 +88,7 @@ const AppProvider = ({ children }) => {
 
 	// Axios instance
 	// https://round-report-v2.herokuapp.com
-	const url = 'https://round-report-v2.herokuapp.com/api/v1';
+	const url = 'api/v1';
 	const authFetch = axios.create({
 		baseURL: url,
 	});
@@ -151,21 +153,23 @@ const AppProvider = ({ children }) => {
 		clearAlert();
 	};
 
-	const addUserToLocalStorage = ({ user, token }) => {
+	const addUserToLocalStorage = ({ user, token, admin }) => {
 		localStorage.setItem('user', JSON.stringify(user));
 		localStorage.setItem('token', token);
+		localStorage.setItem('admin', admin);
 	};
 
 	const removeUserFromLocalStorage = () => {
 		localStorage.removeItem('user');
 		localStorage.removeItem('token');
+		localStorage.removeItem('admin');
 	};
 
 	const registerUser = async (currentUser) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
 		try {
 			const response = await axios.post(
-				'https://round-report-v2.herokuapp.com/api/v1/auth/register',
+				'api/v1/auth/register',
 				currentUser
 			);
 			console.log('response', response);
@@ -174,7 +178,7 @@ const AppProvider = ({ children }) => {
 				type: REGISTER_USER_SUCCESS,
 				payload: { user, token },
 			});
-			addUserToLocalStorage({ user, token });
+			addUserToLocalStorage({ user, token});
 		} catch (error) {
 			console.log(error.response);
 			dispatch({
@@ -189,16 +193,16 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
 			const { data } = await axios.post(
-				'https://round-report-v2.herokuapp.com/api/v1/auth/login',
+				'api/v1/auth/login',
 				currentUser
 			);
 			console.log('response', data);
-			const { user, token } = data;
+			const { user, token, admin } = data;
 			dispatch({
 				type: LOGIN_USER_SUCCESS,
-				payload: { user, token },
+				payload: { user, token, admin },
 			});
-			addUserToLocalStorage({ user, token });
+			addUserToLocalStorage({ user, token, admin });
 		} catch (error) {
 			dispatch({
 				type: LOGIN_USER_ERROR,
