@@ -26,6 +26,9 @@ import {
 	CREATE_HAZARD_ERROR,
 	GET_ALL_HAZARDS_BEGIN,
 	GET_ALL_HAZARDS_SUCCESS,
+	CREATE_ROUND_BEGIN,
+	CREATE_ROUND_SUCCESS,
+	CREATE_ROUND_ERROR,
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
 	SET_ROUND,
@@ -79,6 +82,31 @@ const initialState = {
 	// Selected Round
 	round: round ? JSON.parse(round) : null,
 	roundHazards: roundHazards ? JSON.parse(roundHazards) : [],
+	// Create Round
+	roundNumber: 0,
+	suburb: '',
+	startAddress: {
+		address: '',
+		latlng: {
+			lat: null,
+			lng: null,
+		},
+	},
+	lpo: {
+		address: '',
+		latlng: {
+			lat: null,
+			lng: null,
+		},
+	},
+	relay: {
+		address: '',
+		latlng: {
+			lat: null,
+			lng: null,
+		},
+	},
+	postie: ''
 };
 
 const AppContext = React.createContext();
@@ -87,8 +115,8 @@ const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	// Axios instance
-	// https://round-report-v2.herokuapp.com
-	const url = 'api/v1';
+	// const url = https://round-report-v2.herokuapp.com
+	const url = 'http://localhost:3000/api/v1';
 	const authFetch = axios.create({
 		baseURL: url,
 	});
@@ -364,6 +392,42 @@ const AppProvider = ({ children }) => {
 		clearAlert();
 	};
 
+	const createRound = async () => {
+		console.log('new round created yay');
+		dispatch({ type: CREATE_ROUND_BEGIN });
+		try {
+			const {
+				roundNumber,
+				suburb,
+				startAddress,
+				lpo,
+				relay,
+				postie
+			} = state;
+			const round = await authFetch.post('/round', {
+				roundNumber,
+				suburb,
+				startAddress,
+				lpo,
+				relay,
+				postie,
+			});
+			console.log('Create Round Response', round);
+			dispatch({
+				type: CREATE_ROUND_SUCCESS,
+			});
+			dispatch({ type: CLEAR_VALUES });
+			console.log('Round Created', round);
+		} catch (error) {
+			if (error.response.status === 401) return;
+			dispatch({
+				type: CREATE_ROUND_ERROR,
+				payload: { msg: error.payload.msg },
+			});
+		}
+		clearAlert();
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -381,6 +445,7 @@ const AppProvider = ({ children }) => {
 				getAllHazards,
 				setRound,
 				getOneRound,
+				createRound
 			}}
 		>
 			{children}

@@ -56,6 +56,7 @@ const Places = ({ label, name }) => {
 			// Get latitude and longitude via utility functions
 			getGeocode({ address: description }).then((results) => {
 				try {
+					// console.log('results', results[2]);
 					const { lat, lng } = getLatLng(results[0]);
 					console.log('📍 Coordinates: ', { lat, lng });
 
@@ -66,6 +67,14 @@ const Places = ({ label, name }) => {
 					};
 					
 					handleChange({ name, value });
+					if (name === 'startAddress') {
+						console.log('33333333333',value.address);
+						console.log('suburb from getGeoCode', results[0].address_components[2].long_name);
+						const name = 'suburb';
+						const suburb =
+							results[0].address_components[2].long_name;
+						handleChange({ name, value: suburb });
+					}
 				} catch (error) {
 					console.log('😱 Error: ', error);
 				}

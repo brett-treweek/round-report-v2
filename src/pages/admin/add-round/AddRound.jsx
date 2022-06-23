@@ -1,53 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useAppContext } from '../../../context/appContext';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 import StyledAddHazard, {
 	AddHazardForm,
 } from '../../add-hazard/AddHazard.styled';
 import CancelButton from '../../../components/ui/cancel-button/CancelButton';
 import Input from '../../../components/ui/input/input';
-import {
-	Button,
-} from '../../../components/ui/button/Button.styled';
+import { Button } from '../../../components/ui/button/Button.styled';
 import Alert from '../../../components/ui/alert/Alert';
+import Places from '../../../components/places/Places';
 
 const AddRound = () => {
 	// console.log('addRound page rendered');
+
 	const {
 		showAlert,
 		displayAlert,
 		isLoading,
 		isEditing,
+		// clearValues,
+		// round,
 		handleChange,
-		clearValues,
+		createRound,
+		editRound,
+		roundNumber,
+		suburb,
+		startAddress,
+		lpo,
+		relay,
+		postie,
 	} = useAppContext();
 
 	const navigate = useNavigate();
 
+	// if (isEditing) {
+	// }
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-        console.log('round created');
-		// if (!roundNumber || !roundStart || !roundLpo) {
-		// 	displayAlert();
-		// 	return;
-		// }
 
-		// if (isEditing) {
-		// 	editRound()
-		// 	return;
-		// }
-		// createRound();
+		console.log(roundNumber, suburb, startAddress, lpo, relay, postie);
+
+		if (!roundNumber || !startAddress || !lpo || !relay) {
+			displayAlert();
+			return;
+		}
+
+		if (isEditing) {
+			editRound();
+			return;
+		}
+		
+		createRound();
 
 		setTimeout(() => {
 			navigate(-1);
-		}, 1000);
+		}, 2000);
 	};
 
 	const handleRoundInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
+		console.log('handleRoundChange', name, value);
 		handleChange({ name, value });
+		
 	};
 
 	const handleCancel = (e) => {
@@ -59,46 +76,44 @@ const AddRound = () => {
 		<StyledAddHazard>
 			<AddHazardForm>
 				<h1>{isEditing ? 'Edit Round' : 'Create New Round'}</h1>
-                <p>roundNumber</p>
-                <p>hazards</p>
-                <p>suburb</p>
-                <p>startAddress- address, latlng </p>
-                <p>lpo - address, latlng </p>
-                <p>relay- address, latlng </p>
-                <p>postie</p>
-                <p>createdBy</p>
+				<p>roundNumber</p>
+				<p>hazards</p>
+				<p>suburb</p>
+				<p>startAddress- address, latlng </p>
+				<p>lpo - address, latlng </p>
+				<p>relay- address, latlng </p>
+				<p>postie</p>
+				<p>createdBy</p>
 				{showAlert && <Alert />}
 				<Input
 					name="roundNumber"
-					// value={roundNumber}
+					value={roundNumber}
 					label="Round Number"
 					type="number"
 					handleChange={handleRoundInput}
 					min="0"
 					max="50"
 				/>
-				<Input
-					name="roundStart"
-					// value={roundStart}
+				<Places
+					name="startAddress"
+					placeholder={startAddress}
 					label="Start Address"
-					handleChange={handleRoundInput}
 				/>
-				<Input
-					name="roundLpo"
-					// value={roundStart}
+				<Places
+					name="lpo"
+					placeholder={lpo}
 					label="LPO Address"
-					handleChange={handleRoundInput}
 				/>
-				<Input
-					name="roundRelay"
-					// value={roundStart}
+				<Places
+					name="relay"
+					placeholder={relay}
 					label="Relay Address"
-					handleChange={handleRoundInput}
 				/>
 				<Input
-					name="roundPostie"
-					// value={roundStart}
+					name="postie"
+					value={postie}
 					label="Postie"
+					type="text"
 					handleChange={handleRoundInput}
 				/>
 				<Button
@@ -124,4 +139,4 @@ const AddRound = () => {
 	);
 };
 
-export default AddRound
+export default AddRound;

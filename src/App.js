@@ -25,6 +25,11 @@ function App() {
 
 	console.log('app rendered');
 
+	const a = '34 Paget Street, Hilton WA, Australia';
+	const b = a.split(',')[1]
+	const c = b.split(' ')[1]
+	console.log('C',c);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="App">

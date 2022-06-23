@@ -21,6 +21,9 @@ import {
 	CREATE_HAZARD_ERROR,
 	GET_ALL_HAZARDS_BEGIN,
 	GET_ALL_HAZARDS_SUCCESS,
+	CREATE_ROUND_BEGIN,
+	CREATE_ROUND_SUCCESS,
+	CREATE_ROUND_ERROR,
 	GET_ONE_ROUND_BEGIN,
 	GET_ONE_ROUND_SUCCESS,
 	MAP_LOADED
@@ -223,6 +226,30 @@ const reducer = (state, action) => {
 			isLoading: false,
 			allHazards: action.payload.hazards,
 			totalAllHazards: action.payload.totalHazards
+		};
+	}
+	if (action.type === CREATE_ROUND_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+	if (action.type === CREATE_ROUND_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'success',
+			alertText: 'Round Created',
+		};
+	}
+	if (action.type === CREATE_ROUND_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
 		};
 	}
 	if (action.type === GET_ONE_ROUND_BEGIN) {

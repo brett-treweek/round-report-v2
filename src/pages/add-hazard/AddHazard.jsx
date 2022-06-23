@@ -38,6 +38,7 @@ const AddHazard = () => {
 		uploadImage,
 		createHazard,
 	} = useAppContext();
+	
 	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
